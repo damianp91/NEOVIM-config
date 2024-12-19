@@ -1,0 +1,6 @@
+
+-- Configuration Lazzy
+require('config')
+
+
+
