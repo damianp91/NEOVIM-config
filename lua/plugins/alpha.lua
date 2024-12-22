@@ -9,6 +9,7 @@ return {
     local dashboard = require("alpha.themes.dashboard")
 
     dashboard.section.header.val = {
+
       " ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
       " ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
       " ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
@@ -19,18 +20,18 @@ return {
 
     dashboard.section.buttons.val = {
       dashboard.button("f", "  Find File", ":Telescope find_files<CR>"),
-      dashboard.button("r", "  Recent Files", ":Telescope oldfiles<CR>"),
+      dashboard.button("r", "  Recent Files", ":Telescope oldfiles<CR>"),
       dashboard.button("s", "  Open Session", ":SessionManager load_session<CR>"),
-      dashboard.button("q", "  Quit", ":qa<CR>"),
+      dashboard.button("q", "  Quit", ":qa<CR>"),
     }
 
     local alpha = require("alpha")
     local layout = {
-      { type = "padding", val = 10 }, -- Espaciado superior
+      { type = "padding", val = 12 },       -- Top space
       dashboard.section.header,
-      { type = "padding", val = 2 }, -- Espaciado entre el header y botones
+      { type = "padding", val = 2 },        -- Space between heater an botton
       dashboard.section.buttons,
-      { type = "padding", val = 1 }, -- Espaciado entre los botones y footer
+      { type = "padding", val = 1 },        -- Space between los botton and footer
       dashboard.section.footer,
     }
 
