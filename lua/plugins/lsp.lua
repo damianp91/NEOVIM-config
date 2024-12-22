@@ -49,6 +49,28 @@ return {
         }
       }
     })
+
+    -- Java (jdtls)
+    require("lspconfig").jdtls.setup({
+      cmd = { "/home/damianp/.local/share/nvim/mason/bin/jdtls" },
+      root_dir = require('lspconfig').util.root_pattern("pom.xml", "build.gradle", ".git"),
+      settings = {
+        java = {
+          eclipse = { downloadSources = true },
+          configuration = {
+            updateBuildConfiguration = "interactive",
+          },
+          maven = {
+            downloadSources = true,
+          },
+          format = { enabled = true },
+        },
+      },
+      init_options = {
+        bundles = {},
+      },
+      on_attach = on_attach,
+    })
   end
 }
 
