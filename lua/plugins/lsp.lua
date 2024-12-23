@@ -4,6 +4,7 @@ return {
   "neovim/nvim-lspconfig",
   dependencies = {
     "williamboman/mason.nvim",
+    "mfussenegger/nvim-jdtls",
     "folke/neodev.nvim",
   },
   config = function()
@@ -51,23 +52,45 @@ return {
     })
 
     -- Java (jdtls)
+    local lspconfig = require('lspconfig')
+    local jdtls_path = "/home/damianp/.local/share/nvim/mason/packages/jdtls"
+    local workspace_dir = "/home/damianp/.cache/jdtls/workspace/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+
     require("lspconfig").jdtls.setup({
-      cmd = { "/home/damianp/.local/share/nvim/mason/bin/jdtls" },
-      root_dir = require('lspconfig').util.root_pattern("pom.xml", "build.gradle", ".git"),
+      cmd = {
+        "java",
+        "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+        "-Dosgi.bundles.defaultStartLevel=4",
+        "-Declipse.product=org.eclipse.jdt.ls.core.product",
+        "-Dlog.level=ALL",
+        "-noverify",
+        "-Xmx1G",
+        "-jar",
+        vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+        "-configuration",
+        jdtls_path .. "/config_linux",
+        "-data",
+        workspace_dir,
+      },
+      root_dir = lspconfig.util.root_pattern("git", "mvnw", "gradlew", "pom.xml"),
       settings = {
         java = {
-          eclipse = { downloadSources = true },
-          configuration = {
-            updateBuildConfiguration = "interactive",
+          signatureHelp = { enabled = true },
+          contentProvider = { preferred = "fernflower" },
+          sources = {
+            organizeImports = true,
           },
-          maven = {
-            downloadSources = true,
+          codeGeneration = {
+            toString = {
+              template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+            },
           },
-          format = { enabled = true },
         },
       },
       init_options = {
-        bundles = {},
+        bundles = {
+          vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.jdt.ls.adapters.debug_*.jar", true),
+        },
       },
       on_attach = on_attach,
     })
