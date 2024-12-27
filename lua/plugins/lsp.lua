@@ -4,37 +4,20 @@ return {
   "neovim/nvim-lspconfig",
   dependencies = {
     "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
     "mfussenegger/nvim-jdtls",
+    -- Depuración
+    "mfussenegger/nvim-dap", -- Framework general para depuración
+    "rcarriga/nvim-dap-ui", -- Interfaz de usuario para nvim-dap
+    "theHamsta/nvim-dap-virtual-text", -- Virtual text para depuración
+    "jay-babu/mason-nvim-dap.nvim", -- Integración de DAP con Mason
     "folke/neodev.nvim",
+    "nvim-lua/plenary.nvim", -- Biblioteca necesaria para varios plugins
   },
   config = function()
-    -- Global keymaps
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
-
-    -- Keymaps for call
+    local keymaps = require("config.keymaps")
     local on_attach = function(_, bufnr)
-      vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
-      local opts = { buffer = bufnr }
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-      vim.keymap.set('n', 'C-k', vim.lsp.buf.signature_help, opts)
-      vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-      vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-      vim.keymap.set('n', '<space>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end, opts)
-      vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-      vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-      vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-      vim.keymap.set('n', '<space>f', function()
-        vim.lsp.buf.format { async = true }
-      end, opts)
+      keymaps.setup(bufnr)
     end
 
     -- Neodev
@@ -72,7 +55,7 @@ return {
         "-data",
         workspace_dir,
       },
-      root_dir = lspconfig.util.root_pattern("git", "mvnw", "gradlew", "pom.xml"),
+      root_dir = lspconfig.util.root_pattern("git", "mvnw", "gradlew", "pom.xml", "settings.gradle", "build.gradle"),
       settings = {
         java = {
           signatureHelp = { enabled = true },
