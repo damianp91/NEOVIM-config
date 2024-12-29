@@ -16,8 +16,8 @@ vim.opt.updatetime = 300       -- Tiempo de espera para eventos (reducción de l
 
 -- General mapping 
 vim.g.mapleader = " "          -- leader key
-vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Guardar archivo' })
-vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Cerrar ventana' })
+vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save file' })
+vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Close window' })
 
 -- Keymaps tree
 vim.keymap.set('n', '<leader>ot', function()
@@ -28,10 +28,15 @@ vim.keymap.set('n', '<leader>ct', function()
   vim.cmd('NvimTreeClose')
 end, {desc = 'Close nvim tree'})
 
-
 -- Keymaps treminal
 vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {desc = 'Escape terminal'})
 vim.keymap.set('n', '<C-h>', [[<Cmd>wincmd h<CR>]], {desc = "Move left"})
 vim.keymap.set('n', '<C-j>', [[<Cmd>wincmd j<CR>]], {desc = "Move down"})
 vim.keymap.set('n', '<C-k>', [[<Cmd>wincmd k<CR>]], {desc = "Move up"})
 vim.keymap.set('n', '<C-l>', [[<Cmd>wincmd l<CR>]], {desc = "Move right"})
+
+-- Keymaps for buffers
+vim.keymap.set('n', '<leader>wv', ':vsplit<cr>', {desc = "Window vertical buffer"})
+vim.keymap.set('n', '<leader>wh', ':split<cr>', {desc = "Window horizontal buffer"})
+
+
