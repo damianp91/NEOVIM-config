@@ -90,7 +90,7 @@ return {
     },
     {
       "<leader>ph",
-      function()
+       function()
         require("telescope.builtin").help_tags()
       end,
       desc = "Telescope Help"
