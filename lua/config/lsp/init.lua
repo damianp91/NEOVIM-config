@@ -6,13 +6,13 @@ local servers = {
   "jdtls",
 }
 
-function M.setup(on_attach)
+function M.setup()
   for _, server in ipairs(servers) do
         local ok, server_config = pcall(require, "config.lsp." .. server)
         if ok then
-            server_config.setup(on_attach)
+            server_config.setup()
         else
-            vim.notify("Error. server deny connect " .. server, vim.log.levels.ERROR)
+            vim.notify("Error. server deny connect to LSP: " .. server, vim.log.levels.ERROR)
         end
     end
 end

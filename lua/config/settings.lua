@@ -19,11 +19,15 @@ vim.g.mapleader = " "          -- leader key
 vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Close window' })
 
+-- Keymaps Alpha
+vim.keymap.set('n', '<leader>in', function()
+  vim.cmd('Alpha')
+end, {desc = 'Return to the beginning'})
+
 -- Keymaps tree
 vim.keymap.set('n', '<leader>ot', function()
   vim.cmd('NvimTreeOpen')
 end, {desc = 'Open Nvim tree'})
-
 vim.keymap.set('n', '<leader>ct', function()
   vim.cmd('NvimTreeClose')
 end, {desc = 'Close nvim tree'})

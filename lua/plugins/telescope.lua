@@ -62,6 +62,7 @@ return {
       end,
       desc = "Telescope Git branches",
     },
+    -- Comand for make a file from lua/plugins 
     {
       "<leader>rp",
       function()
