@@ -21,8 +21,8 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button("f", "  Find File", ":Telescope find_files<CR>"),
       dashboard.button("r", "  Recent Files", ":Telescope oldfiles<CR>"),
-      dashboard.button("s", "  Open Session", ":SessionManager load_session<CR>"),
-      dashboard.button("q", "  Quit", ":qa<CR>"),
+      dashboard.button("h", "󰋗  Open Session", ":Telescope help_tags<CR>"),
+      dashboard.button("q", "󰩈  Quit", ":qa<CR>"),
     }
 
     local alpha = require("alpha")
