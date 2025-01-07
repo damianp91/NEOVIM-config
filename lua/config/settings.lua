@@ -9,10 +9,9 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.termguicolors = true    -- Colors in terminal
 vim.opt.scrolloff = 8           -- 8 lines for each scroll
 vim.opt.sidescrolloff = 8       -- 8 columns for lateral scroll
-vim.opt.wrap = true            -- Desactiva el ajuste de línea (líneas largas no se ajustan)
 vim.opt.cursorline = true       -- Highlight actual line
 vim.opt.showmatch = true
-vim.opt.updatetime = 300       -- Tiempo de espera para eventos (reducción de latencia)
+vim.opt.updatetime = 300        -- Waiting for events 
 
 -- General mapping 
 vim.g.mapleader = " "          -- leader key
@@ -27,10 +26,10 @@ end, {desc = 'Return to the beginning'})
 -- Keymaps tree
 vim.keymap.set('n', '<leader>ot', function()
   vim.cmd('NvimTreeOpen')
-end, {desc = 'Open Nvim tree'})
+end, {desc = 'Open Nvimtree'})
 vim.keymap.set('n', '<leader>ct', function()
   vim.cmd('NvimTreeClose')
-end, {desc = 'Close nvim tree'})
+end, {desc = 'Close Nvimtree'})
 
 -- Keymaps treminal
 vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {desc = 'Escape terminal'})
