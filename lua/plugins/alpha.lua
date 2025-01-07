@@ -21,7 +21,7 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button("f", "  Find File", ":Telescope find_files<CR>"),
       dashboard.button("r", "  Recent Files", ":Telescope oldfiles<CR>"),
-      dashboard.button("h", "󰋗  Open Session", ":Telescope help_tags<CR>"),
+      dashboard.button("h", "󰋗  Help Info", ":Telescope help_tags<CR>"),
       dashboard.button("q", "󰩈  Quit", ":qa<CR>"),
     }
 
