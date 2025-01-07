@@ -22,13 +22,13 @@ local workspace_dir = vim.fn.expand("~/.cache/jdtls-workspace") .. "/" .. vim.fn
 -- Function for all keymap of the jdtls
 local function java_keymaps()
   -- Run JdtCompile as a Vim command
-  --vim.cmd("command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)")
+  vim.cmd("command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)")
   -- Run JdtUpdateConfig as a Vim command
-  --vim.cmd("command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()")
+  vim.cmd("command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()")
   -- Run JdtBytecode as a Vim command
-  --vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
+  vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
   -- Run JdtShell as a Vim command
-  --vim.cmd("command! -buffer JdtJshell lua require('jdtls').jshell()")
+  vim.cmd("command! -buffer JdtJshell lua require('jdtls').jshell()")
   -- Run code
   vim.keymap.set('n', '<leader>r', function()
     local file = vim.fn.expand('%:p')            -- Ruta completa del archivo actual
@@ -37,7 +37,25 @@ local function java_keymaps()
     local cmd = string.format('javac -d bin %s && java -cp bin %s.%s', file, package_path, classname)
     vim.cmd('split | term ' .. cmd)
     vim.cmd('startinsert')
-  end)
+  end, {desc = "Run code normal"})
+  -- Run with Springboot
+  vim.keymap.set('n', '<leader>sr', function()
+    local gradle_file = vim.fn.findfile('build.gradle', '.;')
+    local maven_file = vim.fn.findfile('pom.xml', '.;')
+    local cmd
+
+    if gradle_file ~= '' then
+      cmd = './gradlew bootRun'
+    elseif maven_file ~= '' then
+      cmd = './mvnw spring-boot:run'
+    else
+      print("No se encontró configuración para Gradle o Maven.")
+      return
+    end
+
+    vim.cmd('split | term ' .. cmd)
+    vim.cmd('startinsert')
+  end, { desc = "Run code Spring Boot" })
   -- Set a Vim motion to <Space> + <Shift>J + o to organize imports in normal mode
   vim.keymap.set('n', '<leader>jo', "<Cmd> lua require('jdtls').organize_imports()<CR>", { desc = "[J]ava [O]rganize Imports" })
   -- Set a Vim motion to <Space> + <Shift>J + v to extract the code under the cursor to a variable
