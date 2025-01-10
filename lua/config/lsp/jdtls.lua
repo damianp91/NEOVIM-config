@@ -7,16 +7,24 @@ local jdtls_config = jdtls_path .. "/config_linux"
 local lombok_path = jdtls_path .. "/lombok.jar"
 -- Function for customise bundles
 local function get_bundles()
-  local debug_adapter_path = mason_registry.get_package("java-debug-adapter"):get_install_path()
-  local test_adapter_path = mason_registry.get_package("java-test"):get_install_path()
+  -- Get the Mason Registry to gain access to downloaded binaries
+  local mason_regis = require("mason-registry")
+  local java_debug_adapter_path = mason_regis.get_package("java-debug-adapter")
+  -- Obtain the full path to the directory where Mason has downloaded the Java Debug Adapter binaries
+  local java_debug_path = java_debug_adapter_path:get_install_path()
   local bundles = {
-    debug_adapter_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar",
+    vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar")
   }
-  vim.list_extend(bundles, vim.split(vim.fn.glob(test_adapter_path .. "/extension/server/*.jar"), "\n"))
+  -- Find the Java Test package in the Mason Registry
+  local java_test = mason_regis.get_package("java-test")
+  -- Obtain the full path to the directory where Mason has downloaded the Java Test binaries
+  local java_test_path = java_test:get_install_path()
+  -- Add all of the Jars for running tests in debug mode to the bundles list
+  vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar"), "\n"))
   return bundles
 end
 -- Detected root file
-local root_markers = { ".git", "mvnw", "gradlew", "settings.gradle", "pom.xml" }
+local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "settings.gradle" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
 local workspace_dir = vim.fn.expand("~/.cache/jdtls-workspace") .. "/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 -- Function for all keymap of the jdtls
@@ -29,14 +37,18 @@ local function java_keymaps()
   vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
   -- Run JdtShell as a Vim command
   vim.cmd("command! -buffer JdtJshell lua require('jdtls').jshell()")
-  -- Run code
+  -- Run code single
   vim.keymap.set('n', '<leader>r', function()
     local file = vim.fn.expand('%:p')            -- Ruta completa del archivo actual
     local classname = vim.fn.expand('%:t:r')     -- Nombre de la clase actual
     local package_path = vim.fn.expand('%:.:h'):gsub("/", "."):gsub("^src%.main%.java%.", "")
     local cmd = string.format('javac -d bin %s && java -cp bin %s.%s', file, package_path, classname)
-    vim.cmd('split | term ' .. cmd)
-    vim.cmd('startinsert')
+    require('toggleterm.terminal').Terminal:new({
+      cmd = cmd,
+      direction = "horizontal",
+      close_on_exit = false,
+      hidden = true,
+    }):toggle()
   end, {desc = "Run code normal"})
   -- Run with Springboot
   vim.keymap.set('n', '<leader>sr', function()
@@ -52,9 +64,12 @@ local function java_keymaps()
       print("No se encontró configuración para Gradle o Maven.")
       return
     end
-
-    vim.cmd('split | term ' .. cmd)
-    vim.cmd('startinsert')
+    require('toggleterm.terminal').Terminal:new({
+      cmd = cmd,
+      direction = "horizontal",
+      close_on_exit = false,
+      hidden = true,
+    }):toggle()
   end, { desc = "Run code Spring Boot" })
   -- Set a Vim motion to <Space> + <Shift>J + o to organize imports in normal mode
   vim.keymap.set('n', '<leader>jo', "<Cmd> lua require('jdtls').organize_imports()<CR>", { desc = "[J]ava [O]rganize Imports" })
@@ -141,6 +156,15 @@ function M.setup()
     capabilities = capabilities,
     settings = {
       java = {
+        -- Enable code formatting
+        format = {
+          enabled = true,
+          -- Use the Google Style guide for code formattingh
+          settings = {
+            url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
+            profile = "GoogleStyle"
+          }
+        },
         eclipse = {
           downloadSource = true
         },
