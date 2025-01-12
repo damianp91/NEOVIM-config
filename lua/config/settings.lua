@@ -144,16 +144,20 @@ vim.keymap.set('n', '<leader>nm', function()
   <modelVersion>4.0.0</modelVersion>
   <groupId>]] .. package_name .. [[</groupId>
   <artifactId>]] .. project_name .. [[</artifactId>
+  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
+  <name>testMaven</name>
+  <url>http://maven.apache.org</url>
   <properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <junit.version>5.10.0</junit.version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>5.10.0</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -162,10 +166,10 @@ vim.keymap.set('n', '<leader>nm', function()
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>3.11.0</version>
         <configuration>
-          <source>17</source>
-          <target>17</target>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
         </configuration>
       </plugin>
     </plugins>
@@ -191,7 +195,7 @@ public class Main {
   }
 }
 ]]
-  local main_java_path = project_path .. "/src/main/java/" .. package_name:gsub("%.", "/") .. "/Main.java"
+  local main_java_path = project_path .. "/src/main/java/" .. package_name:gsub("%.", "/") .. "/App.java"
   local main_java_file = io.open(main_java_path, "w")
   if main_java_file then
     main_java_file:write(main_java)

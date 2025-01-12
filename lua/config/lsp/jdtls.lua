@@ -39,23 +39,22 @@ local function java_keymaps()
   vim.cmd("command! -buffer JdtJshell lua require('jdtls').jshell()")
   -- Run code single
   vim.keymap.set('n', '<leader>r', function()
-    local file = vim.fn.expand('%:p')            -- Ruta completa del archivo actual
-    local classname = vim.fn.expand('%:t:r')     -- Nombre de la clase actual
-    local package_path = vim.fn.expand('%:.:h'):gsub("/", "."):gsub("^src%.main%.java%.", "")
-    local cmd = string.format('javac -d bin %s && java -cp bin %s.%s', file, package_path, classname)
+    local project_root = vim.fn.getcwd()
+    local java_files = vim.fn.systemlist(string.format('find %s/src/main/java -name "*.java"', project_root))
+    local files = table.concat(java_files, " ")
+    local cmd = string.format('javac -d %s/bin %s && java -cp %s/bin com.damianp.pruebaMaven.App',project_root, files, project_root)
     require('toggleterm.terminal').Terminal:new({
       cmd = cmd,
       direction = "horizontal",
       close_on_exit = false,
       hidden = true,
     }):toggle()
-  end, {desc = "Run code normal"})
+  end, { desc = "Compile and execute all project java Maven" })
   -- Run with Springboot
   vim.keymap.set('n', '<leader>sr', function()
     local gradle_file = vim.fn.findfile('build.gradle', '.;')
     local maven_file = vim.fn.findfile('pom.xml', '.;')
     local cmd
-
     if gradle_file ~= '' then
       cmd = './gradlew bootRun'
     elseif maven_file ~= '' then
