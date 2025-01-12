@@ -42,7 +42,21 @@ local function java_keymaps()
     local project_root = vim.fn.getcwd()
     local java_files = vim.fn.systemlist(string.format('find %s/src/main/java -name "*.java"', project_root))
     local files = table.concat(java_files, " ")
-    local cmd = string.format('javac -d %s/bin %s && java -cp %s/bin com.damianp.pruebaMaven.App',project_root, files, project_root)
+    -- Detect class with method `main`
+    local main_class = ""
+    for _, file in ipairs(java_files) do
+      local content = table.concat(vim.fn.readfile(file), "\n")
+      if content:match("public%s+static%s+void%s+main%s*%(") then
+        main_class = file:match("src/main/java/(.+)%.java$")
+        main_class = main_class:gsub("/", ".")
+        break
+      end
+    end
+    if main_class == "" then
+      vim.notify("Not found any class with method main.", vim.log.levels.ERROR)
+      return
+    end
+    local cmd = string.format('javac -d %s/bin %s && java -cp %s/bin %s', project_root, files, project_root, main_class)
     require('toggleterm.terminal').Terminal:new({
       cmd = cmd,
       direction = "horizontal",
@@ -60,7 +74,7 @@ local function java_keymaps()
     elseif maven_file ~= '' then
       cmd = './mvnw spring-boot:run'
     else
-      print("No se encontró configuración para Gradle o Maven.")
+      print("Not found configuration for Gradle or Maven.")
       return
     end
     require('toggleterm.terminal').Terminal:new({

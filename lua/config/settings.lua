@@ -189,7 +189,7 @@ vim.keymap.set('n', '<leader>nm', function()
   local main_java = [[
 package ]] .. package_name .. [[;
 
-public class Main {
+public class App {
   public static void main(String[] args) {
     System.out.println("¡Hello world from the Maven project ]] .. project_name .. [[!");
   }
