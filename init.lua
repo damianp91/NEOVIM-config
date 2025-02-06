@@ -1,6 +1,0 @@
-
--- Configuration Lazzy
-require('config')
-
-
-
