@@ -14,16 +14,6 @@ return {
       fps = 30,
       render = "default",
       top_down = true,
-      on_open = function()
-        local input = vim.fn.input("Type option: ")
-        if input ~= "" then
-          print("Output: " .. input)
-        end
-      end,
-      on_close = function()
-        print("Closed notify.")
-      end,
-      animate = false,
     })
     vim.notify = notify.notify
   end,

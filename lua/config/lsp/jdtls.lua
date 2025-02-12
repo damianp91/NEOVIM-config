@@ -126,22 +126,22 @@ local M = {}
 
 function M.setup(opts)
   local jdtls = require "jdtls"
-  local capabilities = {
-    workspace = {
-      configuration = true
-    },
-    textDocument = {
-      completion = {
-        snippetSupport = false
-      }
-    },
-  }
-  local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+  -- local capabilities = {
+  --   workspace = {
+  --     configuration = true
+  --   },
+  --   textDocument = {
+  --     completion = {
+  --       snippetSupport = false
+  --     }
+  --   },
+  -- }
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
   -- Get the default extended client capablities of the JDTLS language server
   local extendedClientCapabilities = jdtls.extendedClientCapabilities
   -- Modify one property called resolveAdditionalTextEditsSupport and set it to true
   extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-  for k,v in pairs(lsp_capabilities) do capabilities[k] = v end
+  --for k,v in pairs(lsp_capabilities) do capabilities[k] = v end
   require("lspconfig").jdtls.setup({
     cmd = {
       "java",
