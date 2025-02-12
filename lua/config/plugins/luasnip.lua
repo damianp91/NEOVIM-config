@@ -1,5 +1,4 @@
 
-
 local ls = require "luasnip"
 local types = require "luasnip.util.types"
 
@@ -10,13 +9,10 @@ function M.setup()
     -- This tells LuaSnip to remember to keep around the last snippet.
     -- You can jump back into even if you move outside of the selection
     history = true,
-
     -- This one is cool cause if you have dynamic snippets, it updatesas type!
     updateevents = "TextChanged,TextChangedI",
-
    -- Autosnippets:
     enable_autosnippets = true,
-
     ext_opts = {
       [types.choiceNode] = {
         active = {
@@ -25,7 +21,6 @@ function M.setup()
       },
     },
   }
-
   -- <c-k> is my expansion key
   -- this will expand the current item or jump to the next item within the snippet.
   vim.keymap.set({"i", "s"}, "<c-k>", function()

@@ -47,8 +47,8 @@ function  M.setup()
     sources = cmp.config.sources({
       {name = 'git'},
     },{
-      {name = 'buffer'},
-    })
+        {name = 'buffer'},
+      })
   })
 
   -- Use buffer source for '/' and '?' (if you enabled `native_menu`, this won't work anymore).
@@ -65,8 +65,8 @@ function  M.setup()
     sources = cmp.config.sources({
       {name = 'path'}
     }, {
-      {name = 'cmdline'}
-    })
+        {name = 'cmdline'}
+      })
   })
 end
 

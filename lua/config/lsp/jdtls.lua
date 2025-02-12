@@ -124,7 +124,7 @@ end
 
 local M = {}
 
-function M.setup()
+function M.setup(opts)
   local jdtls = require "jdtls"
   local capabilities = {
     workspace = {
@@ -165,7 +165,7 @@ function M.setup()
     },
     root_dir = root_dir,
     -- Function that will be ran once the language server is attached
-    on_attach = on_attach,
+    on_attach = opts.on_attach or on_attach,
     capabilities = capabilities,
     settings = {
       java = {
