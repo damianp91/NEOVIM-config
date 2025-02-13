@@ -2,17 +2,23 @@
 
 A personal and optimized Neovim setup for a smooth and efficient development experience. This configuration is tailored for performance, featuring plugins for better code navigation, completion, and customization.
 
-## 📸 Screenshots
-(Add your images here to showcase the setup)
+![NEOVIM-config](photos/inicio.png)
 
 ## 🚀 Features
 - **Lazy-loaded plugins** for better performance
+  ![NEOVIM-config](photos/lazy.png)
 - **Tree-sitter** for improved syntax highlighting
+  ![NEOVIM-config](photos/completition.png)
 - **LSP and DAP** support for a full coding experience
+  ![NEOVIM-config](photos/carga.png)
 - **Telescope** for fuzzy file searching
+  ![NEOVIM-config](photos/telescope.png)
 - **Git integration** with gitsigns and fugitive
+  ![NEOVIM-config](photos/git.png)
 - **Custom key mappings** for efficiency
+  ![NEOVIM-config](photos/Screenshot from 2025-02-10 19-30-40.png).
 - **ToggleTerm** for an integrated terminal
+  ![NEOVIM-config](photos/terminal.png)
 
 ## 📥 Installation
 Clone this repository and place the configuration files in your Neovim directory:
