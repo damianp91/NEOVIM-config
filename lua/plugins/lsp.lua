@@ -19,6 +19,8 @@ return {
     require("neodev").setup()
     -- Configutation lsp separate
     require("config.lsp").setup()
+    -- Keymaps
+    require("config.keymaps")
   end
 }
 

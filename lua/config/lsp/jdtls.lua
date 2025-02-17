@@ -2,7 +2,7 @@
 local mason_registry = require("mason-registry")
 -- Paths for config jdtls
 local jdtls_path = mason_registry.get_package("jdtls"):get_install_path()
-local jdtls_jar = jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"
+--local jdtls_jar = jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"
 local jdtls_config = jdtls_path .. "/config_linux"
 local lombok_path = jdtls_path .. "/lombok.jar"
 -- Function for customise bundles
@@ -13,14 +13,14 @@ local function get_bundles()
   -- Obtain the full path to the directory where Mason has downloaded the Java Debug Adapter binaries
   local java_debug_path = java_debug_adapter_path:get_install_path()
   local bundles = {
-    vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar")
+    vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", true)
   }
   -- Find the Java Test package in the Mason Registry
   local java_test = mason_regis.get_package("java-test")
   -- Obtain the full path to the directory where Mason has downloaded the Java Test binaries
   local java_test_path = java_test:get_install_path()
   -- Add all of the Jars for running tests in debug mode to the bundles list
-  vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar"), "\n"))
+  vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar", true), "\n"))
   return bundles
 end
 -- Detected root file
@@ -124,24 +124,21 @@ end
 
 local M = {}
 
-function M.setup(opts)
+function M.setup()
   local jdtls = require "jdtls"
-  -- local capabilities = {
-  --   workspace = {
-  --     configuration = true
-  --   },
-  --   textDocument = {
-  --     completion = {
-  --       snippetSupport = false
-  --     }
-  --   },
-  -- }
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  local capabilities = {
+    workspace = {
+      configuration = true
+    },
+    textDocument = {
+      completion = {
+        snippetSupport = false
+      }
+    },
+  }
   -- Get the default extended client capablities of the JDTLS language server
   local extendedClientCapabilities = jdtls.extendedClientCapabilities
-  -- Modify one property called resolveAdditionalTextEditsSupport and set it to true
   extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-  --for k,v in pairs(lsp_capabilities) do capabilities[k] = v end
   require("lspconfig").jdtls.setup({
     cmd = {
       "java",
@@ -157,7 +154,7 @@ function M.setup(opts)
       '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
       '-javaagent:' .. lombok_path,
       "-jar",
-      vim.fn.glob(jdtls_jar),
+      vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar", true, true)[1],
       "-configuration",
       jdtls_config,
       "-data",
@@ -165,7 +162,7 @@ function M.setup(opts)
     },
     root_dir = root_dir,
     -- Function that will be ran once the language server is attached
-    on_attach = opts.on_attach or on_attach,
+    on_attach = on_attach,
     capabilities = capabilities,
     settings = {
       java = {

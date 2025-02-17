@@ -1,8 +1,8 @@
 local M = {}
 
-function M.setup(opts)
+function M.setup()
   require("lspconfig").lua_ls.setup({
-    on_attach = opts.on_attach,
+    on_attach = on_attach,
     settings = {
       Lua = {
         telemetry = { enable = false },
