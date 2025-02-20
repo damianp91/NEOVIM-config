@@ -2,7 +2,7 @@
 -- Configs server
 return {
   "neovim/nvim-lspconfig",
-   dependencies = {
+  dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "mfussenegger/nvim-jdtls",
