@@ -11,7 +11,7 @@ function M.setup()
     history = true,
     -- This one is cool cause if you have dynamic snippets, it updatesas type!
     updateevents = "TextChanged,TextChangedI",
-   -- Autosnippets:
+    -- Autosnippets:
     enable_autosnippets = true,
     ext_opts = {
       [types.choiceNode] = {

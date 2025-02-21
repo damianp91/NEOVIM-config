@@ -53,7 +53,7 @@ return {
       function()
         require("telescope.builtin").git_bcommits()
       end,
-      desc = "Telescope Git status",
+      desc = "Telescope Git commits",
     },
     {
       "<leader>gb",
