@@ -16,7 +16,7 @@ A personal and optimized Neovim setup for a smooth and efficient development exp
 - **Git integration** with gitsigns and fugitive
   ![NEOVIM-config](photos/git.png)
 - **Custom key mappings** for efficiency
-  ![NEOVIM-config](photos/Screenshot from 2025-02-10 19-30-40.png).
+  ![NEOVIM-config](photos/image.png).
 - **ToggleTerm** for an integrated terminal
   ![NEOVIM-config](photos/terminal.png)
 
