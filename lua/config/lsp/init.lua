@@ -5,6 +5,7 @@ local M = {}
 local servers = {
   "lua_ls",
   "jdtls",
+  "pyright",
 }
 
 function M.setup()
