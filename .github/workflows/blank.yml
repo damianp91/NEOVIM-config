@@ -8,19 +8,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - name: Check out repository
+      uses: actions/checkout@v3
 
-    - name: Setup Neovim
-      run: sudo apt-get install -y neovim
-
-    - name: Cache Neovim plugins
-      uses: actions/cache@v2
+    - name: Cache dependencies
+      uses: actions/cache@v3
       with:
-        path: ~/.local/share/nvim/site
-        key: ${{ runner.os }}-neovim-plugins
-
+        path: ~/.cache
+        key: ${{ runner.os }}-cache-${{ hashFiles('**/lockfiles') }}
+        restore-keys: |
+          ${{ runner.os }}-cache-
+    
+    - name: Set up Lua
+      uses: actions/setup-lua@v2
+      with:
+        lua-version: '5.4'
+    
     - name: Run tests
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        # Add your test commands here
