@@ -50,7 +50,7 @@ vim.keymap.set('n', '<leader>ng', function()
     return
   end
   -- Define paths and names
-  local project_path = vim.fn.expand("~/NvimProjectsJava/") .. project_name
+  local project_path = vim.fn.getcwd() .. "/" .. project_name
   local main_class = "Main"
   local package_name = "com.damianp." .. project_name
   local package_path = package_name:gsub("%.", "/")  -- Convert package name to directory path
@@ -130,7 +130,7 @@ vim.keymap.set('n', '<leader>nm', function()
     print("Error: You must provide a name for the project.")
     return
   end
-  local project_path = vim.fn.expand("~/NvimProjectsJava/") .. project_name
+  local project_path = vim.fn.getcwd() .. "/" .. project_name
   --local main_class = "Main"
   local package_name = "com.damianp." .. project_name
   vim.fn.mkdir(project_path .. "/src/main/java/" .. package_name:gsub("%.", "/"), "p")
