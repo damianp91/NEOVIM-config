@@ -1,17 +1,23 @@
 return {
-  "tpope/vim-dadbod",
+  'kristijanhusak/vim-dadbod-ui',
   dependencies = {
-    "kristijanhusak/vim-dadbod-ui",
-    "kristijanhusak/vim-dadbod-completion"
+    {
+      'tpope/vim-dadbod',
+      lazy = true
+    },
+    { 'kristijanhusak/vim-dadbod-completion',
+      ft = { 'sql', 'mysql', 'plsql' },
+      lazy = true
+    }, -- Optional
   },
-  lazy = false,
-  config = function()
+  cmd = {
+    'DBUI',
+    'DBUIToggle',
+    'DBUIAddConnection',
+    'DBUIFindBuffer',
+  },
+  init = function()
+    -- Your DBUI configuration
     vim.g.db_ui_use_nerd_fonts = 1
-    vim.g.db_ui_show_database_icon = 1
-   vim.g.dbs = {
-      test_db = os.getenv("DB_TEST_URL"),
-      datab_one_db = os.getenv("DB_DATABONE_URL")
-    }
-  end
+  end,
 }
-

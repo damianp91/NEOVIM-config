@@ -13,8 +13,8 @@ vim.keymap.set('n', '<leader>f', function()
   vim.lsp.buf.format { async = true }
 end, {desc = "Format code"})
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {desc = "Show floating diagnostics"})
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {desc = "Jump to previous diagnostic"})
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {desc = "Jump to next diagnostic"})
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {desc = "Jump to previous diagnostic"})
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {desc = "Jump to next diagnostic"})
 vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, {desc = "Add diagnostic to the location list"})
 -- Set vim motion for <Space> + c + h to show code documentation about the code the cursor is currently over if available
 vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, {desc = "[C]ode [H]over Documentation" })
