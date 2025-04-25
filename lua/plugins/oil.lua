@@ -3,7 +3,7 @@ return {
   config = function()
     require("oil").setup({
       default_file_explorer = true,
-      columns = { "icon" },
+      columns = { "icon", "git_status" },
       buf_options = {
         buflisted = false,
         bufhidden = "hide",
@@ -31,7 +31,7 @@ return {
       watch_for_changes = false,
       keymaps = {
         ["g?"] = { "actions.show_help", mode = "n" },
-        ["<CR>"] = "actions.select",
+        ["<TAB>"] = "actions.select",
         ["<C-s>"] = { "actions.select", opts = { vertical = true } },
         ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
         ["<C-t>"] = { "actions.select", opts = { tab = true } },
@@ -50,11 +50,9 @@ return {
       use_default_keymaps = true,
       view_options = {
         show_hidden = false,
-        is_hidden_file = function(name,_)
-          return name:match("^%.") ~= nil
-        end,
-        is_always_hidden = function(_, _)
-          return false
+        is_hidden_file = function(name, _)
+          local m = name:match("^%.")
+          return m ~= nil
         end,
         natural_order = "fast",
         case_insensitive = false,
@@ -63,14 +61,30 @@ return {
           { "name", "asc" },
         },
       },
+      extra_scp_args = {},
+      git = {},
       float = {
-        padding = 2,
-        max_width = 0.9,
-        max_height = 0.9,
+        padding = 1,
+        max_width = 0.5,
+        max_height = 0.7,
         border = "rounded",
         win_options = {
-          winblend = 0,
+          winblend = 10,
         },
+        preview_split = "auto",
+        override = function(conf)
+          local screen_w = vim.o.columns
+          local screen_h = vim.o.lines
+          local width = math.floor(screen_w * 0.5)
+          local height = math.floor(screen_h * 0.7)
+          local col = math.floor(screen_w - width - (screen_w * 0.1))
+          local row = math.floor((screen_h - height) / 2 - 2)
+          conf.width = width
+          conf.height = height
+          conf.col = col
+          conf.row = math.max(row, 0)
+          return conf
+        end,
       },
     })
   end,

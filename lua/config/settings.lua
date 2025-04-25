@@ -42,4 +42,7 @@ vim.keymap.set('n', '<C-l>', [[<Cmd>wincmd l<CR>]], {desc = "Move right"})
 vim.keymap.set('n', '<leader>wv', ':vsplit<cr>', {desc = "Window vertical buffer"})
 vim.keymap.set('n', '<leader>wh', ':split<cr>', {desc = "Window horizontal buffer"})
 
+-- Keymaps for Oil
+vim.keymap.set('n', '<leader>oo', ':Oil<cr>', {desc = "Oil: open oil"})
+vim.keymap.set('n', '<leader>of', ':Oil --float<cr>', {desc = "Oil: open oil float"})
 
