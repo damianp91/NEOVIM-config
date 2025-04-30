@@ -3,19 +3,27 @@ return {
   config = function()
     require("oil").setup({
       default_file_explorer = true,
-      columns = { "icon" },
+      columns = {
+        "icon",
+        {
+          "git_status",
+          symbols = {
+            added    = "",
+            modified = "",
+            deleted  = "",
+          }
+        },
+      },
       buf_options = {
         buflisted = false,
         bufhidden = "hide",
       },
       win_options = {
         wrap = false,
-        signcolumn = "no",
+        signcolumn = "yes",
         cursorcolumn = false,
-        foldcolumn = "0",
-        spell = false,
         list = false,
-        conceallevel = 3,
+        conceallevel = 2,
         concealcursor = "nvic",
       },
       delete_to_trash = false,
@@ -28,10 +36,10 @@ return {
         autosave_changes = false,
       },
       constrain_cursor = "editable",
-      watch_for_changes = false,
+      watch_for_changes = true,
       keymaps = {
         ["g?"] = { "actions.show_help", mode = "n" },
-        ["<CR>"] = "actions.select",
+        ["<TAB>"] = "actions.select",
         ["<C-s>"] = { "actions.select", opts = { vertical = true } },
         ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
         ["<C-t>"] = { "actions.select", opts = { tab = true } },
@@ -47,36 +55,58 @@ return {
         ["g."] = { "actions.toggle_hidden", mode = "n" },
         ["g\\"] = { "actions.toggle_trash", mode = "n" },
       },
-      use_default_keymaps = true,
       view_options = {
-        show_hidden = false,
-        is_hidden_file = function(name,_)
-          return name:match("^%.") ~= nil
-        end,
-        is_always_hidden = function(_, _)
-          return false
+        show_hidden = true,
+        is_hidden_file = function(name, _)
+          local m = name:match("^%.")
+          return m ~= nil
         end,
         natural_order = "fast",
-        case_insensitive = false,
+        case_insensitive = true,
         sort = {
           { "type", "asc" },
           { "name", "asc" },
         },
       },
+      extra_scp_args = {},
+      git = {
+        enable = true,
+        show_on_dirs = true,
+        show_on_hidden = true,
+      },
+      experimental_watch_for_changes = {
+        enable = true,
+        debounce_ms = 300,
+      },
       float = {
-        padding = 2,
-        max_width = 0.9,
-        max_height = 0.9,
+        padding = 1,
+        max_width = 0.5,
+        max_height = 0.7,
         border = "rounded",
         win_options = {
-          winblend = 0,
+          winblend = 10,
         },
+        preview_split = "auto",
+        override = function(conf)
+          local screen_w = vim.o.columns
+          local screen_h = vim.o.lines
+          local width = math.floor(screen_w * 0.5)
+          local height = math.floor(screen_h * 0.7)
+          local col = math.floor(screen_w - width - (screen_w * 0.1))
+          local row = math.floor((screen_h - height) / 2 - 2)
+          conf.width = width
+          conf.height = height
+          conf.col = col
+          conf.row = math.max(row, 0)
+          return conf
+        end,
       },
     })
   end,
   dependencies = {
     "echasnovski/mini.icons",
-    "nvim-tree/nvim-web-devicons"
+    "nvim-tree/nvim-web-devicons",
+    "nvim-lua/plenary.nvim",
   },
   lazy = false,
 }

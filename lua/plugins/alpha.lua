@@ -1,5 +1,4 @@
 
-
 return {
   "goolord/alpha-nvim",
   dependencies = {
@@ -19,6 +18,7 @@ return {
     }
 
     dashboard.section.buttons.val = {
+      dashboard.button("n", "  New File", ":lua require('config.proyect_type').election_type()<CR>"),
       dashboard.button("f", "  Find File", ":Telescope find_files<CR>"),
       dashboard.button("r", "  Recent Files", ":Telescope oldfiles<CR>"),
       dashboard.button("h", "󰋗  Help Info", ":Telescope help_tags<CR>"),
@@ -39,7 +39,4 @@ return {
     alpha.setup(dashboard.config)
   end,
 }
-
-
-
 
