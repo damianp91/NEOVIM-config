@@ -3,19 +3,27 @@ return {
   config = function()
     require("oil").setup({
       default_file_explorer = true,
-      columns = { "icon", "git_status" },
+      columns = {
+        "icon",
+        {
+          "git_status",
+          symbols = {
+            added    = "",
+            modified = "",
+            deleted  = "",
+          }
+        },
+      },
       buf_options = {
         buflisted = false,
         bufhidden = "hide",
       },
       win_options = {
         wrap = false,
-        signcolumn = "no",
+        signcolumn = "yes",
         cursorcolumn = false,
-        foldcolumn = "0",
-        spell = false,
         list = false,
-        conceallevel = 3,
+        conceallevel = 2,
         concealcursor = "nvic",
       },
       delete_to_trash = false,
@@ -28,7 +36,7 @@ return {
         autosave_changes = false,
       },
       constrain_cursor = "editable",
-      watch_for_changes = false,
+      watch_for_changes = true,
       keymaps = {
         ["g?"] = { "actions.show_help", mode = "n" },
         ["<TAB>"] = "actions.select",
@@ -47,22 +55,29 @@ return {
         ["g."] = { "actions.toggle_hidden", mode = "n" },
         ["g\\"] = { "actions.toggle_trash", mode = "n" },
       },
-      use_default_keymaps = true,
       view_options = {
-        show_hidden = false,
+        show_hidden = true,
         is_hidden_file = function(name, _)
           local m = name:match("^%.")
           return m ~= nil
         end,
         natural_order = "fast",
-        case_insensitive = false,
+        case_insensitive = true,
         sort = {
           { "type", "asc" },
           { "name", "asc" },
         },
       },
       extra_scp_args = {},
-      git = {},
+      git = {
+        enable = true,
+        show_on_dirs = true,
+        show_on_hidden = true,
+      },
+      experimental_watch_for_changes = {
+        enable = true,
+        debounce_ms = 300,
+      },
       float = {
         padding = 1,
         max_width = 0.5,
@@ -90,7 +105,8 @@ return {
   end,
   dependencies = {
     "echasnovski/mini.icons",
-    "nvim-tree/nvim-web-devicons"
+    "nvim-tree/nvim-web-devicons",
+    "nvim-lua/plenary.nvim",
   },
   lazy = false,
 }
