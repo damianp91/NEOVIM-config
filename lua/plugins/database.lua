@@ -1,42 +1,29 @@
 return {
-  'kristijanhusak/vim-dadbod-ui',
+  "kristijanhusak/vim-dadbod-ui",
   dependencies = {
-    {
-      {
-        'tpope/vim-dadbod',
-        lazy = true
-      }
-    },
-    {
-      'kristijanhusak/vim-dadbod-completion',
-      ft = { 'sql', 'mysql', 'plsql', 'redis' },
-      lazy = true
-    },
-    'hrsh7th/nvim-cmp',
+    "tpope/vim-dadbod",
+    "kristijanhusak/vim-dadbod-completion",
+    "tpope/vim-dotenv",
   },
-  cmd = {
-    'DBUI',
-    'DBUIToggle',
-    'DBUIAddConnection',
-    'DBUIFindBuffer',
+  keys = {
+    { '<leader>db', '<cmd>DBUIToggle<cr>', desc = 'db: Toggle UI' },
   },
   init = function()
-    -- Your DBUI configuration
     vim.g.db_ui_use_nerd_fonts = 1
     vim.g.db_ui_show_database_icon = 1
-    vim.g.db_ui_winwidth = 40
-    vim.keymap.set('n', '<leader>db', '<cmd>DBUIToggle<cr>', { desc = 'db: Toggle UI' })
-    vim.keymap.set('n', '<leader>dq', '<cmd>DBUIHide<cr>', { desc = 'db: Quit UI' })
-    vim.g.dbs = {
-      nvim_user  = 'mysql://root:root@localhost:3306',
-    }
-  end,
-  config = function()
-    require('cmp').setup.filetype({ 'sql' }, {
-      sources = {
-        { name = 'vim-dadbod-completion' },
-        { name = 'buffer' },
+    vim.g.db_ui_force_echo_notifications = 1
+    vim.g.db_ui_win_position = "left"
+    vim.g.db_ui_winwidth = 60
+
+    vim.g.db_ui_table_helpers = {
+      mysql = {
+        Count = "select count(1) from {optional_schema}{table}",
+        Explain = "EXPLAIN {last_query}",
       },
-    })
+      -- If I want to use sqlite
+      -- sqlite = {
+      --   Describe = "PRAGMA table_info({table})",
+      -- },
+    }
   end,
 }

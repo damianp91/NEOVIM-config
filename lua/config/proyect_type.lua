@@ -9,11 +9,13 @@ local M = {}
 
 M.election_type = function()
   local langs = {
-    { name = " Java",
+    {
+      name = " Java",
       key = "java",
       options = {
         {label = "  Gradle", key = "gradle"},
-        {label = " Maven", key = "maven" } ,
+        {label = " Maven", key = "maven" },
+        {label = "ﭰ Ant", key = "ant"},
       }
     }
     -- Future languanges

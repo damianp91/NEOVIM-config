@@ -24,7 +24,7 @@ local function get_bundles()
   return bundles
 end
 -- Detected root file
-local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "settings.gradle" }
+local root_markers = {".git", "mvnw", "gradlew", "pom.xml", "settings.gradle", "build.xml", ".project", ".classpath"}
 local root_dir = require("jdtls.setup").find_root(root_markers)
 local workspace_dir = vim.fn.expand("~/.cache/jdtls-workspace") .. "/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 -- Function for all keymap of the jdtls
