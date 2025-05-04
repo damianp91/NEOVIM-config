@@ -1,12 +1,11 @@
-return {
+return  {
   java = {
-    -- To make a new project Java with Gradle
-    -- vim.keymap.set('n', '<leader>ng', function()
+    -- To make a new project Gradle
     gradle = function()
       vim.cmd("echo 'Create a Gradle proyect'")
       local project_name = vim.fn.input("Name of project (Gradle): ")
       if project_name == "" then
-        print("Error: You must provide a name for the project.")
+        vim.notify("Error: You must provide a name for the project.", vim.log.levels.ERROR)
         return
       end
       -- Define paths and names
@@ -43,9 +42,9 @@ test {
       if build_gradle_file then
         build_gradle_file:write(build_gradle)
         build_gradle_file:close()
-        print("Created build.gradle")
+        vim.notify("Created build.gradle", vim.log.levels.INFO)
       else
-        print("Error: Could not create build.gradle")
+        vim.notify("Error: Could not create build.gradle", vim.log.levels.ERROR)
       end
       -- Create settings.gradle file
       local settings_gradle = "rootProject.name = '" .. project_name .. "'"
@@ -54,9 +53,9 @@ test {
       if settings_gradle_file then
         settings_gradle_file:write(settings_gradle)
         settings_gradle_file:close()
-        print("Created settings.gradle")
+        vim.notify("Created settings.gradle", vim.log.levels.INFO)
       else
-        print("Error: Could not create settings.gradle")
+        vim.notify("Error: Could not create settings.gradle", vim.log.levels.ERROR)
       end
       -- Create Main.java file
       local main_java = [[
@@ -73,22 +72,22 @@ public class Main {
       if main_java_file then
         main_java_file:write(main_java)
         main_java_file:close()
-        print("Created Main.java")
+        vim.notify("Created Main.java", vim.log.levels.INFO)
       else
-        print("Error: Could not create file Main.java")
+        vim.notify("Error: Could not create file Main.java", vim.log.levels.ERROR)
       end
       -- Open Main.java and set the project directory
       vim.cmd("edit " .. main_java_path)
       vim.cmd("cd " .. project_path)
-      print("Created project in: " .. project_path)
+      vim.notify("Created project in: " .. project_path, vim.log.levels.INFO)
     end,
-
-    -- Keymap for creating a Maven project
+    -- #############################################################################
+    -- To make a new project Maven
     maven = function()
       vim.cmd("echo 'Create Maven proyect'")
       local project_name = vim.fn.input("Name of project (Maven): ")
       if project_name == "" then
-        print("Error: You must provide a name for the project.")
+        vim.notify("Error: You must provide a name for the project.", vim.log.levels.ERROR)
         return
       end
       local project_path = vim.fn.getcwd() .. "/" .. project_name
@@ -142,9 +141,9 @@ public class Main {
       if pom_xml_file then
         pom_xml_file:write(pom_xml)
         pom_xml_file:close()
-        print("Created pom.xml")
+        vim.notify("Created pom.xml", vim.log.levels.INFO)
       else
-        print("Error: Could not create pom.xml")
+        vim.notify("Error: Could not create pom.xml", vim.log.levels.ERROR)
       end
       -- Create Main.java
       local main_java = [[
@@ -161,16 +160,103 @@ public class Main {
       if main_java_file then
         main_java_file:write(main_java)
         main_java_file:close()
-        print("Created Main.java")
+        vim.notify("Created Main.java", vim.log.levels.INFO)
       else
-        print("Error: Could not create Main.java")
+        vim.notify("Error: Could not create Main.java", vim.log.levels.ERROR)
       end
       vim.cmd("edit " .. main_java_path)     -- Open Main.java in Neovim
       vim.cmd("cd " .. project_path)         -- Move to project directory
-      print("Created Maven project in: " .. project_path)
+      vim.notify("Created Maven project in: " .. project_path, vim.log.levels.INFO)
     end,
+    -- #############################################################################
+    --  To make a new project Ant
+    ant = function()
+      vim.cmd("echo 'Create Ant project'")
+      local project_name = vim.fn.input("Name of project (Ant): ")
+      if project_name == "" then
+        vim.notify("Error: You must provide a name for the project.", vim.log.levels.ERROR)
+        return
+      end
+      local cwd = vim.fn.getcwd()
+      local project_path = cwd .. "/" .. project_name
+      local package_name = "com.damianp." .. project_name
+      local src_path = "src/main/java/" .. package_name:gsub("%.", "/")
+      -- Directory estructure
+      vim.fn.mkdir(project_path .. "/" .. src_path, "p")
+      vim.fn.mkdir(project_path .. "/build", "p")
+      -- build.xml
+      local build_xml = [[
+<project name="]] .. project_name .. [[" default="run" basedir=".">
+  <property name="src" location="src/main/java"/>
+  <property name="build" location="build"/>
+
+  <target name="clean">
+    <delete dir="${build}"/>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="${build}"/>
+    <javac srcdir="${src}" destdir="${build}" includeantruntime="false" source="21" target="21"/>
+  </target>
+
+  <target name="run" depends="compile">
+    <java classname="]] .. package_name .. [[.Main" classpath="${build}"/>
+  </target>
+</project>
+]]
+      local build_file = io.open(project_path .. "/build.xml", "w")
+      if build_file then
+        build_file:write(build_xml)
+        build_file:close()
+      end
+      -- .project
+      local project_file = io.open(project_path .. "/.project", "w")
+      if project_file then
+        project_file:write([[<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+  <name>]] .. project_name .. [[</name>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>]])
+        project_file:close()
+      end
+      -- .classpath with JRE_CONTAINER
+      local classpath_file = io.open(project_path .. "/.classpath", "w")
+      if classpath_file then
+        classpath_file:write([[<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+  <classpathentry kind="src" path="src/main/java"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="output" path="build"/>
+</classpath>]])
+        classpath_file:close()
+      end
+      -- Main.java
+      local main_java = [[
+package ]] .. package_name .. [[;
+
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("¡Hello world from the Ant project ]] .. project_name .. [[!");
+  }
+}
+]]
+      local main_java_path = project_path .. "/" .. src_path .. "/Main.java"
+      local main_java_file = io.open(main_java_path, "w")
+      if main_java_file then
+        main_java_file:write(main_java)
+        main_java_file:close()
+      end
+      -- To open and located at the project
+      vim.cmd("edit " .. main_java_path)
+      vim.cmd("cd " .. project_path)
+      vim.notify("Created Ant project in: " .. project_path, vim.log.levels.INFO)
+    end
   },
+  python = {},
 
-  -- More language
+  c = {},
 
+  rust = {},
 }
