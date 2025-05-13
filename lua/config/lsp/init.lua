@@ -4,7 +4,6 @@ local M = {}
 
 local servers = {
   "lua_ls",
-  "jdtls",
   "pyright",
 }
 
