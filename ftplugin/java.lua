@@ -85,26 +85,6 @@ local function java_keymaps()
       hidden = true,
     }):toggle()
   end, { desc = "Java: Compile and execute all project java" })
-  -- Run with Springboot
-  vim.keymap.set('n', '<leader>sr', function()
-    local gradle_file = vim.fn.findfile('build.gradle', '.;')
-    local maven_file = vim.fn.findfile('pom.xml', '.;')
-    local cmd
-    if gradle_file ~= '' then
-      cmd = './gradlew bootRun'
-    elseif maven_file ~= '' then
-      cmd = './mvnw spring-boot:run'
-    else
-      print("Not found configuration for Gradle or Maven.")
-      return
-    end
-    require('toggleterm.terminal').Terminal:new({
-      cmd = cmd,
-      direction = "horizontal",
-      close_on_exit = false,
-      hidden = true,
-    }):toggle()
-  end, { desc = "Springboot: Run code" })
   -- Set a Vim motion to <Space> + <Shift>J + o to organize imports in normal mode
   vim.keymap.set('n', '<leader>jo', "<Cmd> lua require('jdtls').organize_imports()<CR>", { desc = "Java: Organize Imports" })
   -- Set a Vim motion to <Space> + <Shift>J + v to extract the code under the cursor to a variable

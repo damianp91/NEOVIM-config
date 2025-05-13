@@ -20,6 +20,7 @@ return {
       "c",
       "vimdoc",
       "sql",
+      "markdown",
     },
     highlight = {
       enable = true,

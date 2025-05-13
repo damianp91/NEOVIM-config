@@ -90,9 +90,9 @@ return {
         override = function(conf)
           local screen_w = vim.o.columns
           local screen_h = vim.o.lines
-          local width = math.floor(screen_w * 0.5)
-          local height = math.floor(screen_h * 0.7)
-          local col = math.floor(screen_w - width - (screen_w * 0.1))
+          local width = math.floor(screen_w * 0.4)
+          local height = math.floor(screen_h * 0.6)
+          local col = math.floor(screen_w - width - (screen_w * 0.0))
           local row = math.floor((screen_h - height) / 2 - 2)
           conf.width = width
           conf.height = height

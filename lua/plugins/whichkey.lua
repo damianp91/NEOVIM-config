@@ -64,7 +64,7 @@ return {
       -- height = { min = 4, max = 25 },
       -- col = 0,
       -- row = math.huge,
-      -- border = "none",
+      border = "rounded",
       padding = { 1, 2 }, -- extra window padding [top/bottom, right/left]
       title = true,
       title_pos = "center",
@@ -72,7 +72,7 @@ return {
       -- Additional vim.wo and vim.bo options
       bo = {},
       wo = {
-        winblend = 10, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+        winblend = 20, -- value between 0-100 0 for fully opaque and 100 for fully transparent
       },
     },
     layout = {
