@@ -17,9 +17,9 @@ vim.g.mapleader = " "          -- leader key
 vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Close window' })
 
--- Keymaps Alpha
+-- Keymaps dashboard
 vim.keymap.set('n', '<leader>in', function()
-  vim.cmd('Alpha')
+  require("snacks").dashboard.open()
 end, {desc = 'alpha: Return to the beginning'})
 
 -- Keymaps tree
@@ -36,6 +36,15 @@ vim.keymap.set('n', '<C-h>', [[<Cmd>wincmd h<CR>]], {desc = "motion: Move left"}
 vim.keymap.set('n', '<C-j>', [[<Cmd>wincmd j<CR>]], {desc = "motion: Move down"})
 vim.keymap.set('n', '<C-k>', [[<Cmd>wincmd k<CR>]], {desc = "motion: Move up"})
 vim.keymap.set('n', '<C-l>', [[<Cmd>wincmd l<CR>]], {desc = "motion: Move right"})
+vim.keymap.set('n', '<leader>th', function()
+  vim.cmd("ToggleTerm direction=horizontal")
+end, {desc = "Terminal: open horozontal terminal"})
+vim.keymap.set('n', '<leader>tv', function()
+  vim.cmd("ToggleTerm direction=vertical")
+end, {desc = "Terminal: open vertical terminal"})
+vim.keymap.set('n', '<leader>tf', function()
+  vim.cmd("ToggleTerm direction=float")
+end, {desc = "Terminal: open float terminal"})
 
 -- Keymaps for buffers
 vim.keymap.set('n', '<leader>wv', ':vsplit<cr>', {desc = "buffer: Window vertical buffer"})

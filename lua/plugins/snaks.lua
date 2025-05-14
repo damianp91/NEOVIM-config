@@ -5,7 +5,7 @@ return {
   opts = {
     animate = {enabled = true},
     bigfile = require("config.config_snaks.conf_bigfile"),
-    --dashboard = {enabled = true},
+    dashboard = require("config.config_snaks.conf_dashboard"),
     bufdelete = {enabled = true},
     dim = {enabled = true},
     explorer = { enabled = true },

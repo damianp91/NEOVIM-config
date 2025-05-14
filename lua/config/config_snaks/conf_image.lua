@@ -1,26 +1,13 @@
 
 ---@class snacks.image.Config
---- Resolves a reference to an image with src in a file (currently markdown only).
---- Return the absolute path or url to the image.
---- When `nil`, the path is resolved relative to the file.
+-- Resolves a reference to an image with src in a file (currently markdown only).
+-- Return the absolute path or url to the image.
+-- When `nil`, the path is resolved relative to the file.
 ---@field resolve? fun(file: string, src: string): string?
 return {
   formats = {
-    "png",
-    "jpg",
-    "jpeg",
-    "gif",
-    "bmp",
-    "webp",
-    "tiff",
-    "heic",
-    "avif",
-    "mp4",
-    "mov",
-    "avi",
-    "mkv",
-    "webm",
-    "pdf",
+    "png", "jpg", "jpeg", "gif", "bmp", "webp", "tiff", "heic",
+    "avif", "mp4", "mov", "avi", "mkv", "webm", "pdf",
   },
   force = false, -- try displaying the image, even if the terminal does not support it
   doc = {
