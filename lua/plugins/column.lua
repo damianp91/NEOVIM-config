@@ -5,7 +5,7 @@ return {
     virtcolumn = "85",
     exclude = {
       filetype = {
-        'json', 'README'
+        '.json', '.MD'
       }
     }
   },

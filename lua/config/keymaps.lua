@@ -15,15 +15,18 @@ end, {desc = "Format code"})
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {desc = "Show floating diagnostics"})
 vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, {desc = "Add diagnostic to the location list"})
 -- Set vim motion for <Space> + c + h to show code documentation about the code the cursor is currently over if available
-vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, {desc = "Code Hover Documentation" })
+vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, {desc = "Code: Hover Documentation" })
 -- Set vim motion for <Space> + c + d to go where the code/variable under the cursor was defined
-vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, {desc = "Code Goto Definition" })
+vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, {desc = "Code: Goto Definition" })
 -- Set vim motion for <Space> + c + a for display code action suggestions for code diagnostics in both normal and visual mode
-vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {desc = "Code Actions" })
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {desc = "Code: Actions" })
 -- Set vim motion for <Space> + c + r to display references to the code under the cursor
-vim.keymap.set("n", "<leader>cr", require("telescope.builtin").lsp_references, {desc = "Code Goto References" })
+vim.keymap.set("n", "<leader>cr", require("telescope.builtin").lsp_references, {desc = "Code: Goto References" })
 -- Set vim motion for <Space> + c + i to display implementations to the code under the cursor
-vim.keymap.set("n", "<leader>ci",require("telescope.builtin").lsp_implementations,{desc = "Code Goto Implementations" })
+vim.keymap.set("n", "<leader>ci",require("telescope.builtin").lsp_implementations,{desc = "Code: Goto Implementations" })
 -- Set a vim motion for <Space> + c + <Shift>R to smartly rename the code under the cursor
-vim.keymap.set("n", "<leader>cR", vim.lsp.buf.rename, {desc = "Code Rename" })
-
+vim.keymap.set("n", "<leader>cR", vim.lsp.buf.rename, {desc = "Code: Rename" })
+-- LazyGit
+vim.keymap.set({'n', 'i'}, '<leader>lg', function()
+  require('snacks').lazygit.open()
+end, {desc = "LazyGit: open status repo."})

@@ -14,28 +14,28 @@ vim.opt.updatetime = 300        -- Waiting for events
 
 -- General mapping 
 vim.g.mapleader = " "          -- leader key
-vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save file' })
-vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Close window' })
+vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Vim: Save file' })
+vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Vim: Close window' })
 
 -- Keymaps dashboard
 vim.keymap.set('n', '<leader>in', function()
   require("snacks").dashboard.open()
-end, {desc = 'alpha: Return to the beginning'})
+end, {desc = 'Snacks: Return to the beginning'})
 
 -- Keymaps tree
 vim.keymap.set('n', '<leader>ot', function()
   vim.cmd('NvimTreeOpen')
-end, {desc = 'nvimtree: Open Nvimtree'})
+end, {desc = 'Nvimtree: Open Nvimtree'})
 vim.keymap.set('n', '<leader>ct', function()
   vim.cmd('NvimTreeClose')
-end, {desc = 'nvimtree: Close Nvimtree'})
+end, {desc = 'Nvimtree: Close Nvimtree'})
 
 -- Keymaps treminal
-vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {desc = "motion: Escape terminal"})
-vim.keymap.set('n', '<C-h>', [[<Cmd>wincmd h<CR>]], {desc = "motion: Move left"})
-vim.keymap.set('n', '<C-j>', [[<Cmd>wincmd j<CR>]], {desc = "motion: Move down"})
-vim.keymap.set('n', '<C-k>', [[<Cmd>wincmd k<CR>]], {desc = "motion: Move up"})
-vim.keymap.set('n', '<C-l>', [[<Cmd>wincmd l<CR>]], {desc = "motion: Move right"})
+vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], {desc = "Terminal: Escape terminal"})
+vim.keymap.set('n', '<C-h>', [[<Cmd>wincmd h<CR>]], {desc = "Terminal: Move left"})
+vim.keymap.set('n', '<C-j>', [[<Cmd>wincmd j<CR>]], {desc = "Terminal: Move down"})
+vim.keymap.set('n', '<C-k>', [[<Cmd>wincmd k<CR>]], {desc = "Terminal: Move up"})
+vim.keymap.set('n', '<C-l>', [[<Cmd>wincmd l<CR>]], {desc = "Terminal: Move right"})
 vim.keymap.set('n', '<leader>th', function()
   vim.cmd("ToggleTerm direction=horizontal")
 end, {desc = "Terminal: open horozontal terminal"})
@@ -47,10 +47,10 @@ vim.keymap.set('n', '<leader>tf', function()
 end, {desc = "Terminal: open float terminal"})
 
 -- Keymaps for buffers
-vim.keymap.set('n', '<leader>wv', ':vsplit<cr>', {desc = "buffer: Window vertical buffer"})
-vim.keymap.set('n', '<leader>wh', ':split<cr>', {desc = "buffer: Window horizontal buffer"})
+vim.keymap.set('n', '<leader>wv', ':vsplit<cr>', {desc = "Buffer: Window vertical buffer"})
+vim.keymap.set('n', '<leader>wh', ':split<cr>', {desc = "Buffer: Window horizontal buffer"})
 
 -- Keymaps for Oil
-vim.keymap.set('n', '<leader>oo', ':Oil<cr>', {desc = "oil: open oil"})
-vim.keymap.set('n', '<leader>of', ':Oil --float<cr>', {desc = "oil: open oil float"})
+vim.keymap.set('n', '<leader>oo', ':Oil<cr>', {desc = "Oil: open oil"})
+vim.keymap.set('n', '<leader>of', ':Oil --float<cr>', {desc = "Oil: open oil float"})
 

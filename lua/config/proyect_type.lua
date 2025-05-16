@@ -26,17 +26,39 @@ M.election_type = function()
     langs_by_key[lang.key] = lang
   end
 
-  pickers.new({}, {
-    prompt_title = "Select Lenguage",
-    finder = finders.new_table({
-      results = langs,
-      entry_maker = function(entry)
-        return {
-          value = entry,
-          display = entry.name,
-          ordinal = entry.name
-        }
-      end
+  pickers.new({
+    ayout_strategy = "center",
+    layout_config = {
+      width = 0.3,
+      height = 0.4,
+    },
+    results_title = false,
+    prompt_title = "Select Language",
+    preview_title = false,
+    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    winblend = 10,
+    sorting_strategy = "ascending",
+    prompt_prefix = " ",
+    selection_caret = " ",
+    entry_prefix = "  ",
+    -- highlight personalizado
+    attach_mappings = function(_, _)
+      vim.api.nvim_win_set_option(0, "winhighlight",
+        "Normal:TelescopeCustomBg,FloatBorder:TelescopeCustomBorder")
+      return true
+    end,
+
+  }, {
+      prompt_title = "Select Lenguage",
+      finder = finders.new_table({
+        results = langs,
+        entry_maker = function(entry)
+          return {
+            value = entry,
+            display = entry.name,
+            ordinal = entry.name
+          }
+        end
     }),
     sorter = conf.generic_sorter({}),
     attach_mappings = function(prompt_bufnr)
@@ -48,7 +70,28 @@ M.election_type = function()
         local lang = langs_by_key[lang_key]
 
         if lang and lang.options then
-          pickers.new({}, {
+          pickers.new({
+            ayout_strategy = "center",
+            layout_config = {
+              width = 0.4,
+              height = 0.6,
+            },
+            results_title = false,
+            prompt_title = "Select Language",
+            preview_title = false,
+            borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+            winblend = 10,
+            sorting_strategy = "ascending",
+            prompt_prefix = " ",
+            selection_caret = " ",
+            entry_prefix = "  ",
+            -- highlight personalizado
+            attach_mappings = function(_, _)
+              vim.api.nvim_win_set_option(0, "winhighlight",
+                "Normal:TelescopeCustomBg,FloatBorder:TelescopeCustomBorder")
+              return true
+            end,
+          }, {
             prompt_title = "Select type of " .. lang.name,
             finder = finders.new_table({
               results = lang.options,

@@ -12,7 +12,6 @@ return {
     git = {enabled = true},
     image = require("config.config_snaks.conf_image"),
     indent = {enabled = true},
-    --input = {enabled = true},
     layout = {enabled = true},
     lazygit = {enabled = true},
     scratch = {enabled = true},
@@ -22,7 +21,6 @@ return {
     scope = {enabled = true},
     scroll = {enabled = true},
     statuscolumn = {enabled = true},
-    terminal = {enabled = true},
     words = {enabled = true},
   },
 }
