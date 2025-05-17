@@ -41,7 +41,7 @@ function M.setup()
   -- This is useful for choice nodes
   vim.keymap.set("i", "<c-l>", function()
     if ls.choice_active() then
-      ls.cahnge_choice(1)
+      ls.change_choice()
     end
   end)
 end
