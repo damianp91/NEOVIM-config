@@ -17,7 +17,7 @@ return {
     -- render the image inline in the buffer
     -- if your env doesn't support unicode placeholders, this will be disabled
     -- takes precedence over `opts.float` on supported terminals
-    inline = true,
+    inline = false,
     -- render the image in a floating window
     -- only used if `opts.inline` is disabled
     float = true,
@@ -25,9 +25,9 @@ return {
     max_height = 40,
     -- Set to `true`, to conceal the image text when rendering inline.
     -- (experimental)
-    ---@param lang string tree-sitter language
+    -- ---@param lang string tree-sitter language
     ---@param type snacks.image.Type image type
-    conceal = function(lang, type)
+    conceal = function(_, type)
       -- only conceal math expressions
       return type == "math"
     end,
