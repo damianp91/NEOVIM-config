@@ -20,7 +20,8 @@ end
 
 -- Detect root_dir
 local root_dir = vim.fs.root(0, {
-  ".git", "mvnw", "gradlew", "pom.xml", "settings.gradle", "build.xml", ".project",".classpath"
+  ".git", "mvnw", "gradlew", "pom.xml", "settings.gradle", "build.xml",
+  ".project",".classpath", "nbproject"
 })
 if not root_dir then
   vim.notify("Don't detected root_dir para jdtls", vim.log.levels.WARN)
@@ -194,7 +195,10 @@ local config = {
         useBlocks = true
       },
       configuration = {
-        updateBuildConfiguration = "interactive"
+        updateBuildConfiguration = "interactive",
+        project = {
+          sourcePaths = {"src"}
+        }
       },
       -- enable code lens in the lsp
       referencesCodeLens = {
