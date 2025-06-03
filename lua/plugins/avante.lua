@@ -2,16 +2,23 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   lazy = false,
-  version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+  -- Set this to "*" to always pull the latest release version, or set it 
+  -- to false to update to the latest code changes.
+  version = false,
   opts = {
-    ----@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+    ----@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere"
+    ----| "copilot" | string
     provider = "copilot",
     auto_suggestions_provider = "copilot",
-    claude = {
-      endpoint = "https://api.anthropic.com",
-      model = "claude-3-5-sonnet-20241022",
-      temperature = 0,
-      max_tokens = 4096,
+    providers = {
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-3-5-sonnet-20241022",
+        extra_request_dody = {
+          temperature = 0;
+          max_tokens = 4096;
+        },
+      },
     },
     dual_boost = {
       enabled = false,

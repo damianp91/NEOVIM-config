@@ -61,6 +61,7 @@ return {
           local m = name:match("^%.")
           return m ~= nil
         end,
+        show_absolute_path_on_root = true,
         natural_order = "fast",
         case_insensitive = true,
         sort = {
