@@ -42,7 +42,30 @@ local function get_bundles()
   vim.list_extend(bundles, vim.split(vim.fn.glob(
     home .. "/.local/share/nvim/mason/packages/java-test/extension/server/*.jar"
   ), "\n"))
+  -- local bundles = {}
 
+  -- if mason_registry.has_package("java-debug-adapter") then
+  --   local ok, java_debug = pcall(mason_registry.get_package, "java-debug-adapter")
+  --   if ok then
+  --     local java_debug_path = java_debug:get_install_path()
+  --     local debug_jar = vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
+  --     if debug_jar ~= "" then
+  --       table.insert(bundles, debug_jar)
+  --     end
+  --   else
+  --     vim.notify("Error cargando java-debug-adapter", vim.log.levels.WARN)
+  --   end
+  -- end
+
+  -- if mason_registry.has_package("java-test") then
+  --   local ok, java_test = pcall(mason_registry.get_package, "java-test")
+  --   if ok then
+  --     local java_test_path = java_test:get_install_path()
+  --     vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar", 1), "\n"))
+  --   else
+  --     vim.notify("Error cargando java-test", vim.log.levels.WARN)
+  --   end
+  -- end
   return bundles
 end
 
@@ -217,6 +240,14 @@ local config = {
   on_attach = function()
     vim.lsp.codelens.refresh()
     java_keymaps()
+
+    -- Configuración del depurador de JDTLS
+    -- require('jdtls').setup_dap({
+    --   hotcodereplace = 'auto',
+    --   config_overrides = {},
+    -- })
+
+    -- require('jdtls.dap').setup_dap_main_class_configs()
   end,
   capabilities = capabilities,
 }
