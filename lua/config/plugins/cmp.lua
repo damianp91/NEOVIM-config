@@ -53,7 +53,7 @@ function  M.setup()
 
   cmp.setup.filetype({'sql', 'mysql', 'plsql'}, {
     sources = cmp.config.sources({
-      {name = 'vim.dadbod-completition'},
+      {name = 'vim-dadbod-completition'},
       {name = 'buffer'},
     })
   })
