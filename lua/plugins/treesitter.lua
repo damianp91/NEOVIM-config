@@ -6,7 +6,10 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
   build = ":TSUpdate",
-  event = "VeryLazy",
+  event = {
+    "BufReadPre",
+    "BufNewFile"
+  },
   main = "nvim-treesitter.configs",
   opts = {
     ensure_installed = {
@@ -21,6 +24,7 @@ return {
       "vimdoc",
       "sql",
       "markdown",
+      "markdown_inline",
     },
     highlight = {
       enable = true,

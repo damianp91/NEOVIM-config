@@ -2,11 +2,24 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-
-local M = {}
+local lspkind = require("lspkind")local M = {}
 
 function  M.setup()
   cmp.setup({
+    experimental = {
+      ghost_text = false,
+    },
+    completion = {
+      completeopt = "menu,menuone,noinsert,noselect",
+    },
+    window = {
+      documentation = {
+        border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+      },
+      completion = {
+        border = {'┌', '─', '┐', '│', '┘', '─', '└', '│'},
+      },
+    },
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body)
@@ -31,6 +44,13 @@ function  M.setup()
         select = true,
       },
       ["<C-space>"] = cmp.mapping.complete(),
+    },
+    formatting = {
+      format = lspkind.cmp_format({
+        mode = "symbol_text",
+        maxwidth = 50,
+        ellipsis_char = "...",
+      }),
     },
     sources = {
       {name = "nvim_lsp"},

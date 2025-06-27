@@ -11,6 +11,10 @@ return {
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
     "windwp/nvim-autopairs",
+    "rafamadriz/friendly-snippets", -- snippets
+    "onsails/lspkind.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "roobert/tailwindcss-colorizer-cmp.nvim",
   },
   event = "VeryLazy",
   main = "config.plugins.cmp",

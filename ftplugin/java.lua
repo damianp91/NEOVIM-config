@@ -42,8 +42,10 @@ local function get_bundles()
   vim.list_extend(bundles, vim.split(vim.fn.glob(
     home .. "/.local/share/nvim/mason/packages/java-test/extension/server/*.jar"
   ), "\n"))
-  -- local bundles = {}
 
+  --NOTE: need to configure Debug!
+
+  -- local bundles = {}
   -- if mason_registry.has_package("java-debug-adapter") then
   --   local ok, java_debug = pcall(mason_registry.get_package, "java-debug-adapter")
   --   if ok then

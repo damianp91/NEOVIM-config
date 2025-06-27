@@ -43,7 +43,7 @@ return {
           icon = ''
         }
       },
-      lualine_x = {'encoding', 'fileformat', 'filetype'},
+      lualine_x = {'fileformat', 'filetype'},
       lualine_y = {'progress'},
       lualine_z = {'location'}
     },
