@@ -18,16 +18,39 @@ return {
       end,
     }
 
+    -- WARN: Not working well for java
+    -- lint.linters.checkstyle = {
+    --   name = "checkstyle",
+    --   cmd = "java",
+    --   args = {
+    --     "-jar",
+    --     " ~/.local/bin/checkstyle.jar",
+    --     "-c",
+    --     "~/proyectos/config/checkstyle.xml",
+    --     "-f",
+    --     "json",
+    --     vim.fn.expand("%:p"),
+    --   },
+    --   stdin = false,
+    --   parser = require("lint.parser").from_json({
+    --     attributes = {
+    --       severity = "severity",
+    --       message = "message",
+    --       lnum = "line",
+    --       col = "column",
+    --     },
+    --   }),
+    -- }
+
     -- NOTE: Define linters
     lint.linters_by_ft = {
-      -- Lenguajes originales
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
       javascriptreact = { "eslint_d" },
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       python = { "pylint" },
-      java = { "checkstyle" },
+      -- java = { "checkstyle" },
     }
 
     -- Autocommands 
