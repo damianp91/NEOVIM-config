@@ -7,15 +7,15 @@ return {
     bigfile = require("config.config_snaks.conf_bigfile"),
     dashboard = require("config.config_snaks.conf_dashboard"),
     bufdelete = {enabled = true},
-    dim = {enabled = true},
+    dim = {enabled = false},
     explorer = { enabled = true },
     git = {enabled = true},
     image = require("config.config_snaks.conf_image"),
+    picker = require("config.config_snaks.conf_picker"),
     indent = {enabled = true},
     layout = {enabled = true},
     lazygit = {enabled = true},
     scratch = {enabled = true},
-    picker = {enabled = true},
     notifier = {enabled = true},
     quickfile = {enabled = true},
     scope = {enabled = true},
@@ -23,4 +23,14 @@ return {
     statuscolumn = {enabled = true},
     words = {enabled = true},
   },
+  config = function(_, opts)
+    require("snacks").setup(opts)
+
+    vim.api.nvim_set_hl(0, "SnacksPickerListNormal",   { bg = "#1d2021" })
+    vim.api.nvim_set_hl(0, "SnacksPickerPreviewNormal",{ bg = "#1d2021" })
+    vim.api.nvim_set_hl(0, "SnacksPickerInputNormal",  { bg = "#1d2021" })
+    vim.api.nvim_set_hl(0, "SnacksPickerListBorder",   { fg = "#d4c7b9", bg = "#1c1c1c" })
+    vim.api.nvim_set_hl(0, "SnacksPickerPreviewBorder",{ fg = "#d4c7b9", bg = "#1c1c1c" })
+    vim.api.nvim_set_hl(0, "SnacksPickerInputBorder",  { fg = "#d4c7b9", bg = "#1c1c1c" })
+  end,
 }

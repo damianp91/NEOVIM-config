@@ -75,30 +75,26 @@ return {
         show_on_dirs = true,
         show_on_hidden = true,
       },
-      experimental_watch_for_changes = {
-        enable = true,
-        debounce_ms = 300,
-      },
       float = {
         padding = 1,
         max_width = 0.5,
         max_height = 0.7,
         border = "rounded",
         win_options = {
-          winblend = 10,
+          winblend = 8,   -- (0-100) where 100 is invisible
         },
         preview_split = "auto",
         override = function(conf)
           local screen_w = vim.o.columns
           local screen_h = vim.o.lines
-          local width = math.floor(screen_w * 0.4)
-          local height = math.floor(screen_h * 0.6)
-          local col = math.floor(screen_w - width - (screen_w * 0.0))
-          local row = math.floor((screen_h - height) / 2 - 2)
+          local width = math.floor(screen_w * 0.6)
+          local height = math.floor(screen_h * 0.5)
+          local col = math.floor((screen_w - width) / 2)
+          local row = math.floor((screen_h - height) / 2)
           conf.width = width
           conf.height = height
           conf.col = col
-          conf.row = math.max(row, 0)
+          conf.row = row
           return conf
         end,
       },

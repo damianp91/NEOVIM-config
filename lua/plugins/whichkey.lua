@@ -43,7 +43,7 @@ return {
       -- No actual key bindings are created
       spelling = {
         enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-        suggestions = 20, -- how many suggestions should be shown in the list?
+        suggestions = 30, -- how many suggestions should be shown in the list?
       },
       presets = {
         operators = true, -- adds help for operators like d, y, ...
@@ -72,11 +72,11 @@ return {
       -- Additional vim.wo and vim.bo options
       bo = {},
       wo = {
-        winblend = 20, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+        winblend = 10, -- value between 0-100 0 for fully opaque and 100 for fully transparent
       },
     },
     layout = {
-      width = { min = 20 }, -- min and max width of the columns
+      width = {min = 20}, -- min and max width of the columns
       spacing = 3, -- spacing between columns
     },
     keys = {

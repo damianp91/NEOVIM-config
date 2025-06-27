@@ -7,7 +7,7 @@ return {
     -- Default options:
     require("gruvbox").setup({
       terminal_colors = true,               -- add neovim terminal colors
-      undercurl = true,
+      undercurl = true,                     -- type of view in letters
       underline = true,
       bold = true,
       italic = {
@@ -23,10 +23,33 @@ return {
       invert_tabline = false,
       invert_intend_guides = false,
       inverse = true,                     -- invert background for search, diffs, statuslines and errors
-      contrast = "",                      -- can be "hard", "soft" or empty string
-      palette_overrides = {},
-      overrides = {},
-      dim_inactive = false,
+      contrast = "hard",                  -- can be "hard", "soft" or empty string
+      palette_overrides = {
+        bright_green = "#b8bb26",
+        bright_red = "#fb4934",
+        dark_blue = "#83a598",
+      },
+      overrides = {
+        Normal = { bg = "#1c1c1c" },
+        Pmenu = { bg = "#121618", fg = "#c2bdbb" },         -- Backgroud menu
+        PmenuSel = { bg = "#458588", fg = "#fbf1c7" },      -- Item select
+        PmenuSbar = { bg = "#282828" },                     -- Scroll bar
+        PmenuThumb = { bg = "#dcdcdc" },                    -- Thumb
+        NormalFloat = { bg = "none" },
+        FloatBorder = { bg = "none" },
+        TelescopeNormal = { bg = "#282828" },
+        TelescopeBorder = { bg = "#1c1c1c" },
+        TelescopePromptNormal = { bg = "#1c1c1c" },
+        TelescopePromptBorder = { bg = "#1c1c1c" },
+        TelescopeResultsNormal = { bg = "#1c1c1c" },
+        TelescopeResultsBorder = { bg = "#1c1c1c" },
+        TelescopePreviewNormal = { bg = "#1c1c1c" },
+        TelescopePreviewBorder = { bg = "#1c1c1c" },
+        LspFloatWinNormal = { bg = "#121618" },
+        LspInfoBorder = { fg = "#c2bdbb", bg = "#121618" },
+        CursorLine = {bg = "#242424"},
+      },
+      dim_inactive = false,               -- Behaivor such panes or windows inactive
       transparent_mode = false,
     })
     vim.cmd("colorscheme gruvbox")

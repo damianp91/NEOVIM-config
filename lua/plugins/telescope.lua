@@ -51,7 +51,15 @@ return {
         case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
         -- The default case_mode is "smart_case"
       },
-    }
+    },
+    defaults = {
+      winblend = 15,
+      borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      layout_config = {
+        prompt_position = "top",
+      },
+      sorting_strategy = "ascending",
+    },
   },
   config = function(opts)
     require('telescope').setup(opts)
