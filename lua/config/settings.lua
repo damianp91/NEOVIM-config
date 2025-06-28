@@ -1,5 +1,4 @@
 -- General Settings
-
 -- key leader
 vim.g.mapleader = " "
 
@@ -18,6 +17,7 @@ vim.opt.smartindent = true
 -- swap files
 vim.opt.swapfile = false
 vim.opt.backup = false
+vim.opt.undofile = true
 
 -- search
 vim.opt.incsearch = true
@@ -26,16 +26,15 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- colors
-vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.termguicolors = true    -- Colors in terminal
+vim.opt.showmatch = true
+vim.opt.cursorline = true       -- Highlight actual line
 
 -- scroll
 vim.opt.clipboard = "unnamedplus"
 vim.opt.scrolloff = 8           -- 8 lines for each scroll
 vim.opt.sidescrolloff = 8       -- 8 columns for lateral scroll
-vim.opt.cursorline = true       -- Highlight actual line
-vim.opt.showmatch = true
 vim.opt.updatetime = 100        -- Waiting for events 
 
 -- splits
@@ -44,3 +43,11 @@ vim.opt.splitbelow = true
 
 -- edit
 vim.g.editorconfig = true
+
+-- sounds
+vim.opt.errorbells = false
+vim.opt.visualbell = true
+
+-- backspace
+vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.showmode = false

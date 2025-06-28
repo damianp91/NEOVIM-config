@@ -3,7 +3,7 @@ local finders = require('telescope.finders')
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 local conf = require('telescope.config').values
-local file_type = require('config.type_election')
+local file_type = require('config.project_types.type_election')
 
 local M = {}
 
