@@ -1,3 +1,4 @@
+-- NOTE: detected errors automatly
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },

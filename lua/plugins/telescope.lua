@@ -102,15 +102,8 @@ return {
       desc = "Telescope Git branches",
     },
     {
-      "<leader>pf",
-      function()
-        require('telescope.builtin').find_files()
-      end,
-      desc = "Telescope Find Files",
-    },
-    {
       "<leader>ph",
-       function()
+      function()
         require("telescope.builtin").help_tags()
       end,
       desc = "Telescope Help"

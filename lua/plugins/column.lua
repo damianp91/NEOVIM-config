@@ -4,8 +4,8 @@ return {
     char = "│",
     virtcolumn = "85",
     exclude = {
-      filetype = {
-        '.json', '.MD'
+      filetypes = {
+        '.json', '.md'
       }
     }
   },

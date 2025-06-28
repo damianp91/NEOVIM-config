@@ -30,14 +30,14 @@ return {
         dark_blue = "#83a598",
       },
       overrides = {
-        Normal = { bg = "#1c1c1c" },
+        Normal = { bg = "#161616" },
         Pmenu = { bg = "#121618", fg = "#c2bdbb" },         -- Backgroud menu
         PmenuSel = { bg = "#458588", fg = "#fbf1c7" },      -- Item select
         PmenuSbar = { bg = "#282828" },                     -- Scroll bar
         PmenuThumb = { bg = "#dcdcdc" },                    -- Thumb
         NormalFloat = { bg = "none" },
         FloatBorder = { bg = "none" },
-        TelescopeNormal = { bg = "#282828" },
+        TelescopeNormal = { bg = "#1c1c1c" },
         TelescopeBorder = { bg = "#1c1c1c" },
         TelescopePromptNormal = { bg = "#1c1c1c" },
         TelescopePromptBorder = { bg = "#1c1c1c" },

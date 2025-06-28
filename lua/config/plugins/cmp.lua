@@ -40,7 +40,7 @@ function  M.setup()
       end,{"i", "s"}),
       ["<C-p>"] = cmp.mapping.select_prev_item(),
       ["<C-y>"] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Inser,
+        behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       },
       ["<C-space>"] = cmp.mapping.complete(),
@@ -54,6 +54,7 @@ function  M.setup()
     },
     sources = {
       {name = "nvim_lsp"},
+      {name = "nvim_lsp_signature_help"},
       {name = "path"},
       {name = "luasnip"},
       {name = "buffer"},

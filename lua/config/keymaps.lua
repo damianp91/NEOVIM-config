@@ -101,3 +101,5 @@ vim.keymap.set('n', "<leader>pk", function() require("snacks").picker.keymaps({ 
   {desc = "Picker: Search Keymaps (Snacks Picker)"}
 )
 
+-- whickey
+vim.keymap.set('n', "<leader>rw", function() require("which-key").setup() end, {desc = "Reload WhichKey"})

@@ -72,7 +72,7 @@ return {
       -- Additional vim.wo and vim.bo options
       bo = {},
       wo = {
-        winblend = 10, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+        winblend = 8, -- value between 0-100 0 for fully opaque and 100 for fully transparent
       },
     },
     layout = {

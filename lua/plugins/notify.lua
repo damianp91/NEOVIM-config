@@ -6,7 +6,7 @@ return {
     local notify = require "notify"
 
     notify.setup ({
-      background_colour = "#000000",
+      background_colour = "#121618",
       timeout = 5000,
       max_width = 90,
       max_height = 20,

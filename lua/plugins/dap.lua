@@ -39,6 +39,5 @@ return {
     vim.keymap.set("n", "<leader>dM", function()
       require('jdtls').test_class()
     end, { desc = "Debug: Test Java Class" })
-
   end
 }

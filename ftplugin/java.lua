@@ -10,6 +10,7 @@ local home = os.getenv("HOME")
 local jdtls_dir = home .. "/.local/share/nvim/mason/packages/jdtls"
 local config_dir = jdtls_dir .. "/config_linux"
 local plugins_dir = jdtls_dir .. "/plugins"
+local lombok = home .. "/.local/share/nvim/mason/share/jdtls/lombok.jar"
 
 -- Detected JAR launcher version
 local launcher_jar = vim.fn.glob(plugins_dir .. "/org.eclipse.equinox.launcher_*.jar")
@@ -34,40 +35,14 @@ local workspace_dir = home .. "/.cache/jdtls-workspace/" .. project_name
 
 -- To get bundles for debuging and test
 local function get_bundles()
+  local mason_base = home .. "/.local/share/nvim/mason/share"
   local bundles = {}
   vim.list_extend(bundles, vim.split(vim.fn.glob(
-    home .. ".local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"
+    mason_base .. "/java-debug-adapter/com.microsoft.java.debug.plugin.jar"
   ), "\n"))
 
   vim.list_extend(bundles, vim.split(vim.fn.glob(
-    home .. "/.local/share/nvim/mason/packages/java-test/extension/server/*.jar"
-  ), "\n"))
-
-  --NOTE: need to configure Debug!
-
-  -- local bundles = {}
-  -- if mason_registry.has_package("java-debug-adapter") then
-  --   local ok, java_debug = pcall(mason_registry.get_package, "java-debug-adapter")
-  --   if ok then
-  --     local java_debug_path = java_debug:get_install_path()
-  --     local debug_jar = vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
-  --     if debug_jar ~= "" then
-  --       table.insert(bundles, debug_jar)
-  --     end
-  --   else
-  --     vim.notify("Error cargando java-debug-adapter", vim.log.levels.WARN)
-  --   end
-  -- end
-
-  -- if mason_registry.has_package("java-test") then
-  --   local ok, java_test = pcall(mason_registry.get_package, "java-test")
-  --   if ok then
-  --     local java_test_path = java_test:get_install_path()
-  --     vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar", 1), "\n"))
-  --   else
-  --     vim.notify("Error cargando java-test", vim.log.levels.WARN)
-  --   end
-  -- end
+    mason_base .. "/java-test/*.jar"), "\n"))
   return bundles
 end
 
@@ -140,7 +115,8 @@ local config = {
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
     "-Dlog.protocol=true",
     "-Dlog.level=ALL",
-    "-Xmx1G",
+    "-javaagent:" .. lombok,
+    "-Xmx4G", -- ¡1!
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
@@ -211,7 +187,7 @@ local config = {
       },
       codeGeneration = {
         toString = {
-          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+          template = "${object.className} [${member.name()}: ${member.value}, ${otherMembers}]"
         },
         hashCodeEquals = {
           useJava7Objects = true
@@ -221,8 +197,11 @@ local config = {
       },
       configuration = {
         updateBuildConfiguration = "interactive",
-        project = {
-          sourcePaths = {"src"}
+        runtimes = {
+          {
+            name = "JavaSE-21",
+            path = "/usr/lib/jvm/java-21-openjdk-amd64",
+          },
         }
       },
       -- enable code lens in the lsp
@@ -238,18 +217,17 @@ local config = {
   },
   init_options = {
     bundles = get_bundles(),
+    extendedClientCapabilities = jdtls.extendedClientCapabilities,
   },
   on_attach = function()
+    -- Needed for debugging
+    jdtls.setup_dap({
+      hotcodereplace = "auto",
+      config_overrides = {},
+    })
+    require("jdtls.dap").setup_dap_main_class_configs()
     vim.lsp.codelens.refresh()
     java_keymaps()
-
-    -- Configuración del depurador de JDTLS
-    -- require('jdtls').setup_dap({
-    --   hotcodereplace = 'auto',
-    --   config_overrides = {},
-    -- })
-
-    -- require('jdtls.dap').setup_dap_main_class_configs()
   end,
   capabilities = capabilities,
 }
