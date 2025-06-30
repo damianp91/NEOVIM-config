@@ -5,6 +5,7 @@ return {
 		focus = true,
 	},
 	cmd = "Trouble",
+  event = { "BufReadPre", "BufNewFile" },
 	keys = {
 		{
 		  "<leader>xw",

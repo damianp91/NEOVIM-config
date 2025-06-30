@@ -33,9 +33,9 @@ vim.opt.cursorline = true       -- Highlight actual line
 
 -- scroll
 vim.opt.clipboard = "unnamedplus"
-vim.opt.scrolloff = 8           -- 8 lines for each scroll
-vim.opt.sidescrolloff = 8       -- 8 columns for lateral scroll
-vim.opt.updatetime = 100        -- Waiting for events 
+vim.opt.scrolloff = 4           -- 4 lines for each scroll
+vim.opt.sidescrolloff = 8       -- 4 columns for lateral scroll
+vim.opt.updatetime = 300        -- Waiting for events 
 
 -- splits
 vim.opt.splitright = true
@@ -50,4 +50,4 @@ vim.opt.visualbell = true
 
 -- backspace
 vim.opt.backspace = { "indent", "eol", "start" }
-vim.opt.showmode = false
+

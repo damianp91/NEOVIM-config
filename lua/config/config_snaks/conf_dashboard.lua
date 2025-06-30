@@ -9,7 +9,7 @@ vim.api.nvim_set_hl(0, "orageColor", {fg = "#ce6400", bold = true})
 
 ---@class snacks.dashboard.Config
 return {
-  width = 60,
+  width = math.min(60, vim.o.columns - 10),
   row = nil, -- dashboard position. nil for center
   col = nil, -- dashboard position. nil for center
   pane_gap = 10, -- empty columns between vertical panes
@@ -119,9 +119,15 @@ return {
     -- Pane 1
     {section = "header"},
     {section = "keys", gap = 1, padding = 1},
-    {section = "startup"},
+    {section = "startup", gap = 1},
 
     -- Pane 2
+    {
+      pane = 2,
+      section = nil,
+      height = 4,
+      padding = 2,
+    },
     {
       pane = 2,
       title ={
@@ -129,11 +135,12 @@ return {
         {"██   ██   ██   ██   ██   ██   ██   ██   ██   ██   ██   ██\n", hl = "mainColor"},
         {"▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄\n", hl = "mainColor"},
       },
-      height = 5,
+      height = 8,
       padding = 1,
     },
     {
       pane = 2,
+      row = 1,
       icon = " ",
       title = {"Recent Files", hl = "fileColor"},
       section = "recent_files",

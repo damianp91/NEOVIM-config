@@ -13,7 +13,7 @@ M.election_type = function()
       name = " Java",
       key = "java",
       options = {
-        {label = "  Gradle", key = "gradle"},
+        {label = " Gradle", key = "gradle"},
         {label = " Maven", key = "maven" },
         {label = "ﭰ Ant", key = "ant"},
       }
