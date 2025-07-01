@@ -26,8 +26,8 @@ return {
       contrast = "hard",                  -- can be "hard", "soft" or empty string
       palette_overrides = {
         bright_green = "#b8bb26",
-        bright_red = "#fb4934",
-        dark_blue = "#83a598",
+        bright_red = "#ff3333",
+        dark_blue = "#0059b3",
       },
       overrides = {
         Normal = { bg = "#161616" },
