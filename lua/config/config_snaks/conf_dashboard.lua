@@ -9,7 +9,7 @@ vim.api.nvim_set_hl(0, "orageColor", {fg = "#ce6400", bold = true})
 
 ---@class snacks.dashboard.Config
 return {
-  width = 60,
+  width = math.min(60, vim.o.columns - 10),
   row = nil, -- dashboard position. nil for center
   col = nil, -- dashboard position. nil for center
   pane_gap = 10, -- empty columns between vertical panes
@@ -24,25 +24,77 @@ return {
     -- When using a function, the `items` argument are the default keymaps.
     ---@type snacks.dashboard.Item[]
     keys = {
-      {icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')"},
-      {icon = " ", key = "n", desc = "New File", action = function()require('config.proyect_type').election_type()end},
-      {icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')"},
-      {icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')"},
-      {icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})"},
-      {icon = " ", key = "s", desc = "Restore Session", section = "session"},
-      {icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil},
+      {
+        icon = " ",
+        key = "f",
+        desc = "Find File",
+        action = ":lua Snacks.dashboard.pick('files')"
+      },
+      {
+        icon = " ",
+        key = "n",
+        desc = "New File",
+        action = function()
+          require('config.project_types.project_type').election_type()
+        end
+      },
+      {
+        icon = " ",
+        key = "g",
+        desc = "Find Text",
+        action = ":lua Snacks.dashboard.pick('live_grep')"
+      },
+      {
+        icon = " ",
+        key = "r",
+        desc = "Recent Files",
+        action = ":lua Snacks.dashboard.pick('oldfiles')"
+      },
+      {
+        icon = " ",
+        key = "c",
+        desc = "Config",
+        action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})"
+      },
+      {
+        icon = " ",
+        key = "s",
+        desc = "Restore Session",
+        section = "session"
+      },
+      {
+        icon = "󰒲 ",
+        key = "L",
+        desc = "Lazy",
+        action = ":Lazy",
+        enabled = package.loaded.lazy ~= nil
+      },
       {icon = " ", key = "q", desc = "Quit", action = ":qa"},
     },
     -- Used by the `header` section
+    -- header = [[
+    --        ▄ ▄                               
+    --                ▌  ▀▀▀▀▀         █▀▀█     
+    --    ▐   █   █▄▄▄█▀▀█▄▌     ▀     █▄▄█   ▄ 
+    --  ▄▄█     ▄     ▄▄▄▄▄▄▄▄▄▌ ▐  ▌           
+    --    █▄  ▄▄▄  ▌  █ ▄▄▄ █ ▄  █  █▄▄█  ▄█▀▀▄█
+    --    █ ▄ █▄█ ▄▄▄ █ █▄█ █ █  █   ▄  ▐     ▀ 
+    -- ▄▐ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █  █ ▀▀▀█▀▀ █▄▄▄ █
+    -- █▄▄▄▄█▄▄█ █▄█ █▄█▄█▄█▄█▄▄█ ▄▄▄▄▄▄▄▄▄▄▄▄█]],
+
     header = [[
-           ▄ ▄                               
-                   ▌  ▀▀▀▀▀         █▀▀█     
-       ▐   █   █▄▄▄█▀▀█▄▌     ▀     █▄▄█   ▄ 
-     ▄▄█     ▄     ▄▄▄▄▄▄▄▄▄▌ ▐  ▌           
-       █▄  ▄▄▄  ▌  █ ▄▄▄ █ ▄  █  █▄▄█  ▄█▀▀▄█
-       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █  █   ▄  ▐     ▀ 
-    ▄▐ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █  █ ▀▀▀█▀▀ █▄▄▄ █
-    █▄▄▄▄█▄▄█ █▄█ █▄█▄█▄█▄█▄▄█ ▄▄▄▄▄▄▄▄▄▄▄▄█]],
+                  ▄ ▄                     
+              ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄       
+              █ ▄ █▄█ ▄▄▄ █ █▄█ █ █       
+           ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █       
+         ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄    
+         █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄  
+       ▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █  
+       █▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █  
+           █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█     
+
+  Abeunt studia in mores. Ad sidera tollere vultus.
+        ]]
   },
   -- item field formatters
   formats = {
@@ -79,11 +131,18 @@ return {
   },
   sections = {
     -- Pane 1
-    {section = "header"},
-    {section = "keys", gap = 1, padding = 1},
-    {section = "startup"},
+    {section = nil, height = 4, padding = 1},
+    {section = "header", padding = 0.8},
+    {section = "keys", gap = 0.9, padding = 1},
+    {section = "startup", padding = 1},
 
     -- Pane 2
+    {
+      pane = 2,
+      section = nil,
+      height = 4,
+      padding = 2,
+    },
     {
       pane = 2,
       title ={
@@ -91,11 +150,12 @@ return {
         {"██   ██   ██   ██   ██   ██   ██   ██   ██   ██   ██   ██\n", hl = "mainColor"},
         {"▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄\n", hl = "mainColor"},
       },
-      height = 5,
+      height = 8,
       padding = 1,
     },
     {
       pane = 2,
+      row = 1,
       icon = " ",
       title = {"Recent Files", hl = "fileColor"},
       section = "recent_files",

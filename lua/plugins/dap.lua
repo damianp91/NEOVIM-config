@@ -5,6 +5,7 @@ return {
     "rcarriga/nvim-dap-ui",
     "nvim-neotest/nvim-nio",
   },
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     -- gain access to the dap plugin and its functions
     local dap = require("dap")

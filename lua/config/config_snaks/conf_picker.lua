@@ -22,17 +22,30 @@ return {
       preview = false,
       layout = {
         backdrop = false,
-        width = 0.6,
-        min_width = 80,
+        width = 0.5,
+        min_width = 60,
         height = 0.4,
         min_height = 10,
         box = "vertical",
         border = "rounded",
         title = "{title}",
         title_pos = "center",
-        { win = "input", height = 1, border = "bottom" },
-        { win = "list", border = "none" },
-        { win = "preview", title = "{preview}", width = 0.6, height = 0.4, border = "top" },
+        {
+          win = "input",
+          height = 1,
+          border = "bottom"
+        },
+        {
+          win = "list",
+          border = "none"
+        },
+        {
+          win = "preview",
+          title = "{preview}",
+          width = 0.6,
+          height = 0.4,
+          border = "top"
+        },
       }
     },
     telescope = {
@@ -40,8 +53,8 @@ return {
       layout = {
         box = "horizontal",
         backdrop = false,
-        width = 0.8,
-        height = 0.9,
+        width = 0.7,
+        height = 0.8,
         border = "none",
         {
           box = "vertical",

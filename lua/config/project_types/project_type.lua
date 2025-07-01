@@ -3,7 +3,7 @@ local finders = require('telescope.finders')
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 local conf = require('telescope.config').values
-local file_type = require('config.type_election')
+local file_type = require('config.project_types.type_election')
 
 local M = {}
 
@@ -13,7 +13,7 @@ M.election_type = function()
       name = " Java",
       key = "java",
       options = {
-        {label = "  Gradle", key = "gradle"},
+        {label = " Gradle", key = "gradle"},
         {label = " Maven", key = "maven" },
         {label = "ﭰ Ant", key = "ant"},
       }
