@@ -13,9 +13,11 @@ M.election_type = function()
       name = " Java",
       key = "java",
       options = {
-        {label = " Gradle", key = "gradle"},
-        {label = " Maven", key = "maven" },
-        {label = "ﭰ Ant", key = "ant"},
+        {label = "  Gradle", key = "gradle"},
+        {label = "  Maven", key = "maven" },
+        {label = "ﭰ  Ant", key = "ant"},
+        {label = "  JavaFx with Maven", key = "javafx"},
+        {label = "  Spring", key = "springBoot"}
       }
     }
     -- Future languanges
@@ -27,7 +29,7 @@ M.election_type = function()
   end
 
   pickers.new({
-    ayout_strategy = "center",
+    layout_strategy = "center",
     layout_config = {
       width = 0.3,
       height = 0.4,

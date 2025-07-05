@@ -86,6 +86,45 @@ local function java_keymaps()
       hidden = true,
     }):toggle()
   end, { desc = "Java: Compile and execute all project java" })
+  -- run prject JavaFX with Maven
+  vim.keymap.set("n", "<leader>rf", function()
+    require("toggleterm.terminal").Terminal:new({
+      cmd = "mvn clean javafx:run",
+      direction = "float",
+      close_on_exit = false,
+      hidden = true,
+    }):toggle()
+  end, { desc = "JavaFX: Run with Maven" })
+  -- Springboot
+  -- set a vim motion to <Space> + <Shift>s + r to run the spring boot project in a vim terminal
+  vim.keymap.set('n', '<leader>sr', require("springboot-nvim").boot_run, {desc = "Springboot: Java Run"})
+  -- set a vim motion to <Space> + <Shift>s + c to open the generate class ui to create a class
+  vim.keymap.set('n', '<leader>sc', require("springboot-nvim").generate_class, {desc = "Springboot: Java Create Class"})
+  -- set a vim motion to <Space> + <Shift>s + i to open the generate interface ui to create an interface
+  vim.keymap.set('n', '<leader>si', require("springboot-nvim").generate_interface, {desc = "Springboot: Java Create Interface"})
+  -- set a vim motion to <Space> + <Shift>s + e to open the generate enum ui to create an enum
+  vim.keymap.set('n', '<leader>se', require("springboot-nvim").generate_enum, {desc = "Springboot: Java Create Enum"})
+  -- Run with Springboot
+  vim.keymap.set('n', '<leader>sr', function()
+    local gradle_file = vim.fn.findfile('build.gradle', '.;')
+    local maven_file = vim.fn.findfile('pom.xml', '.;')
+    local cmd
+    if gradle_file ~= '' then
+      cmd = './gradlew bootRun'
+    elseif maven_file ~= '' then
+      cmd = './mvnw spring-boot:run'
+    else
+      print("Not found configuration for Gradle or Maven.")
+      return
+    end
+    require('toggleterm.terminal').Terminal:new({
+      cmd = cmd,
+      direction = "horizontal",
+      close_on_exit = false,
+      hidden = true,
+    }):toggle()
+  end, { desc = "Springboot: Run code" })
+  -- run the setup function with default configuration
   -- Set a Vim motion to <Space> + <Shift>J + o to organize imports in normal mode
   vim.keymap.set('n', '<leader>jo', "<Cmd> lua require('jdtls').organize_imports()<CR>", { desc = "Java: Organize Imports" })
   -- Set a Vim motion to <Space> + <Shift>J + v to extract the code under the cursor to a variable

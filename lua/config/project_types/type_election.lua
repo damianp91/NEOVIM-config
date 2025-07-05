@@ -252,7 +252,134 @@ public class Main {
       vim.cmd("edit " .. main_java_path)
       vim.cmd("cd " .. project_path)
       vim.notify("Created Ant project in: " .. project_path, vim.log.levels.INFO)
-    end
+    end,
+    -- #############################################################################
+    -- To make a new project JavaFx
+    javafx = function()
+      vim.cmd("echo 'Create JavaFx with Maven proyect'")
+      local project_name = vim.fn.input("Name of project (JavaFx): ")
+      if project_name == "" then
+        vim.notify("Error: You must provide a name for the project.", vim.log.levels.ERROR)
+        return
+      end
+      local project_path = vim.fn.getcwd() .. "/" .. project_name
+      --local main_class = "Main"
+      local package_name = "com.damianp." .. project_name
+      vim.fn.mkdir(project_path .. "/src/main/java/" .. package_name:gsub("%.", "/"), "p")
+      vim.fn.mkdir(project_path .. "/src/main/resources", "p")
+      vim.fn.mkdir(project_path .. "/src/test/java", "p")
+      vim.fn.mkdir(project_path .. "/src/test/resources", "p")
+      -- Create pom.xml
+      local pom_xml = [[
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>]] .. package_name .. [[</groupId>
+  <artifactId>]] .. project_name .. [[</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>testMaven</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <junit.version>5.10.0</junit.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- JavaFX Dependencies -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>21</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-fxml</artifactId>
+      <version>21</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>0.0.8</version>
+        <configuration>
+          <mainClass>]] .. package_name .. [[.Main</mainClass>
+          <platform>linux</platform>
+          <modules>
+            <module>javafx.controls</module>
+            <module>javafx.fxml</module>
+          </modules>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+]]
+      local pom_xml_path = project_path .. "/pom.xml"
+      local pom_xml_file = io.open(pom_xml_path, "w")
+      if pom_xml_file then
+        pom_xml_file:write(pom_xml)
+        pom_xml_file:close()
+        vim.notify("Created pom.xml", vim.log.levels.INFO)
+      else
+        vim.notify("Error: Could not create pom.xml", vim.log.levels.ERROR)
+      end
+      -- Create Main.java
+      local main_java = [[
+package ]] .. package_name .. [[;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+  public static void main(String[] args) {
+    launch(args);
+  }
+
+  @Override
+  public void start(Stage stage) {
+    Label label = new Label("¡Hello world from JavaFX!");
+    Scene scene = new Scene(label, 400, 200);
+    stage.setScene(scene);
+    stage.setTitle("JavaFX Project:]] .. project_name .. [[");
+    stage.show();
+  }
+}
+]]
+      local main_java_path = project_path .. "/src/main/java/" .. package_name:gsub("%.", "/") .. "/Main.java"
+      local main_java_file = io.open(main_java_path, "w")
+      if main_java_file then
+        main_java_file:write(main_java)
+        main_java_file:close()
+        vim.notify("Created Main.java", vim.log.levels.INFO)
+      else
+        vim.notify("Error: Could not create Main.java", vim.log.levels.ERROR)
+      end
+      vim.cmd("edit " .. main_java_path)     -- Open Main.java in Neovim
+      vim.cmd("cd " .. project_path)         -- Move to project directory
+      vim.notify("Created Maven project in: " .. project_path, vim.log.levels.INFO)
+    end,
+    -- #############################################################################
+    -- To make a new project SpringBoot
   },
   python = {},
 
