@@ -8,10 +8,14 @@ return  {
         vim.notify("Error: You must provide a name for the project.", vim.log.levels.ERROR)
         return
       end
+      local base_package = vim.fn.input("Base package (default: com.edu.ignis): ")
+      if base_package == "" then
+        base_package = "com.edu.ignis";
+      end
       -- Define paths and names
+      local package_name = base_package .. "." .. project_name
       local project_path = vim.fn.getcwd() .. "/" .. project_name
       local main_class = "Main"
-      local package_name = "com.damianp." .. project_name
       local package_path = package_name:gsub("%.", "/")  -- Convert package name to directory path
       -- Create project directories
       vim.fn.mkdir(project_path .. "/src/main/java/" .. package_path, "p")
@@ -90,9 +94,12 @@ public class Main {
         vim.notify("Error: You must provide a name for the project.", vim.log.levels.ERROR)
         return
       end
+      local base_package = vim.fn.input("Base package (default: com.edu.ignis): ")
+      if base_package == "" then
+        base_package = "com.edu.ignis";
+      end
       local project_path = vim.fn.getcwd() .. "/" .. project_name
-      --local main_class = "Main"
-      local package_name = "com.damianp." .. project_name
+      local package_name = base_package .. "." .. project_name
       vim.fn.mkdir(project_path .. "/src/main/java/" .. package_name:gsub("%.", "/"), "p")
       vim.fn.mkdir(project_path .. "/src/main/resources", "p")
       vim.fn.mkdir(project_path .. "/src/test/java", "p")
@@ -177,9 +184,13 @@ public class Main {
         vim.notify("Error: You must provide a name for the project.", vim.log.levels.ERROR)
         return
       end
+      local base_package = vim.fn.input("Base package (default: com.edu.ignis): ")
+      if base_package == "" then
+        base_package = "com.edu.ignis";
+      end
       local cwd = vim.fn.getcwd()
       local project_path = cwd .. "/" .. project_name
-      local package_name = "com.damianp." .. project_name
+      local package_name = base_package .. "." .. project_name
       local src_path = "src/main/java/" .. package_name:gsub("%.", "/")
       -- Directory estructure
       vim.fn.mkdir(project_path .. "/" .. src_path, "p")
@@ -262,9 +273,12 @@ public class Main {
         vim.notify("Error: You must provide a name for the project.", vim.log.levels.ERROR)
         return
       end
+      local base_package = vim.fn.input("Base package (default: com.edu.ignis): ")
+      if base_package == "" then
+        base_package = "com.edu.ignis";
+      end
       local project_path = vim.fn.getcwd() .. "/" .. project_name
-      --local main_class = "Main"
-      local package_name = "com.damianp." .. project_name
+      local package_name = base_package .. "." .. project_name
       vim.fn.mkdir(project_path .. "/src/main/java/" .. package_name:gsub("%.", "/"), "p")
       vim.fn.mkdir(project_path .. "/src/main/resources", "p")
       vim.fn.mkdir(project_path .. "/src/test/java", "p")

@@ -16,8 +16,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "roobert/tailwindcss-colorizer-cmp.nvim",
   },
-  event = "VeryLazy",
-  main = "config.plugins.cmp",
-  config = true,
+  -- event = "VeryLazy",
+  lazy = false,
+  -- main = "config.plugins.cmp",
+  config = function ()
+    require("config.plugins.cmp").setup()
+  end,
 }
 

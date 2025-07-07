@@ -44,6 +44,7 @@ function M.setup()
       ls.change_choice()
     end
   end)
+  require("luasnip.loaders.from_vscode").lazy_load()
 end
 
 return M

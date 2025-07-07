@@ -87,7 +87,7 @@ local function java_keymaps()
     }):toggle()
   end, { desc = "Java: Compile and execute all project java" })
   -- run prject JavaFX with Maven
-  vim.keymap.set("n", "<leader>rf", function()
+  vim.keymap.set("n", "<leader>fr", function()
     require("toggleterm.terminal").Terminal:new({
       cmd = "mvn clean javafx:run",
       direction = "float",
