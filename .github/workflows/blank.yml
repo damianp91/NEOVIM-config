@@ -33,7 +33,7 @@ jobs:
           ${{ runner.os }}-cache-
     
     - name: Set up Lua
-      uses: actions/setup-lua@v2
+      uses: actions/setup-lua@v1
       with:
         lua-version: '5.4'
     
