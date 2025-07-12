@@ -164,6 +164,7 @@ local config = {
     "-data", workspace_dir,
   },
   root_dir = root_dir,
+  capabilities = capabilities,
   settings = {
     java = {
       -- Enable code formatting
@@ -268,8 +269,6 @@ local config = {
     vim.lsp.codelens.refresh()
     java_keymaps()
   end,
-  capabilities = capabilities,
 }
 
 jdtls.start_or_attach(config)
-
