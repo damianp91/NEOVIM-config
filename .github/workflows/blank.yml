@@ -3,6 +3,19 @@ name: CI
 
 on: [push, pull_request]
 
+permissions:
+  actions: none
+  checks: none
+  contents: read
+  deployments: none
+  id-token: none
+  issues: none
+  packages: none
+  pull-requests: none
+  repository-projects: none
+  security-events: none
+  statuses: none
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +33,7 @@ jobs:
           ${{ runner.os }}-cache-
     
     - name: Set up Lua
-      uses: actions/setup-lua@v2
+      uses: actions/setup-lua@v1
       with:
         lua-version: '5.4'
     
