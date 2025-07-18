@@ -2,7 +2,8 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-local lspkind = require("lspkind")local M = {}
+local lspkind = require("lspkind")
+local M = {}
 
 function  M.setup()
   cmp.setup({

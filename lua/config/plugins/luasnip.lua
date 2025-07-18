@@ -45,6 +45,18 @@ function M.setup()
     end
   end)
   require("luasnip.loaders.from_vscode").lazy_load()
+
+  -- Autocmd to clean up broken fragment states
+  vim.api.nvim_create_autocmd("ModeChanged", {
+    pattern = "*",
+    callback = function()
+      if (vim.v.event.old_mode == "i" or vim.v.event.old_mode == "s")
+        and vim.v.event.new_mode == "n"
+      then
+        require("luasnip").unlink_current()
+      end
+    end,
+  })
 end
 
 return M

@@ -2,6 +2,7 @@
 
 return {
   "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
   dependencies = {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
@@ -16,9 +17,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "roobert/tailwindcss-colorizer-cmp.nvim",
   },
-  -- event = "VeryLazy",
-  lazy = false,
-  -- main = "config.plugins.cmp",
   config = function ()
     require("config.plugins.cmp").setup()
   end,
