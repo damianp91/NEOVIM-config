@@ -47,7 +47,7 @@ function M.setup()
   require("luasnip.loaders.from_vscode").lazy_load()
 
   -- Autocmd to clean up broken fragment states
-  vim.api.nvim_create_autocmd("ModeChanged", {
+  vim.api.nvim_create_autocmd({"ModeChanged", "BufWritePost", "TermLeave", "CmdlineLeave"}, {
     pattern = "*",
     callback = function()
       if (vim.v.event.old_mode == "i" or vim.v.event.old_mode == "s")

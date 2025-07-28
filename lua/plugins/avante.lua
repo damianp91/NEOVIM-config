@@ -33,8 +33,10 @@ return {
       auto_set_keymaps = true,
       auto_apply_diff_after_generation = false,
       support_paste_from_clipboard = false,
-      minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
-      enable_token_counting = true, -- Whether to enable token counting. Default to true.
+      -- Whether to remove unchanged lines when applying a code block
+      minimize_diff = true,
+      -- Whether to enable token counting. Default to true.
+      enable_token_counting = true,
     },
     mappings = {
       --- @class AvanteConflictMappings
@@ -107,8 +109,10 @@ return {
       autojump = true,
       ---@type string | fun(): any
       list_opener = "copen",
-      --- Override the 'timeoutlen' setting while hovering over a diff (see :help timeoutlen).
-      --- Helps to avoid entering operator-pending mode with diff mappings starting with `c`.
+      --- Override the 'timeoutlen' setting while hovering over a diff
+      --- (see :help timeoutlen).
+      --- Helps to avoid entering operator-pending mode with diff mappings
+      --- starting with `c`.
       --- Disable by setting to -1.
       override_timeoutlen = 500,
     },
@@ -119,7 +123,8 @@ return {
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
-  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1
+  -- -BuildFromSource false" -- for windows
   dependencies = {
     "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",

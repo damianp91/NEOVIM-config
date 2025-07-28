@@ -4,29 +4,7 @@ return {
     require("oil").setup({
       default_file_explorer = true,
       columns = {
-        {
-          "short_name",
-          render = function (entry)
-            local path = vim.fn.fnamemodify(entry.path, ":~")
-            local win_width = entry.win_width or vim.api.nvim_win_get_width(0)
-            local maxlen = math.floor(win_width * 0.4)
-
-            if #path > maxlen then
-              path = vim.fn.pathshorten(path)
-              if #path > maxlen then
-                local dir = vim.fn.fnamemodify(path, ":h")
-                local file = vim.fn.fnamemodify(path, ":t")
-                if dir and file then
-                  file = file:sub(-(maxlen - #dir -2))
-                  path = dir .. "/..." .. file
-                end
-              end
-            end
-            return {
-              {path, "OilFile"}
-            }
-          end
-        },
+        "icon",
         {
           "git_status",
           symbols = {
