@@ -51,7 +51,8 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       python = { "pylint" },
-      -- java = { "checkstyle" },
+      css = {"stylelint"},
+      html = {"htmllint"},
     }
 
     -- Autocommands 
@@ -66,5 +67,13 @@ return {
     vim.keymap.set("n", "<leader>li", function()
       lint.try_lint()
     end, { desc = "Trigger linting for current file" })
+
+    -- Diagnostics
+    vim.diagnostic.config({
+      virtual_text = true,
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+    })
   end,
 }

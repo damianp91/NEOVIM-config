@@ -4,13 +4,12 @@ local M = {}
 
 M.capabilities = cmp_nvim_lsp.default_capabilities()
 
-
 local servers = {
   "lua_ls",
   "pyright",
   "ts_js",
   "html",
-  "ccsls"
+  "cssls"
 }
 
 function M.setup()

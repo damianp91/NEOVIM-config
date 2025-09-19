@@ -20,6 +20,34 @@ return {
     -- Neodev
     require("neodev").setup()
 
+    -- -- Mason setup
+    -- require("mason").setup()
+
+    -- -- Mason-LSPConfig
+    -- require("mason-lspconfig").setup()
+
+    -- -- Mason Tool Installer
+    -- require("mason-tool-installer").setup({
+    --   ensure_installed = {
+    --     -- LSPs
+    --     "lua-language-server",
+    --     "pyright",
+    --     "typescript-language-server",
+    --     "html-lsp",
+    --     "css-lsp",
+    --     "slint-lsp",
+    --     -- Debuggers
+    --     "debugpy",
+    --     -- For java
+    --     "jdtls",
+    --     "java-test",
+    --     "java-debug-adapter",
+    --     "google-java-format"
+    --   },
+    --   auto_update = true,
+    --   run_on_start = true,
+    -- })
+
     -- Configutation lsp separate
     require("config.lsp").setup()
 
