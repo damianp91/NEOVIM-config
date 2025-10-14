@@ -401,11 +401,14 @@ public class Main extends Application {
         return
       end
 
+      -- Create project folder
       local project_path = vim.fn.getcwd() .. "/" .. project_name
       vim.fn.mkdir(project_path, "p")
 
-      vim.fn.system("cd " .. project_path .. " && npm init -y")
-      vim.fn.system("cd " .. project_path .. " && npm install eslint eslint_d --save-dev")
+      -- commands of npm
+      -- vim.fn.system("cd " .. project_path .. " && npm init -y")
+      -- vim.fn.system("cd " .. project_path .. " && npm install eslint eslint_d --save-dev")
+      vim.fn.system("cd " .. project_path .. " && npm init -y && npm install eslint eslint_d --save-dev")
 
       local main_js_path = project_path .. "/index.js"
       local f = io.open(main_js_path, "w")
@@ -414,6 +417,7 @@ public class Main extends Application {
         f:close()
       end
 
+      -- eslint configuration
       local eslint_conf = [[
 {
   "env": {
@@ -436,6 +440,7 @@ public class Main extends Application {
         e:close()
       end
 
+      -- package.json configuration
       local pkg_path = project_path .. "/package.json"
       local f_pkg = io.open(pkg_path, "r")
       if not f_pkg then
@@ -454,8 +459,8 @@ public class Main extends Application {
         f2:close()
       end
 
+      -- chcange to index.js
       vim.loop.chdir(project_path)
-
       vim.cmd("edit " .. main_js_path)
 
       vim.notify("Created JavaScript project with ESLint in: " .. project_path, vim.log.levels.INFO)

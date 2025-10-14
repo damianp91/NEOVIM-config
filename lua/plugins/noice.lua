@@ -6,11 +6,11 @@ return {
   event = "VeryLazy",
   opts =  {
     presets = {
-      bottom_search = false,                 -- use a classic bottom cmdline for search
-      command_palette = true,               -- position the cmdline and popupmenu together
-      long_message_to_split = true,         -- long messages will be sent to a split
-      inc_rename = true,                    -- enables an input dialog for inc-rename.nvim
-      lsp_doc_border = true,                -- add a border to hover docs and signature help
+      bottom_search = false,        -- use a classic bottom cmdline for search
+      command_palette = true,       -- position the cmdline and popupmenu together
+      long_message_to_split = true, -- long messages will be sent to a split
+      inc_rename = true,            -- enables an input dialog for inc-rename.nvim
+      lsp_doc_border = true,        -- add a border to hover docs and signature help
     },
     cmdline = {
       enabled = true,
@@ -18,10 +18,21 @@ return {
       format = {
         cmdline = { pattern = "^:", icon = " :", lang = "vim" },
         help = { pattern = "^:%s*he?l?p?%s+", icon = "󰮦 :" },
-        search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-        search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+        search_down = {
+          kind = "search", pattern = "^/",
+          icon = " ", lang = "regex"
+        },
+        search_up = {
+          kind = "search",
+          pattern = "^%?",
+          icon = " ",
+          lang = "regex"
+        },
         filter = { pattern = "^:%s*!", icon = " :", lang = "bash" },
-        lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = " :", lang = "lua" },
+        lua = {
+          pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },
+          icon = " :", lang = "lua"
+        },
         input = { icon = "󰥻 :" },
       },
     },
@@ -49,17 +60,76 @@ return {
         filter = {
           event = "msg_show",
           any = {
+            { find = "Obsidian" },
+            { find = "obsidian" },
+          },
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "notify",
+          any = {
+            { find = "Obsidian" },
+            { find = "obsidian" },
+          },
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "lsp",
+          any = {
+            { find = "markdown" },
+          },
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          any = {
             { find = "Loading workspace" },
             { find = "workspace loaded" },
-            { find = "indexing" },
-            { find = "%d+L, %d+B" },
-            { find = "; after #%d+" },
-            { find = "; before #%d+" },
-            { find = "%d+ fewer lines" },
-            { find = "%d+ more lines" },
-            { find = "%d+ lines yanked" },
-            { find = "^recording @" },
-            { find = "^" },
+            { find = "LSP: .+: Diagnosing" },
+            { find = "LSP: .+: Formatting" },
+          },
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          kind = "progress",
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          kind = "search",
+        },
+        view = "cmdline_popup",
+      },
+      {
+        filter = {
+          event = "msg_show",
+          find = "%d+L, %d+B",
+        },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          find = "E%d+:",
+        },
+        view = "notify",
+      },
+      {
+        filter = {
+          event = "msg_show",
+          any = {
+            { find = "%d+ fewer lines"},
+            { find = "%d+ more lines"},
           },
         },
         opts = { skip = true },

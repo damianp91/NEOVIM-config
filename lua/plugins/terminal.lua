@@ -3,7 +3,7 @@ return {
   config = function()
     require('toggleterm').setup({
       -- Size horizontal mode (number of lines)
-      size = 20,
+      size = 15,
 
       -- Settings for vertical mode
       shade_terminals = true,

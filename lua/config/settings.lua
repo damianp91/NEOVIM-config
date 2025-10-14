@@ -51,3 +51,6 @@ vim.opt.visualbell = true
 -- backspace
 vim.opt.backspace = { "indent", "eol", "start" }
 
+-- ecoding
+vim.opt.fileencoding = "utf-8"
+vim.opt.encoding = "utf-8"

@@ -43,14 +43,14 @@ return {
         }
       },
       lualine_x = {'fileformat', 'filetype'},
-      lualine_y = {'progress'},
+      lualine_y = { },
       lualine_z = {'location'}
     },
     inactive_sections = { },
     tabline = { },
     winbar = { },
     inactive_winbar = { },
-    extensions = {}
+    extensions = { }
   }
 }
 
