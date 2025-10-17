@@ -29,32 +29,37 @@ return {
       workspaces = {
         {
           name = "personal",
-          path = "~/vaults/personal",
+          path = "~/vaults/personal/",
           overrides = {
             notes_subdir = "notes",
             daily_notes = {
               folder = "daily",
+              date_format = "%Y-%m-%d",
+              template = "daily.md",
             },
           },
         },
         {
           name = "work",
-          path = "~/vaults/work",
+          path = "~/vaults/work/",
           overrides = {
             notes_subdir = "notes",
             daily_notes = {
               folder = "daily",
+              date_format = "%Y-%m-%d",
+              template = "daily.md",
             },
           },
         },
       },
 
-      notes_subdir = "notes",
+      -- notes_subdir = "notes",
 
-      daily_notes = {
-        folder = "daily",
-        date_format = "%Y-%m-%d",
-      },
+      -- daily_notes = {
+      --   folder = "daily",
+      --   date_format = "%Y-%m-%d",
+      --   template = "daily.md",
+      -- },
 
       -- templates
       templates = {
@@ -65,6 +70,8 @@ return {
 
       ui = {
         enable = true,
+        update_debounce = 200,
+        max_file_length = 5000,
         checkboxes = {
           [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
           ["x"] = { char = "", hl_group = "ObsidianDone" },
@@ -73,6 +80,25 @@ return {
           ["!"] = { char = "", hl_group = "ObsidianImportant" },
         },
         bullets = { char = "•", hl_group = "ObsidianBullet" },
+        external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
+        reference_text = { hl_group = "ObsidianRefText" },
+        highlight_text = { hl_group = "ObsidianHighlightText" },
+        tags = { hl_group = "ObsidianTag" },
+        block_ids = { hl_group = "ObsidianBlockID" },
+
+        hl_groups = {
+          ObsidianTodo = { bold = true, fg = "#fb4934" },
+          ObsidianDone = { bold = true, fg = "#b8bb26" },
+          ObsidianRightArrow = { bold = true, fg = "#fabd2f" },
+          ObsidianTilde = { bold = true, fg = "#fe8019" },
+          ObsidianImportant = { bold = true, fg = "#fb4955" },
+          ObsidianBullet = { bold = true, fg = "#83a598" },
+          ObsidianRefText = { underline = true, fg = "#d3869b" },
+          ObsidianExtLinkIcon = { fg = "#8ec07c" },
+          ObsidianTag = { italic = true, fg = "#fabd55" },
+          ObsidianBlockID = { italic = true, fg = "#928374" },
+          ObsidianHighlightText = { bg = "#504945" },
+        },
       },
 
       disable_frontmatter = true,
@@ -91,6 +117,13 @@ return {
             return require("obsidian").util.toggle_checkbox()
           end,
           opts = { buffer = true },
+        },
+        -- Usar el enter para no tener que usar gf o <leader>ch
+        ["<cr>"] = {
+          action = function()
+            return require("obsidian").util.smart_action()
+          end,
+          opts = { buffer = true, expr = true },
         },
       },
 
@@ -120,13 +153,5 @@ return {
         vim.fn.jobstart({"xdg-open", url})
       end,
     })
-
-    -- keymaps
-    vim.keymap.set("n", "<leader>ow", ":ObsidianWorkspace<CR>", { desc = "Cambiar workspace" })
-    vim.keymap.set("n", "<leader>oo", ":ObsidianOpen<CR>", { desc = "Abrir en Obsidian app" })
-    vim.keymap.set("n", "<leader>on", ":ObsidianNew ", { desc = "Nueva nota Obsidian" })
-    vim.keymap.set("n", "<leader>ot", ":ObsidianToday<CR>", { desc = "Nota diaria" })
-    vim.keymap.set("n", "<leader>os", ":ObsidianSearch<CR>", { desc = "Buscar notas" })
-    vim.keymap.set("n", "<leader>oq", ":ObsidianQuickSwitch<CR>", { desc = "Cambiar nota" })
   end,
 }

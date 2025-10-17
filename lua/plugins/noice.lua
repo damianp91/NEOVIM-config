@@ -2,6 +2,7 @@ return {
   "folke/noice.nvim",
   dependencies = {
     "MunifTanjim/nui.nvim",
+    "rcarriga/nvim-notify",
   },
   event = "VeryLazy",
   opts =  {
@@ -43,7 +44,11 @@ return {
         view_warn = "notify",
     },
     lsp = {
-      progress = { enabled = true },
+      progress = {
+        enabled = true,
+        format = "lsp_progress",
+        format_done = "lsp_progress_done",
+      },
       signature = {
         enabled = true,
         auto_open = { enabled = false },
@@ -53,29 +58,9 @@ return {
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,     -- requires hrsh7th/nvim-cmp
       },
-      hover = { enabled = true, silent = true },
+      hover = { enabled = true, silent = false },
     },
     routes = {
-      {
-        filter = {
-          event = "msg_show",
-          any = {
-            { find = "Obsidian" },
-            { find = "obsidian" },
-          },
-        },
-        opts = { skip = true },
-      },
-      {
-        filter = {
-          event = "notify",
-          any = {
-            { find = "Obsidian" },
-            { find = "obsidian" },
-          },
-        },
-        opts = { skip = true },
-      },
       {
         filter = {
           event = "lsp",
@@ -89,13 +74,12 @@ return {
         filter = {
           event = "msg_show",
           any = {
-            { find = "Loading workspace" },
-            { find = "workspace loaded" },
-            { find = "LSP: .+: Diagnosing" },
-            { find = "LSP: .+: Formatting" },
+            { find = "%d+ lines yanked" },
+            { find = "%d+ lines yanked into register %w" },
           },
         },
-        opts = { skip = true },
+        opts = { silent = true }, -- Evita que se guarde en el historial de mensajes
+        view = "notify",
       },
       {
         filter = {
@@ -116,6 +100,7 @@ return {
           event = "msg_show",
           find = "%d+L, %d+B",
         },
+        opts = { skip = true},
       },
       {
         filter = {
@@ -136,9 +121,6 @@ return {
       },
     },
     health = { checker = true },  -- Verifica salud del plugin
-    throttle = 1000,              -- Reduce updates innecesarios
-    cmp = {
-      enabled = true,
-    }
+    throttle = 50,                -- Reduce updates innecesarios
   },
 }

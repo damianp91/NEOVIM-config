@@ -13,8 +13,8 @@ return {
       -- Settings for float terminal
       float_opts = {
         border = 'curved',       -- or 'single', 'double', 'shadow', etc.
-        width = function() return math.floor(vim.o.columns * 0.6) end,  -- 70% weight
-        height = function() return math.floor(vim.o.lines * 0.6) end,   -- 70% height
+        width = function() return math.floor(vim.o.columns * 0.6) end,-- 70% weight
+        height = function() return math.floor(vim.o.lines * 0.6) end, -- 70% height
         winblend = 8,            -- Tranparency (0-100)
       },
 

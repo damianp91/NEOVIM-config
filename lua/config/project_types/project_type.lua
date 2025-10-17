@@ -51,13 +51,6 @@ M.election_type = function()
     prompt_prefix = " ",
     selection_caret = " ",
     entry_prefix = "  ",
-    -- highlight personalizado
-    attach_mappings = function(_, _)
-      vim.api.nvim_win_set_option(0, "winhighlight",
-        "Normal:TelescopeCustomBg,FloatBorder:TelescopeCustomBorder")
-      return true
-    end,
-
   }, {
       prompt_title = "Select Lenguage",
       finder = finders.new_table({
@@ -95,12 +88,6 @@ M.election_type = function()
             prompt_prefix = " ",
             selection_caret = " ",
             entry_prefix = "  ",
-            -- highlight personalizado
-            attach_mappings = function(_, _)
-              vim.api.nvim_win_set_option(0, "winhighlight",
-                "Normal:TelescopeCustomBg,FloatBorder:TelescopeCustomBorder")
-              return true
-            end,
           }, {
             prompt_title = "Select type of " .. lang.name,
             finder = finders.new_table({

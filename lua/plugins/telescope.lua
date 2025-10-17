@@ -111,7 +111,9 @@ return {
     {
       "<leader>bb",
       function()
-        require("telescope").extensions.file_browser.file_browser({ path = "%:h:p", select_buffer = true })
+        require("telescope").extensions.file_browser.file_browser(
+          { path = "%:h:p", select_buffer = true }
+        )
       end,
       desc = "Telescope file browser"
     }

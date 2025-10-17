@@ -1,6 +1,7 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local M = {}
 M.capabilities = cmp_nvim_lsp.default_capabilities()
+vim.lsp.handlers["$/progress"] = function() end
 
 local servers = {
   "lua_ls",
@@ -10,8 +11,8 @@ local servers = {
   "cssls"
 }
 
-local on_attach = function()
-  require("config.keymaps")
+local on_attach = function(client, bufnr)
+  require("config.keymaps").lsp_keymaps(client, bufnr)
 end
 
 function M.setup()
@@ -36,7 +37,8 @@ vim.api.nvim_create_autocmd("InsertEnter", {
   callback = function()
     local ok_cmp, cmp = pcall(require, "cmp")
     if ok_cmp then
-      cmp.setup.buffer({ enabled = true })
+      cmp.setup()
+      -- cmp.setup.buffer({ enabled = true })
     end
     local ok_snip, luasnip = pcall(require, "luasnip")
     if ok_snip then
