@@ -29,9 +29,8 @@ return {
       workspaces = {
         {
           name = "personal",
-          path = "~/vaults/personal/",
+          path = vim.fn.expand("~/vaults/personal"),
           overrides = {
-            notes_subdir = "notes",
             daily_notes = {
               folder = "daily",
               date_format = "%Y-%m-%d",
@@ -41,9 +40,8 @@ return {
         },
         {
           name = "work",
-          path = "~/vaults/work/",
+          path = vim.fn.expand("~/vaults/work/"),
           overrides = {
-            notes_subdir = "notes",
             daily_notes = {
               folder = "daily",
               date_format = "%Y-%m-%d",
@@ -52,14 +50,6 @@ return {
           },
         },
       },
-
-      -- notes_subdir = "notes",
-
-      -- daily_notes = {
-      --   folder = "daily",
-      --   date_format = "%Y-%m-%d",
-      --   template = "daily.md",
-      -- },
 
       -- templates
       templates = {
@@ -101,7 +91,22 @@ return {
         },
       },
 
-      disable_frontmatter = true,
+      disable_frontmatter = false,
+
+      note_frontmatter_func = function(note)
+        local out = {
+          id = note.id,
+          aliases = note.aliases,
+          tags = note.tags,
+          created = os.date("%Y-%m-%d %H:%M"),
+        }
+
+        if note.title then
+          note:add_alias(note.title)
+        end
+
+        return out
+      end,
 
       mappings = {
         -- Seguir links con gf
