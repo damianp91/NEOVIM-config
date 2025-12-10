@@ -8,7 +8,8 @@ local servers = {
   "pyright",
   "ts_ls",
   "html",
-  "cssls"
+  "cssls",
+  "marksman"
 }
 
 local on_attach = function(client, bufnr)

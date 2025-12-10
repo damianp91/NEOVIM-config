@@ -34,7 +34,6 @@ function M.setup(capabilities, on_attach)
       }
     }
   })
-
   vim.lsp.enable('lua_ls')
 end
 
