@@ -30,8 +30,14 @@ return {
     vim.api.nvim_set_hl(0, "SnacksPickerListNormal",   { bg = "#161616" })
     vim.api.nvim_set_hl(0, "SnacksPickerPreviewNormal",{ bg = "#161616" })
     vim.api.nvim_set_hl(0, "SnacksPickerInputNormal",  { bg = "#161616" })
-    vim.api.nvim_set_hl(0, "SnacksPickerListBorder",   { fg = "#d4c7b9", bg = "#161616" })
-    vim.api.nvim_set_hl(0, "SnacksPickerPreviewBorder",{ fg = "#d4c7b9", bg = "#161616" })
-    vim.api.nvim_set_hl(0, "SnacksPickerInputBorder",  { fg = "#d4c7b9", bg = "#161616" })
+    vim.api.nvim_set_hl(0, "SnacksPickerListBorder",   { fg = "#d4c7b9",
+      bg = "#161616" }
+    )
+    vim.api.nvim_set_hl(0, "SnacksPickerPreviewBorder",{ fg = "#d4c7b9",
+      bg = "#161616" }
+    )
+    vim.api.nvim_set_hl(0, "SnacksPickerInputBorder",  { fg = "#d4c7b9",
+      bg = "#161616" }
+    )
   end,
 }

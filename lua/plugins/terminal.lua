@@ -3,7 +3,7 @@ return {
   config = function()
     require('toggleterm').setup({
       -- Size horizontal mode (number of lines)
-      size = 20,
+      size = 15,
 
       -- Settings for vertical mode
       shade_terminals = true,
@@ -13,8 +13,8 @@ return {
       -- Settings for float terminal
       float_opts = {
         border = 'curved',       -- or 'single', 'double', 'shadow', etc.
-        width = function() return math.floor(vim.o.columns * 0.6) end,  -- 70% weight
-        height = function() return math.floor(vim.o.lines * 0.6) end,   -- 70% height
+        width = function() return math.floor(vim.o.columns * 0.6) end,-- 70% weight
+        height = function() return math.floor(vim.o.lines * 0.6) end, -- 70% height
         winblend = 8,            -- Tranparency (0-100)
       },
 

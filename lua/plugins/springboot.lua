@@ -8,6 +8,6 @@ return {
   config = function()
     -- gain acces to the springboot nvim plugin and its functions
     local springboot_nvim = require("springboot-nvim")
-    springboot_nvim.setup()
+    springboot_nvim.setup({})
   end
 }

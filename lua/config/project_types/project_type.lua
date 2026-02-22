@@ -17,8 +17,16 @@ M.election_type = function()
         {label = "  Maven", key = "maven" },
         {label = "ﭰ  Ant", key = "ant"},
         {label = "  JavaFx with Maven", key = "javafx"},
-        {label = "  Spring", key = "springBoot"}
+        {label = "  Spring", key = "springBoot"},
       }
+    },
+    {
+      name = " JavaScript",
+      key = "javascript"
+    },
+    {
+      name = " TypeScript",
+      key = "typescript",
     }
     -- Future languanges
   }
@@ -43,13 +51,6 @@ M.election_type = function()
     prompt_prefix = " ",
     selection_caret = " ",
     entry_prefix = "  ",
-    -- highlight personalizado
-    attach_mappings = function(_, _)
-      vim.api.nvim_win_set_option(0, "winhighlight",
-        "Normal:TelescopeCustomBg,FloatBorder:TelescopeCustomBorder")
-      return true
-    end,
-
   }, {
       prompt_title = "Select Lenguage",
       finder = finders.new_table({
@@ -73,7 +74,7 @@ M.election_type = function()
 
         if lang and lang.options then
           pickers.new({
-            ayout_strategy = "center",
+            layout_strategy = "center",
             layout_config = {
               width = 0.4,
               height = 0.6,
@@ -87,12 +88,6 @@ M.election_type = function()
             prompt_prefix = " ",
             selection_caret = " ",
             entry_prefix = "  ",
-            -- highlight personalizado
-            attach_mappings = function(_, _)
-              vim.api.nvim_win_set_option(0, "winhighlight",
-                "Normal:TelescopeCustomBg,FloatBorder:TelescopeCustomBorder")
-              return true
-            end,
           }, {
             prompt_title = "Select type of " .. lang.name,
             finder = finders.new_table({
@@ -122,6 +117,12 @@ M.election_type = function()
               return true
             end
           }):find()
+        else
+          if file_type[lang_key] and file_type[lang_key].default then
+              file_type[lang_key].default()
+          else
+              vim.notify("Don't find generator for " .. lang_key, vim.log.levels.ERROR)
+          end
         end
       end)
       return true

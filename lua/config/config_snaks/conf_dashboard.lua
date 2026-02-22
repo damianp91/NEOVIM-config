@@ -22,7 +22,6 @@ return {
     -- Used by the `keys` section to show keymaps.
     -- Set your custom keymaps here.
     -- When using a function, the `items` argument are the default keymaps.
-    ---@type snacks.dashboard.Item[]
     keys = {
       {
         icon = " ",
@@ -176,6 +175,7 @@ return {
       title = {"Git Status", hl = "orageColor"},
       section = "terminal",
       enabled = function()
+        ---@diagnostic disable-next-line: undefined-global
         return Snacks.git.get_root() ~= nil
       end,
       cmd = "git status --short --branch --renames",

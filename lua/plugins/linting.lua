@@ -3,19 +3,18 @@ return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
+    ---@diagnostic disable-next-line: different-requires
     local lint = require("lint")
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-    local eslint = lint.linters.eslint_d
 
-    -- Configuración de eslint_d (como en tu setup original)
-    eslint.args = {
+    lint.linters.eslint_d.args = {
       "--no-warn-ignored",
       "--format",
       "json",
       "--stdin",
       "--stdin-filename",
       function()
-        return vim.fn.expand("%:p")
+        return vim.api.nvim_buf_get_name(0)
       end,
     }
 
@@ -51,7 +50,9 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       python = { "pylint" },
-      -- java = { "checkstyle" },
+      css = {"stylelint"},
+      html = {"htmllint"},
+      lua = { "luacheck" },
     }
 
     -- Autocommands 
@@ -66,5 +67,23 @@ return {
     vim.keymap.set("n", "<leader>li", function()
       lint.try_lint()
     end, { desc = "Trigger linting for current file" })
+
+    -- Diagnostics
+    vim.diagnostic.config({
+      virtual_text = {
+        prefix = "●",
+        source = "if_many",
+      },
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+      float = {
+        border = "rounded",
+        source = "if_many",
+        header = "",
+        prefix = "",
+      },
+    })
   end,
 }

@@ -52,9 +52,16 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- Function for all keymap of the jdtls
 local function java_keymaps()
   -- Run JdtCompile as a Vim command
-  vim.cmd("command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)")
+  vim.cmd(
+    [[
+    command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile
+    \ JdtCompile lua require('jdtls').compile(<f-args>)
+    ]]
+  )
   -- Run JdtUpdateConfig as a Vim command
-  vim.cmd("command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()")
+  vim.cmd(
+    "command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()"
+  )
   -- Run JdtBytecode as a Vim command
   vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
   -- Run JdtShell as a Vim command
@@ -62,7 +69,9 @@ local function java_keymaps()
   -- Run code single
   vim.keymap.set('n', '<leader>r', function()
     local project_root = vim.fn.getcwd()
-    local java_files = vim.fn.systemlist(string.format('find %s/src/main/java -name "*.java"', project_root))
+    local java_files = vim.fn.systemlist(
+      string.format('find %s/src/main/java -name "*.java"', project_root)
+    )
     local files = table.concat(java_files, " ")
     -- Detect class with method `main`
     local main_class = ""
@@ -78,7 +87,9 @@ local function java_keymaps()
       vim.notify("Not found any class with method main.", vim.log.levels.ERROR)
       return
     end
-    local cmd = string.format('javac -d %s/bin %s && java -cp %s/bin %s', project_root, files, project_root, main_class)
+    local cmd = string.format('javac -d %s/bin %s && java -cp %s/bin %s',
+      project_root, files, project_root, main_class
+    )
     require('toggleterm.terminal').Terminal:new({
       cmd = cmd,
       direction = "horizontal",
@@ -95,54 +106,107 @@ local function java_keymaps()
       hidden = true,
     }):toggle()
   end, { desc = "JavaFX: Run with Maven" })
+
   -- Springboot
-  -- set a vim motion to <Space> + <Shift>s + r to run the spring boot project in a vim terminal
-  vim.keymap.set('n', '<leader>sr', require("springboot-nvim").boot_run, {desc = "Springboot: Java Run"})
-  -- set a vim motion to <Space> + <Shift>s + c to open the generate class ui to create a class
-  vim.keymap.set('n', '<leader>sc', require("springboot-nvim").generate_class, {desc = "Springboot: Java Create Class"})
-  -- set a vim motion to <Space> + <Shift>s + i to open the generate interface ui to create an interface
-  vim.keymap.set('n', '<leader>si', require("springboot-nvim").generate_interface, {desc = "Springboot: Java Create Interface"})
-  -- set a vim motion to <Space> + <Shift>s + e to open the generate enum ui to create an enum
-  vim.keymap.set('n', '<leader>se', require("springboot-nvim").generate_enum, {desc = "Springboot: Java Create Enum"})
-  -- Run with Springboot
+  -- set a vim motion to <Space> + <Shift>s + r to run the spring boot project in
+  -- a vim terminal
+  -- Spring Boot keymaps
   vim.keymap.set('n', '<leader>sr', function()
+    -- Try springboot-nvim plugin first
+    local ok, springboot = pcall(require, "springboot-nvim")
+    if ok then
+      springboot.boot_run()
+      return
+    end
+
+    -- Fallback to manual detection
     local gradle_file = vim.fn.findfile('build.gradle', '.;')
     local maven_file = vim.fn.findfile('pom.xml', '.;')
     local cmd
+
     if gradle_file ~= '' then
       cmd = './gradlew bootRun'
     elseif maven_file ~= '' then
       cmd = './mvnw spring-boot:run'
     else
-      print("Not found configuration for Gradle or Maven.")
+      vim.notify("No se encontró configuración de Gradle o Maven.", vim.log.levels.WARN)
       return
     end
+
     require('toggleterm.terminal').Terminal:new({
       cmd = cmd,
       direction = "horizontal",
       close_on_exit = false,
       hidden = true,
     }):toggle()
-  end, { desc = "Springboot: Run code" })
+  end, { desc = "Spring Boot: Run" })
+  -- set a vim motion to <Space> + <Shift>s + c to open the generate class ui
+  -- to create a class
+  vim.keymap.set('n', '<leader>sc', function()
+    require("springboot-nvim").generate_class()
+  end, { desc = "Spring Boot: Create Class" })
+  -- set a vim motion to <Space> + <Shift>s + i to open the generate interface ui
+  -- to create an interface
+  vim.keymap.set('n', '<leader>si', function()
+    require("springboot-nvim").generate_interface()
+  end, { desc = "Spring Boot: Create Interface" })
+  -- set a vim motion to <Space> + <Shift>s + e to open the generate enum ui to
+  -- create an enum
+  vim.keymap.set('n', '<leader>se', function()
+    require("springboot-nvim").generate_enum()
+  end, { desc = "Spring Boot: Create Enum" })
+
   -- run the setup function with default configuration
   -- Set a Vim motion to <Space> + <Shift>J + o to organize imports in normal mode
-  vim.keymap.set('n', '<leader>jo', "<Cmd> lua require('jdtls').organize_imports()<CR>", { desc = "Java: Organize Imports" })
-  -- Set a Vim motion to <Space> + <Shift>J + v to extract the code under the cursor to a variable
-  vim.keymap.set('n', '<leader>jv', "<Cmd> lua require('jdtls').extract_variable()<CR>", { desc = "Java: Extract Variable" })
-  -- Set a Vim motion to <Space> + <Shift>J + v to extract the code selected in visual mode to a variable
-  vim.keymap.set('v', '<leader>jv', "<Esc><Cmd> lua require('jdtls').extract_variable(true)<CR>", { desc = "Java: Extract Variable" })
-  -- Set a Vim motion to <Space> + <Shift>J + <Shift>C to extract the code under the cursor to a static variable
-  vim.keymap.set('n', '<leader>jC', "<Cmd> lua require('jdtls').extract_constant()<CR>", { desc = "Java: Extract Constant" })
-  -- Set a Vim motion to <Space> + <Shift>J + <Shift>C to extract the code selected in visual mode to a static variable
-  vim.keymap.set('v', '<leader>jC', "<Esc><Cmd> lua require('jdtls').extract_constant(true)<CR>", { desc = "Java: Extract Constant" })
-  -- Set a Vim motion to <Space> + <Shift>J + t to run the test method currently under the cursor
-  vim.keymap.set('n', '<leader>jt', "<Cmd> lua require('jdtls').test_nearest_method()<CR>", { desc = "Java: Test Method" })
-  -- Set a Vim motion to <Space> + <Shift>J + t to run the test method that is currently selected in visual mode
-  vim.keymap.set('v', '<leader>jt', "<Esc><Cmd> lua require('jdtls').test_nearest_method(true)<CR>", { desc = "Java: Test Method" })
-  -- Set a Vim motion to <Space> + <Shift>J + <Shift>T to run an entire test suite (class)
-  vim.keymap.set('n', '<leader>jT', "<Cmd> lua require('jdtls').test_class()<CR>", { desc = "Java: Test Class" })
+  vim.keymap.set('n', '<leader>jo',
+    "<Cmd> lua require('jdtls').organize_imports()<CR>",
+    { desc = "Java: Organize Imports"}
+  )
+  -- Set a Vim motion to <Space> + <Shift>J + v to extract the code under the
+  -- cursor to a variable
+  vim.keymap.set('n', '<leader>jv',
+    "<Cmd> lua require('jdtls').extract_variable()<CR>",
+    { desc = "Java: Extract Variable" }
+  )
+  -- Set a Vim motion to <Space> + <Shift>J + v to extract the code selected in
+  -- visual mode to a variable
+  vim.keymap.set('v', '<leader>jv',
+    "<Esc><Cmd> lua require('jdtls').extract_variable(true)<CR>",
+    { desc = "Java: Extract Variable" }
+  )
+  -- Set a Vim motion to <Space> + <Shift>J + <Shift>C to extract the code under
+  -- the cursor to a static variable
+  vim.keymap.set('n', '<leader>jC',
+    "<Cmd> lua require('jdtls').extract_constant()<CR>",
+    { desc = "Java: Extract Constant" }
+  )
+  -- Set a Vim motion to <Space> + <Shift>J + <Shift>C to extract the code selected
+  -- in visual mode to a static variable
+  vim.keymap.set('v', '<leader>jC',
+    "<Esc><Cmd> lua require('jdtls').extract_constant(true)<CR>",
+    { desc = "Java: Extract Constant" }
+  )
+  -- Set a Vim motion to <Space> + <Shift>J + t to run the test method currently
+  -- under the cursor
+  vim.keymap.set('n', '<leader>jt',
+    "<Cmd> lua require('jdtls').test_nearest_method()<CR>",
+    { desc = "Java: Test Method" }
+  )
+  -- Set a Vim motion to <Space> + <Shift>J + t to run the test method that is
+  -- currently selected in visual mode
+  vim.keymap.set('v', '<leader>jt',
+    "<Esc><Cmd> lua require('jdtls').test_nearest_method(true)<CR>",
+    { desc = "Java: Test Method" }
+  )
+  -- Set a Vim motion to <Space> + <Shift>J + <Shift>T to run an entire
+  -- test suite (class)
+  vim.keymap.set('n', '<leader>jT', "<Cmd> lua require('jdtls').test_class()<CR>",
+    { desc = "Java: Test Class" }
+  )
   -- Set a Vim motion to <Space> + <Shift>J + u to update the project configuration
-  vim.keymap.set('n', '<leader>ju', "<Cmd> JdtUpdateConfig<CR>", { desc = "Java: Update Config" })
+  vim.keymap.set('n', '<leader>ju', "<Cmd> JdtUpdateConfig<CR>",
+    { desc = "Java: Update Config" }
+  )
 end
 
 -- Configuration
@@ -172,7 +236,9 @@ local config = {
         enabled = true,
         -- Use the Google Style guide for code formattingh
         settings = {
-          url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
+          url = vim.fn.stdpath("config") ..
+            "/lang_servers/intellij-java-google-style.xml"
+          ,
           profile = "GoogleStyle"
         }
       },
@@ -227,7 +293,8 @@ local config = {
       },
       codeGeneration = {
         toString = {
-          template = "${object.className} [${member.name()}: ${member.value}, ${otherMembers}]"
+          template =
+            "${object.className} [${member.name()}: ${member.value}, .. ${otherMembers}]"
         },
         hashCodeEquals = {
           useJava7Objects = true
@@ -259,7 +326,8 @@ local config = {
     bundles = get_bundles(),
     extendedClientCapabilities = jdtls.extendedClientCapabilities,
   },
-  on_attach = function()
+  on_attach = function(client, bufnr)
+    require("config.keymaps").lsp_keymaps(client, bufnr)
     -- Needed for debugging
     jdtls.setup_dap({
       hotcodereplace = "auto",

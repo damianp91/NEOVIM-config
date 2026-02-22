@@ -9,6 +9,7 @@ return {
     if vim.fn.exists(":NoMatchParen") ~= 0 then
       vim.cmd([[NoMatchParen]])
     end
+    ---@diagnostic disable-next-line: undefined-global
     Snacks.util.wo(0, { foldmethod = "manual", statuscolumn = "", conceallevel = 0 })
     vim.b.minianimate_disable = true
     vim.schedule(function()
