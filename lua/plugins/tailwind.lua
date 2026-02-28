@@ -9,8 +9,15 @@ return {
       local tailwindcolorizer = require("tailwindcss-colorizer-cmp")
 
       nvchadcolorizer.setup({
-        user_default_options = {
-          tailwind = true,
+        options = {
+          parsers = {
+            css = true,
+            tailwind = {enable = true},
+          },
+          display = {
+            mode = "Virtualtext",
+            virtualtext = {possition = "after"}
+          },
         },
         filetypes = {
           "html",
