@@ -1,36 +1,9 @@
+-- NOTE:Mini fro view explorer files
 return {
   -- Mini Nvim
   {
     "echasnovski/mini.nvim",
     version = false   -- estalbe branch or "*" for latest changes
-  },
-  -- Comments
-  {
-    'echasnovski/mini.comment',
-    version = false,
-    dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
-    config = function()
-      -- disable the autocommand from ts-context-commentstring
-      require('ts_context_commentstring').setup {
-        enable_autocmd = false,
-      }
-
-      require("mini.comment").setup {
-        -- tsx, jsx, html , svelte comment support
-        options = {
-          custom_commentstring = function()
-            return require('ts_context_commentstring.internal').calculate_commentstring(
-              -- {
-              --   key = 'commentstring',
-              -- }
-            )
-              or vim.bo.commentstring
-          end,
-        },
-      }
-    end
   },
   -- File explorer (this works properly with oil unlike nvim-tree)
   {

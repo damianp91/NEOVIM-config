@@ -1,4 +1,3 @@
-
 vim.api.nvim_set_hl(0, "mainColor", {fg = "#f6bf00", bold = true})
 vim.api.nvim_set_hl(0, "fileColor", {fg = "#676f55", bold = true})
 vim.api.nvim_set_hl(0, "wordColor", {fg = "#a8b2a1", bold = true})

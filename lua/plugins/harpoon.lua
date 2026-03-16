@@ -1,3 +1,4 @@
+-- NOTE: Harpoon Quick list of favorite files on project.
 return {
   "ThePrimeagen/harpoon",
   event = "VeryLazy",
@@ -11,7 +12,7 @@ return {
     )
     -- Set a vim motion to the tab key to open the harpoon menu to easily navigate
     -- frequented files
-    vim.keymap.set("n", "<TAB-a>",
+    vim.keymap.set("n", "<leader>hm",
       "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
       {desc = "Harpoon Toggle Menu"}
     )

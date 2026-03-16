@@ -1,8 +1,8 @@
 local lint = require("lint")
 
 lint.linters_by_ft = {
-  javascript = {'eslint'},
-  typescript = {'eslint'},
+  javascript = {'eslint_d'},
+  typescript = {'eslint_d'},
   javascriptreact = {'eslint'},
   typescriptreact = {'eslint'},
   python = {'pylint'},
@@ -10,12 +10,12 @@ lint.linters_by_ft = {
 
 vim.api.nvim_create_autocmd({"BufWritePost"}, {
   callback = function()
-    require('lint').try_lint()
+    lint.try_lint()
   end,
 })
 
 vim.api.nvim_create_autocmd({"BufEnter", "InsertLeave"}, {
   callback = function()
-    require('lint').try_lint()
+    lint.try_lint()
   end,
 })

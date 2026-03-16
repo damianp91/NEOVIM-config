@@ -1,3 +1,5 @@
+-- NOTE: Data Base for use sql
+
 ---@diagnostic disable: undefined-field
 return {
   "kristijanhusak/vim-dadbod-ui",
@@ -21,10 +23,10 @@ return {
         Count = "select count(1) from {optional_schema}{table}",
         Explain = "EXPLAIN {last_query}",
       },
-      -- If I want to use sqlite
-      -- sqlite = {
-      --   Describe = "PRAGMA table_info({table})",
-      -- },
+      postgresql = {
+        Count = "SELECT COUNT(*) FROM {table}",
+        Explain = "EXPLAIN ANALYZE {last_query}",
+      }
     }
 
     -- Settings cmp

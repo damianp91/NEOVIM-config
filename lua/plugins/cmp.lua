@@ -1,5 +1,4 @@
-
-
+-- NOTE: CMP (Completition Menu Plugin) autocomplete engine
 return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
@@ -11,14 +10,11 @@ return {
     "hrsh7th/cmp-git",
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
-    "windwp/nvim-autopairs",
     "rafamadriz/friendly-snippets", -- snippets
     "onsails/lspkind.nvim",
-    "nvim-treesitter/nvim-treesitter",
     "roobert/tailwindcss-colorizer-cmp.nvim",
   },
   config = function ()
     require("config.plugins.cmp").setup()
   end,
 }
-

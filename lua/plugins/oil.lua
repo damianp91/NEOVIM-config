@@ -1,3 +1,4 @@
+-- NOTE: Oil Explorer file like buffers
 return {
   'stevearc/oil.nvim',
   config = function()

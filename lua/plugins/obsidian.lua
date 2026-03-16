@@ -1,3 +1,4 @@
+-- NOTE: Obsidian for markdown files
 return {
   "epwalsh/obsidian.nvim",
   version = "*",

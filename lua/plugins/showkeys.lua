@@ -1,3 +1,4 @@
+-- NOTE: ShowKeys Show's what button is press
 return {
   "nvzone/showkeys",
   cmd = "ShowkeysToggle",

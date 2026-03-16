@@ -1,7 +1,7 @@
+-- NOTE: Avante IDE assistant based IA
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  lazy = false,
   -- Set this to "*" to always pull the latest release version, or set it 
   -- to false to update to the latest code changes.
   version = false,
@@ -14,7 +14,7 @@ return {
       claude = {
         endpoint = "https://api.anthropic.com",
         model = "claude-3-5-sonnet-20241022",
-        extra_request_dody = {
+        extra_request_body = {
           temperature = 0;
           max_tokens = 4096;
         },
@@ -31,7 +31,7 @@ return {
       auto_suggestions = false, -- Experimental stage
       auto_set_highlight_group = true,
       auto_set_keymaps = true,
-      auto_apply_diff_after_generation = false,
+      auto_apply_diff_after_generation = true,
       support_paste_from_clipboard = false,
       -- Whether to remove unchanged lines when applying a code block
       minimize_diff = true,
@@ -117,8 +117,8 @@ return {
       override_timeoutlen = 500,
     },
     suggestion = {
-      debounce = 600,
-      throttle = 600,
+      debounce = 300,
+      throttle = 300,
     },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

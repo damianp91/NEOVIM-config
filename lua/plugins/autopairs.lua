@@ -1,11 +1,21 @@
--- Create pairs of '', (), {}... etc
+--NOTE: Autopairs. Create pairs of '', (), {}... etc
 return {
   "windwp/nvim-autopairs",
   event = "InsertEnter",
   dependencies = {
-    "hrsh7th/nvim-cmp"
+    "hrsh7th/nvim-cmp",
   },
-  config = function ()
-    require("nvim-autopairs").setup()
-  end
+  config = function()
+    local autopairs = require("nvim-autopairs")
+    autopairs.setup()
+
+    -- cmp integration
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+    local cmp = require("cmp")
+
+    cmp.event:on(
+      "confirm_done",
+      cmp_autopairs.on_confirm_done()
+    )
+  end,
 }

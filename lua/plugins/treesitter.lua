@@ -1,15 +1,11 @@
-
--- Parser for each lenguage of the list ensure:installed 
+-- NOTE: TreeSitter Parser for each lenguage of the list ensure:installed
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
   build = ":TSUpdate",
-  event = {
-    "BufReadPre",
-    "BufNewFile"
-  },
+  event = { "BufReadPost", "BufNewFile" },
   main = "nvim-treesitter.configs",
   opts = {
     ensure_installed = {
@@ -21,16 +17,19 @@ return {
       "css",
       "java",
       "c",
+      "vim",
       "vimdoc",
       "sql",
       "markdown",
       "markdown_inline",
     },
+    auto_install = true,
     highlight = {
       enable = true,
+      additional_vim_regex_highlighting = false;
     },
     indent = {
-      enable = true,
+      enable = false,
     },
     textobjects = {
       select = {
@@ -48,4 +47,3 @@ return {
     },
   },
 }
-

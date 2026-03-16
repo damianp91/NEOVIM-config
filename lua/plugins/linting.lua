@@ -1,4 +1,4 @@
--- NOTE: detected errors automatly
+-- NOTE: Linting detected errors automatly with diagnostics
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
@@ -18,31 +18,7 @@ return {
       end,
     }
 
-    -- WARN: Not working well for java
-    -- lint.linters.checkstyle = {
-    --   name = "checkstyle",
-    --   cmd = "java",
-    --   args = {
-    --     "-jar",
-    --     " ~/.local/bin/checkstyle.jar",
-    --     "-c",
-    --     "~/proyectos/config/checkstyle.xml",
-    --     "-f",
-    --     "json",
-    --     vim.fn.expand("%:p"),
-    --   },
-    --   stdin = false,
-    --   parser = require("lint.parser").from_json({
-    --     attributes = {
-    --       severity = "severity",
-    --       message = "message",
-    --       lnum = "line",
-    --       col = "column",
-    --     },
-    --   }),
-    -- }
-
-    -- NOTE: Define linters
+    -- IMPORTANT: Define linters
     lint.linters_by_ft = {
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
@@ -55,11 +31,17 @@ return {
       lua = { "luacheck" },
     }
 
+    local timer = nil
     -- Autocommands 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = lint_augroup,
       callback = function()
-        lint.try_lint()
+        if timer then
+          timer:stop()
+        end
+        timer = vim.defer_fn(function()
+          lint.try_lint()
+        end, 200)
       end,
     })
 

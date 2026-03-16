@@ -4,6 +4,9 @@ local luasnip = require('luasnip')
 local cmp_autopairs = require ('nvim-autopairs.completion.cmp')
 local lspkind = require('lspkind')
 local M = {}
+local tailwind_formatter = require("tailwindcss-colorizer-cmp").formatter
+
+require("luasnip.loaders.from_vscode").lazy_load()
 
 function  M.setup()
   cmp.setup({
@@ -71,12 +74,16 @@ function  M.setup()
       end, {"i", "s"}),
     }),
     formatting = {
-      format = lspkind.cmp_format({
-        mode = "symbol_text",
-        maxwidth = 50,
-        ellipsis_char = "...",
-        show_labelDetails = true,
-      }),
+      format = function(entry, vim_item)
+        vim_item = lspkind.cmp_format({
+          mode = "symbol_text",
+          maxwidth = 50,
+          ellipsis_char = "...",
+          show_labelDetails = true,
+        })(entry, vim_item)
+
+        return tailwind_formatter(entry, vim_item)
+      end
     },
     sources = cmp.config.sources({
       {name = "nvim_lsp", priority = 1000},
@@ -84,8 +91,8 @@ function  M.setup()
       {name = "luasnip", priority = 750},
       {name = "path", priority = 500},
     }, {
-        {name = "buffer", priority = 250, keyword_length = 3},
-      }),
+      {name = "buffer", priority = 250, keyword_length = 3, max_item_count = 3},
+    }),
     sorting = {
       comparators = {
         cmp.config.compare.offset,
@@ -138,16 +145,5 @@ function  M.setup()
         {name = 'cmdline'}
       })
   })
-
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      {name = 'path'}
-    }, {
-        {name = 'cmdline'}
-      })
-  })
 end
-
 return M
-

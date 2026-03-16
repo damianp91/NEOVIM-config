@@ -1,5 +1,4 @@
-
--- Configs server
+-- NOTE: LSP Configs server
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
@@ -40,4 +39,3 @@ return {
     vim.keymap.set('n', '<Leader>dr', dap.repl.open, { desc = "DAP: Open REPL" })
   end
 }
-

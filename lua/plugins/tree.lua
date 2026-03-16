@@ -1,8 +1,8 @@
-
+-- NOTE: Tree Explorer files conventional
 return {
   "nvim-tree/nvim-tree.lua",
   version = "*",
-  lazy = false,
+  lazy = true,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
@@ -32,6 +32,7 @@ return {
     })
   end,
   keys = {
-    nil,
+    {'<leader>ot', '<cmd>NvimTreeOpen<CR>', desc = 'Nvimtree: Open Nvimtree' },
+    {'<leader>ct', '<cmd>NvimTreeClose<CR>', desc = 'Nvimtree: Close Nvimtree' }
   },
 }

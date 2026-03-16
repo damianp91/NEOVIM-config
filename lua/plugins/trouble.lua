@@ -1,3 +1,4 @@
+-- NOTE: Show errors, warnongs, TODO's and list
 return {
 	"folke/trouble.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons", "folke/todo-comments.nvim" },

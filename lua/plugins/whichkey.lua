@@ -1,3 +1,4 @@
+-- NOTE: WhichKey Interactive map of keymaps 
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",

@@ -1,3 +1,4 @@
+-- NOTE: Terminal integrate on neovim
 return {
   "akinsho/toggleterm.nvim",
   config = function()
