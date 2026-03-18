@@ -1,7 +1,7 @@
-
+-- NOTE: Lint lintters ansyc for errors, warnings... etc
 return {
   "mfussenegger/nvim-lint",
-  event = "VeryLazy",
+  event = { "BufReadPre", "BufNewFile" },
   config = function ()
     ---@diagnostic disable-next-line: different-requires
     require "config.lint"

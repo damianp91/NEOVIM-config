@@ -5,7 +5,7 @@
 -- HACK: ok hack
 -- TEST: jfd
 -- PERF: dfs
-
+-- NOTE: Todocoments tags in comments
 return {
   -- Quickly Jump through the todo tags
   "folke/todo-comments.nvim",

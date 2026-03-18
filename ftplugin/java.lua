@@ -220,6 +220,8 @@ local config = {
     "-Dlog.level=ALL",
     "-javaagent:" .. lombok,
     "-Xmx4G", -- ¡1!
+    "-XX:+UseG1GC",
+    "-XX:+UseStringDeduplication",
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',

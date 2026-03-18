@@ -1,5 +1,4 @@
-
--- All configuration in config/plugins/luasnip
+-- NOTE: Snippets All configuration in config/plugins/luasnip
 return {
   "L3MON4D3/LuaSnip",
   event = "InsertEnter",
@@ -9,4 +8,3 @@ return {
     require("config.plugins.luasnip").setup()
   end
 }
-

@@ -1,3 +1,4 @@
+-- NOTE: Incline view name of file in each buffer
 return {
   -- Adding a filename to the Top Right
   "b0o/incline.nvim",
@@ -8,7 +9,15 @@ return {
 
     require("incline").setup({
       hide = {
-        only_win = false,
+        only_win = true,
+      },
+      highlight = {
+        groups = {
+          InclineNormal = {
+            guibg = "#1d2021",
+            guifg = "#ebdbb2",
+          },
+        },
       },
       render = function(props)
         local bufname = vim.api.nvim_buf_get_name(props.buf)

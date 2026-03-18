@@ -1,3 +1,4 @@
+-- NOTE: SpringBoot Necessary for Jdtls
 return {
   "elmcgill/springboot-nvim",
   dependencies = {

@@ -1,3 +1,4 @@
+-- NOTE: Wilder Upper mode for view comand line
 return {
   "gelguy/wilder.nvim",
   -- "nvim-telescope/telescope.nvim",

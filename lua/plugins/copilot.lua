@@ -1,3 +1,4 @@
+-- NOTE: Copilot Client og GitHub
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
@@ -7,4 +8,3 @@ return {
     panel = { enabled = false },
   }
 }
-

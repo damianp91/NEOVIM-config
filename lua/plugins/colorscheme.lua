@@ -1,4 +1,4 @@
-
+-- NOTE: ColorScheme setting view color 
 return {
   "ellisonleao/gruvbox.nvim",
   lazy = false,
@@ -48,6 +48,12 @@ return {
         LspFloatWinNormal = { bg = "#121618" },
         LspInfoBorder = { fg = "#c2bdbb", bg = "#121618" },
         CursorLine = {bg = "#242424"},
+        DiagnosticError = { fg = "#ff3333" },
+        DiagnosticWarn = { fg = "#fabd2f" },
+        DiagnosticInfo = { fg = "#83a598" },
+        DiagnosticHint = { fg = "#8ec07c" },
+        CmpPmenu = { bg = "#121618" },
+        CmpPmenuBorder = { fg = "#3c3836", bg = "#121618" },
       },
       dim_inactive = false,               -- Behaivor such panes or windows inactive
       transparent_mode = false,
@@ -55,4 +61,3 @@ return {
     vim.cmd("colorscheme gruvbox")
   end,
 }
-

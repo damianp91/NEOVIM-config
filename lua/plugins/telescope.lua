@@ -1,5 +1,4 @@
-
--- Configuration telescope
+-- NOTE: Search engine interactive
 return {
   "nvim-telescope/telescope.nvim",
   event = 'VeryLazy',
@@ -119,6 +118,3 @@ return {
     }
   },
 }
-
-
-

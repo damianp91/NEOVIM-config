@@ -1,3 +1,4 @@
+-- NOTE: UndoTree Visualizer change history
 return {
   "mbbill/undotree",
   config = function()

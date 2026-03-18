@@ -1,3 +1,4 @@
+-- NOTE: Comment create comment or discomment
 return {
   "numToStr/Comment.nvim",
   event = { "BufReadPre", "BufNewFile" },
@@ -11,6 +12,10 @@ return {
     local comment = require("Comment")
     -- gain access to tsx commenting plugins functions
     local commentsg = require("ts_context_commentstring.integrations.comment_nvim")
+
+    require('ts_context_commentstring').setup({
+      enable_autocmd = false,
+    })
 
     -- setup the comment plugin to use ts_context_comment_string to check if we are
     -- attempting to comment out a tsx element
@@ -56,7 +61,7 @@ return {
       ---Function to call before (un)comment
       pre_hook = commentsg.create_pre_hook(),
       ---Function to call after (un)comment
-      post_hook = commentsg.create_pre_hook(),
+      -- post_hook = commentsg.create_post_hook(),
     })
   end,
 }

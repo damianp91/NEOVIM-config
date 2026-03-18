@@ -17,10 +17,10 @@ function M.setup()
   vim.keymap.set("n", "<leader>bo", ":%bd|e#|bd#<CR>",
     { desc = "Close other buffers" }
   )
-  vim.keymap.set('n', '<leader>wv', ':vsplit<cr>',
+  vim.keymap.set('n', '<leader>sv', ':vsplit<cr>',
     { desc = "Buffer: Window vertical buffer" }
   )
-  vim.keymap.set('n', '<leader>wh', ':split<cr>',
+  vim.keymap.set('n', '<leader>sh', ':split<cr>',
     { desc = "Buffer: Window horizontal buffer" }
   )
 
@@ -34,14 +34,6 @@ function M.setup()
   --NOTE: Dashboard
   vim.keymap.set('n', '<leader>in', function() require("snacks").dashboard.open() end,
     { desc = 'Snacks: Return to the beginning' }
-  )
-
-  --NOTE: NvimTree
-  vim.keymap.set('n', '<leader>ot', function() vim.cmd('NvimTreeOpen') end,
-    { desc = 'Nvimtree: Open Nvimtree' }
-  )
-  vim.keymap.set('n', '<leader>ct', function() vim.cmd('NvimTreeClose') end,
-    { desc = 'Nvimtree: Close Nvimtree' }
   )
 
   --NOTE: Oil

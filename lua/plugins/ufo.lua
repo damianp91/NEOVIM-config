@@ -1,5 +1,6 @@
+-- NOTE: Ufo Colapse code blocks show an arrow for hide code
 return {
-  -- Setup Folding with nvim-ufo
+  -- setup folding with nvim-ufo
   {
     "kevinhwang91/nvim-ufo",
     dependencies = {
@@ -14,18 +15,18 @@ return {
         provider_selector = function(_, _, _)
           return { "treesitter", "indent" }
         end,
-        open_fold_hl_timeout = 0, -- Disable highlight timeout after opening
+        open_fold_hl_timeout = 0, -- disable highlight timeout after opening
       })
 
       vim.o.foldenable = true
       vim.o.foldcolumn = '0' -- '0' is not bad
       vim.o.foldlevel = 99
-      -- Using ufo provider need a large value, feel free to decrease the value
+      -- using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
 
       -- za to fold at cursor location is already enabled
-      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+      vim.keymap.set('n', 'zr', require('ufo').openAllFolds)
+      vim.keymap.set('n', 'zm', require('ufo').closeAllFolds)
     end,
   }
 }

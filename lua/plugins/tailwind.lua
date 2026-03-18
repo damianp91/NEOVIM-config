@@ -1,3 +1,4 @@
+-- NOTE: TailWind show color Hex, css, etc.
 return {
   "roobert/tailwindcss-colorizer-cmp.nvim",
   {

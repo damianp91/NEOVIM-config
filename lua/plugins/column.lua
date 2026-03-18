@@ -1,3 +1,4 @@
+-- NOTE: Vertical line for indicate recommended long
 return {
   "lukas-reineke/virt-column.nvim",
   opts = {
@@ -11,4 +12,3 @@ return {
   },
   event = "BufReadPost",
 }
-

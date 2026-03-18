@@ -30,7 +30,7 @@ return {
       }
     })
 
-    vim.api.nvim_create_user_command("OpenCode", function(opts)
+    vim.api.nvim_create_user_command("OpenCode", function(_)
       opencode.open()
     end, { desc = "Open OpenCode assistant" })
 
@@ -43,11 +43,11 @@ return {
       complete = "file"
     })
 
-    vim.api.nvim_create_user_command("OpenCodeExplain", function(opts)
+    vim.api.nvim_create_user_command("OpenCodeExplain", function(_)
       opencode.explain_selection()
     end, { desc = "Explain current code with OpenCode" })
 
-    vim.api.nvim_create_user_command("OpenCodeRefactor", function(opts)
+    vim.api.nvim_create_user_command("OpenCodeRefactor", function(_)
       opencode.refactor_selection()
     end, { desc = "Refactor current code with OpenCode" })
 

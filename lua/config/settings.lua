@@ -57,3 +57,7 @@ vim.opt.conceallevel = 2
 -- ecoding
 vim.opt.fileencoding = "utf-8"
 vim.opt.encoding = "utf-8"
+
+-- UI constant
+vim.opt.signcolumn = "yes"
+vim.opt.timeoutlen = 400

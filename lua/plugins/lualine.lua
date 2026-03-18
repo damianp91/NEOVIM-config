@@ -1,4 +1,4 @@
-
+-- NOTE: LuaLine status the neovim (MODE, Git, File... etc)
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = {"nvim-tree/nvim-web-devicons"},
@@ -43,7 +43,7 @@ return {
         }
       },
       lualine_x = {'fileformat', 'filetype'},
-      lualine_y = { },
+      lualine_y = {'progress'},
       lualine_z = {'location'}
     },
     inactive_sections = { },
@@ -53,4 +53,3 @@ return {
     extensions = { }
   }
 }
-
