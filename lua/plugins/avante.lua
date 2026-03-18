@@ -8,7 +8,7 @@ return {
   opts = {
     ----@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere"
     ----| "copilot" | string
-    provider = "copilot",
+    provider = "openai",
     auto_suggestions_provider = "copilot",
     providers = {
       claude = {
