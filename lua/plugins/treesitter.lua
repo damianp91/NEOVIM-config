@@ -5,8 +5,11 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
   build = ":TSUpdate",
-  event = { "BufReadPost", "BufNewFile" },
-  main = "nvim-treesitter.configs",
+  lazy = false,
+  event = { "BufReadPre", "BufNewFile" },
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
+  end,
   opts = {
     ensure_installed = {
       "lua",
@@ -22,14 +25,15 @@ return {
       "sql",
       "markdown",
       "markdown_inline",
+      "typescript",
     },
-    auto_install = true,
+    auto_install = false,
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = false;
+      additional_vim_regex_highlighting = true
     },
     indent = {
-      enable = false,
+      enable = true,
     },
     textobjects = {
       select = {

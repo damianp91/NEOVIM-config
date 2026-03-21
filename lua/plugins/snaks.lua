@@ -13,7 +13,7 @@ return {
     git = {enabled = true},
     image = require("config.config_snaks.conf_image"),
     picker = require("config.config_snaks.conf_picker"),
-    indent = {enabled = false},
+    indent = {enabled = true},
     input = {enabled = true},
     layout = {enabled = true},
     lazygit = {enabled = true},
