@@ -6,6 +6,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "romgrk/fzy-lua-native",
   },
+  event = "CmdlineEnter",
   config = function()
     local wilder = require("wilder")
 

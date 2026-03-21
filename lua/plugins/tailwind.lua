@@ -1,49 +1,37 @@
 -- NOTE: TailWind show color Hex, css, etc.
 return {
-  "roobert/tailwindcss-colorizer-cmp.nvim",
   {
     "NvChad/nvim-colorizer.lua",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {},
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "roobert/tailwindcss-colorizer-cmp.nvim",
+    },
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       local nvchadcolorizer = require("colorizer")
       local tailwindcolorizer = require("tailwindcss-colorizer-cmp")
 
+      -- Configuración de nvim-colorizer
       nvchadcolorizer.setup({
-        options = {
-          parsers = {
-            css = true,
-            tailwind = {enable = true},
-          },
-          display = {
-            mode = "Virtualtext",
-            virtualtext = {possition = "after"}
-          },
-        },
         filetypes = {
-          "html",
-          "css",
-          "javascript",
-          "typescript",
-          "jsx",
-          "tsx",
-          "vue",
-          "svelte",
-          "java",
-          "lua"
+          "html", "css", "javascript", "typescript", "javascriptreact",
+          "typescriptreact", "vue", "svelte", "lua"
+        },
+        user_default_options = {
+          RGB = true,
+          RRGGBB = true,
+          names = false,
+          RRGGBBAA = true,
+          hex_color = true,
+          tailwind = true,
+          mode = "virtualtext",
+          virtualtext = "■ ",
+          -- display = { mode = "virtualtext", virtualtext = { position = "after" } }
         },
       })
-
       tailwindcolorizer.setup({
         color_square_width = 2,
       })
-
-      vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
-        callback = function()
-          vim.cmd("ColorizerAttachToBuffer")
-        end,
-      })
-
     end,
   },
 }
