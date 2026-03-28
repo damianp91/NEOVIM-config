@@ -24,13 +24,11 @@ return {
       "vimdoc",
       "sql",
       "markdown",
-      "markdown_inline",
       "typescript",
     },
-    auto_install = false,
+    auto_install = true,
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = true
     },
     indent = {
       enable = true,
@@ -49,5 +47,8 @@ return {
         },
       },
     },
+    incremental_selection = {
+      enable = false
+    }
   },
 }
