@@ -7,8 +7,7 @@ return {
   -- to false to update to the latest code changes.
   version = false,
   opts = {
-    ----@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere"
-    ----| "copilot" | string
+    ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere"| "copilot" | string
     provider = "openai",
     auto_suggestions_provider = nil,
     providers = {
