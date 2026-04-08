@@ -10,7 +10,6 @@ function M.setup(capabilities, on_attach)
       'setup.cfg',
       'requirements.txt',
       'Pipfile',
-      'pyproject.toml',
       '.git'
     },
     filetypes = { 'python' },

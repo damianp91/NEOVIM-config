@@ -40,19 +40,4 @@ function M.setup()
   end
 end
 
--- For restart cmp and snippets
-vim.api.nvim_create_autocmd("InsertEnter", {
-  callback = function()
-    local ok_cmp, cmp = pcall(require, "cmp")
-    if ok_cmp then
-      cmp.setup()
-      -- cmp.setup.buffer({ enabled = true })
-    end
-    local ok_snip, luasnip = pcall(require, "luasnip")
-    if ok_snip then
-      luasnip.unlink_current()
-    end
-  end,
-})
-
 return M

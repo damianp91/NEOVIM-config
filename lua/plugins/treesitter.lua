@@ -25,6 +25,12 @@ return {
       "sql",
       "markdown",
       "typescript",
+      "bash",
+      "yaml",
+      "json",
+      "toml",
+      "dockerfile",
+      "rust"
     },
     auto_install = true,
     highlight = {

@@ -31,6 +31,19 @@ function M.setup()
     { desc = "LazyGit: open status repo."}
   )
 
+  --NOTE: OpenCode
+  vim.keymap.set('n', '<leader>oc', function()
+    require("opencode").toggle()
+  end, { desc = "OpenCode: Toggle panel" })
+
+  vim.keymap.set({'n', 'x'}, '<leader>ox', function()
+    require("opencode").select()
+  end, { desc = "OpenCode: Select action" })
+
+  vim.keymap.set({'n', 'x'}, '<leader>oe', function()
+    require("opencode").prompt("explain")
+  end, { desc = "OpenCode: Explain code" })
+
   --NOTE: Dashboard
   vim.keymap.set('n', '<leader>in', function() require("snacks").dashboard.open() end,
     { desc = 'Snacks: Return to the beginning' }

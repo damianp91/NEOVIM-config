@@ -65,13 +65,13 @@ return {
     require('telescope').load_extension('fzf')
   end,
   keys = {
-    {
-      "<leader>pp",
-      function()
-        require('telescope.builtin').git_files({ show_untracked = true })
-      end,
-      desc = "Telescope Git Files",
-    },
+    -- {
+    --   "<leader>pp",
+    --   function()
+    --     require('telescope.builtin').git_files({ show_untracked = true })
+    --   end,
+    --   desc = "Telescope Git Files",
+    -- },
     {
       "<leader>pe",
       function()
