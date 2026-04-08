@@ -3,7 +3,7 @@ return {
   -- Mini Nvim
   {
     "echasnovski/mini.nvim",
-    version = false   -- estalbe branch or "*" for latest changes
+    version = "*"   -- estalbe branch or "*" for latest changes
   },
   -- File explorer (this works properly with oil unlike nvim-tree)
   {

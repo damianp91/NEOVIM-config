@@ -6,7 +6,7 @@ return {
   },
   build = ":TSUpdate",
   lazy = false,
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPost", "BufNewFile" },
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
   end,
@@ -24,13 +24,17 @@ return {
       "vimdoc",
       "sql",
       "markdown",
-      "markdown_inline",
       "typescript",
+      "bash",
+      "yaml",
+      "json",
+      "toml",
+      "dockerfile",
+      "rust"
     },
-    auto_install = false,
+    auto_install = true,
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = true
     },
     indent = {
       enable = true,
@@ -49,5 +53,8 @@ return {
         },
       },
     },
+    incremental_selection = {
+      enable = false
+    }
   },
 }
