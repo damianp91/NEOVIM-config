@@ -1,62 +1,37 @@
 return {
   "nickjvandyke/opencode.nvim",
   version = "*",
-  dependencies = {
-    {
-      "folke/snacks.nvim",
-      optional = true,
-      opts = {
-        input = {},
-        picker = {
-          actions = {
-            opencode_send = function(...)
-              return require("opencode").snacks_picker_send(...)
-            end,
-          },
-          win = {
-            input = {
-              keys = {
-                ["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
-              },
-            },
-          },
-        },
-      },
-    },
-  },
   config = function()
     vim.o.autoread = true
 
     vim.g.opencode_opts = {
       server = {
         start = function()
-          require("snacks.terminal").open("opencode --port", {
-            win = {
-              position = "right",
-              width = 45,
-              enter = false,
-            },
+          local Terminal = require("toggleterm.terminal").Terminal
+          local term = Terminal:new({
+            cmd = "opencode --port",
+            direction = "vertical",
+            size = 80,
+            id = "opencode",
           })
+          term:open()
         end,
         stop = function()
-          local ok, term = pcall(require("snacks.terminal").get, "opencode --port")
-          if ok then
+          local terms = require("toggleterm.terminal")
+          local term = terms.find(function(t) return t.id == "opencode" end)
+          if term then
             term:close()
           end
         end,
         toggle = function()
-          local ok, term = pcall(require("snacks.terminal").get, "opencode --port")
-          if ok then
-            term:toggle()
-          else
-            require("snacks.terminal").open("opencode --port", {
-              win = {
-                position = "right",
-                width = 45,
-                enter = true,
-              },
-            })
-          end
+          local Terminal = require("toggleterm.terminal").Terminal
+          local term = Terminal:new({
+            cmd = "opencode --port",
+            direction = "vertical",
+            size = 80,
+            id = "opencode",
+          })
+          term:toggle()
         end,
       },
     }
