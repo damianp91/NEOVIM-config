@@ -1,31 +1,14 @@
 ---@diagnostic disable: undefined-field
 local ok, ls = pcall(require, 'luasnip')
 if not ok then return end
-local types = require ('luasnip.util.types')
 
 local M = {}
 
 function M.setup()
-  ls.config.setup {
-    -- This tells LuaSnip to remember to keep around the last snippet.
-    -- You can jump back into even if you move outside of the selection
+  ls.setup {
     history = true,
-    -- This one is cool cause if you have dynamic snippets, it updatesas type!
     updateevents = "TextChanged,TextChangedI",
-    -- Autosnippets:
     enable_autosnippets = true,
-    ext_opts = {
-      [types.choiceNode] = {
-        active = {
-          virt_text = {{"<- Choice", "Error"}},
-        },
-      },
-      [types.insertNode] = {
-        active = {
-          virt_text = {{"<- Insert", "Comment"}},
-        },
-      },
-    },
   }
 
   -- Move in nodes

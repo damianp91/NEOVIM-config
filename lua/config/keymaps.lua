@@ -166,6 +166,11 @@ function M.setup()
     { desc = "Notes: Switch note" }
   )
 
+  -- NOTE: ShowKeys
+  vim.keymap.set("n", "<leader>uk", ":ShowkeysToggle<cr>",
+    { desc = "UI: Toggle showkeys"}
+  )
+
   --NOTE: Notes (Todo Comments)
   vim.keymap.set("n", "<leader>nt", function()
     require("todo-comments").jump_next()

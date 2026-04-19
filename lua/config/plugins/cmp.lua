@@ -1,14 +1,12 @@
 ---@diagnostic disable: missing-fields, undefined-field
 local cmp = require('cmp')
-local luasnip = require('luasnip')
 local cmp_autopairs = require ('nvim-autopairs.completion.cmp')
 local lspkind = require('lspkind')
 local M = {}
 local tailwind_formatter = require("tailwindcss-colorizer-cmp").formatter
 
-require("luasnip.loaders.from_vscode").lazy_load()
-
 function  M.setup()
+  local luasnip = require('luasnip')
   cmp.setup({
     experimental = {
       ghost_text = false,
@@ -29,7 +27,7 @@ function  M.setup()
     },
     snippet = {
       expand = function(args)
-        luasnip.lsp_expand(args.body)
+        require('luasnip').lsp_expand(args.body)
       end,
     },
     mapping = cmp.mapping.preset.insert({
@@ -87,7 +85,7 @@ function  M.setup()
           mode = "symbol_text",
           maxwidth = 50,
           ellipsis_char = "...",
-          show_labelDetails = true,
+          showLabelDetails = true,
         })(entry, vim_item)
 
         return tailwind_formatter(entry, vim_item)
