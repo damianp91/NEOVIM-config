@@ -45,19 +45,6 @@ return {
       end,
     })
 
-    -- Keymaps linting
-    vim.keymap.set("n", "<leader>ld", function()
-      vim.diagnostic.open_float()
-    end, { desc = "Trigger linting for current file" })
-
-    vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float,
-    { desc = "Diagnostic: Show message" })
-
-    vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist,
-    { desc = "Diagnostic: Location list" })
-
-    vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist,
-    { desc = "Diagnostic: Quickfix list" })
   end,
   -- Diagnostics
   vim.diagnostic.config({

@@ -1,9 +1,5 @@
 -- NOTE: UndoTree Visualizer change history
+-- Keymap moved to keymaps.lua under UI group
 return {
   "mbbill/undotree",
-  config = function()
-    vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle,
-      {desc = "Undotree: Oldest change"}
-    )
-  end,
 }

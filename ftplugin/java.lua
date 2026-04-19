@@ -67,7 +67,7 @@ local function java_keymaps()
   -- Run JdtShell as a Vim command
   vim.cmd("command! -buffer JdtJshell lua require('jdtls').jshell()")
   -- Run code single
-  vim.keymap.set('n', '<leader>r', function()
+  vim.keymap.set('n', '<leader>cr', function()
     local project_root = vim.fn.getcwd()
     local java_files = vim.fn.systemlist(
       string.format('find %s/src/main/java -name "*.java"', project_root)
@@ -107,10 +107,6 @@ local function java_keymaps()
     }):toggle()
   end, { desc = "JavaFX: Run with Maven" })
 
-  -- Springboot
-  -- set a vim motion to <Space> + <Shift>s + r to run the spring boot project in
-  -- a vim terminal
-  -- Spring Boot keymaps
   vim.keymap.set('n', '<leader>sr', function()
     -- Try springboot-nvim plugin first
     local ok, springboot = pcall(require, "springboot-nvim")

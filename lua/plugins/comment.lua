@@ -35,9 +35,9 @@ return {
       },
       ---LHS of operator-pending mappings in NORMAL and VISUAL mode
       opleader = {
-        ---Line-comment keymap
+        ---Line-comment keymap example gc 4 arrow down
         line = 'gc',
-        ---Block-comment keymap
+        ---Block-comment keymap in selection
         block = 'gb',
       },
       ---LHS of extra mappings
@@ -56,7 +56,7 @@ return {
         ---`gb[count]{motion}`
         basic = true,
         ---Extra mapping; `gco`, `gcO`, `gcA`
-        extra = true,
+        extra = false,
       },
       ---Function to call before (un)comment
       pre_hook = commentsg.create_pre_hook(),

@@ -110,20 +110,6 @@ return {
       end,
 
       mappings = {
-        -- Seguir links con gf
-        ["gf"] = {
-          action = function()
-            return require("obsidian").util.gf_passthrough()
-          end,
-          opts = { noremap = false, expr = true, buffer = true },
-        },
-        -- Toggle checkbox con <leader>ch
-        ["<leader>ch"] = {
-          action = function()
-            return require("obsidian").util.toggle_checkbox()
-          end,
-          opts = { buffer = true },
-        },
         -- Usar el enter para no tener que usar gf o <leader>ch
         ["<cr>"] = {
           action = function()

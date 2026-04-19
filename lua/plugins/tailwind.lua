@@ -26,7 +26,6 @@ return {
           tailwind = true,
           mode = "virtualtext",
           virtualtext = "■ ",
-          -- display = { mode = "virtualtext", virtualtext = { position = "after" } }
         },
       })
       tailwindcolorizer.setup({

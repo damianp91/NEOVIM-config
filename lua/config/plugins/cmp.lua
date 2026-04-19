@@ -33,8 +33,8 @@ function  M.setup()
       end,
     },
     mapping = cmp.mapping.preset.insert({
-      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-d>"] = cmp.mapping.scroll_docs(-2),
+      ["<C-f>"] = cmp.mapping.scroll_docs(2),
       ["<C-e>"] = cmp.mapping.abort(),
       ["<C-n>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -45,7 +45,15 @@ function  M.setup()
           fallback()
         end
       end, {"i", "s"}),
-      ["<C-p>"] = cmp.mapping.select_prev_item(),
+      ["<C-p>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.choice_active() then
+          luasnip.change_choice(-1)
+        else
+          fallback()
+        end
+      end, {"i", "s"}),
       ["<C-y>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,

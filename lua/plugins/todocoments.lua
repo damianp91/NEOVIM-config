@@ -47,18 +47,6 @@ return {
       }
     })
 
-    -- keymaps
-    vim.keymap.set("n", "<leader>tn", function()
-      todo_comments.jump_next()
-      -- require("todo-comments").telescope()
-    end, { desc = "TODO: Jump next comment" })
-
-    vim.keymap.set("n", "<leader>tp", function()
-      todo_comments.jump_prev()
-    end,{desc = "TODO: Prev comment"})
-
-    -- All commnts
-    vim.keymap.set("n", "<leader>ta", "<cmd>TodoTelescope<cr>",
-      {desc = "TODO: All comments"})
+    -- keymaps moved to config/keymaps.lua under Notes group
   end,
 }

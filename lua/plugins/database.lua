@@ -9,7 +9,7 @@ return {
     "tpope/vim-dotenv",
   },
   keys = {
-    { '<leader>db', '<cmd>DBUIToggle<cr>', desc = 'db: Toggle UI' },
+    { '<leader>Db', '<cmd>DBUIToggle<cr>', desc = 'db: Toggle UI' },
   },
   init = function()
     vim.g.db_ui_use_nerd_fonts = 1

@@ -41,7 +41,7 @@ return {
       keymaps = {
         ["g?"] = { "actions.show_help", mode = "n" },
         ["<TAB>"] = "actions.select",
-        ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+        ["<C-v>"] = { "actions.select", opts = { vertical = true } },
         ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
         ["<C-t>"] = { "actions.select", opts = { tab = true } },
         ["<C-p>"] = "actions.preview",
@@ -57,7 +57,7 @@ return {
         ["g\\"] = { "actions.toggle_trash", mode = "n" },
       },
       view_options = {
-        show_hidden = true,
+        show_hidden = false,
         header = false,
         case_insensitive = true,
         sort = {
@@ -76,31 +76,18 @@ return {
       },
       float = {
         padding = 1,
-        max_width = 0.4,
-        max_height = 0.7,
+        max_width = 0.5,
+        max_height = 0.6,
         border = "rounded",
         win_options = {
           winblend = 8,   -- (0-100) where 100 is invisible
         },
         preview_split = "auto",
-        override = function(conf)
-          local screen_w = vim.o.columns
-          local screen_h = vim.o.lines
-          local width = math.floor(screen_w * 0.6)
-          local height = math.floor(screen_h * 0.5)
-          local col = math.floor((screen_w - width) / 2)
-          local row = math.floor((screen_h - height) / 2)
-          conf.width = width
-          conf.height = height
-          conf.col = col
-          conf.row = row
-          return conf
-        end,
       },
     })
   end,
   dependencies = {
-    "echasnovski/mini.icons",
+    {"echasnovski/mini.icons", opts = {}},
     "nvim-tree/nvim-web-devicons",
     "nvim-lua/plenary.nvim",
   },

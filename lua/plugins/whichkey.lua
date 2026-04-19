@@ -20,7 +20,21 @@ return {
       return mapping.desc and mapping.desc ~= ""
     end,
     --- You can add any mappings here, or use `require('which-key').add()` later
-    spec = {},
+    spec = {
+      { "<leader>b", group = "Buffers" },
+      { "<leader>c", group = "Code" },
+      { "<leader>e", group = "Explorer" },
+      { "<leader>f", group = "Files" },
+      { "<leader>g", group = "Git" },
+      { "<leader>n", group = "Notes" },
+      { "<leader>p", group = "Pickers" },
+      { "<leader>t", group = "Terminal" },
+      { "<leader>u", group = "UI" },
+      { "<leader>w", group = "Windows" },
+      { "<leader>d", group = "Debug" },
+      { "<leader>D", group = "DataBase" },
+      { "<leader>T", group = "Trouble" },
+    },
     -- show a warning when issues were detected with your mappings
     notify = true,
     -- Which-key automatically sets up triggers for your mappings.

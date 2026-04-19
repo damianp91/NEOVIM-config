@@ -32,7 +32,7 @@ return {
     })
   end,
   keys = {
-    {'<leader>ot', '<cmd>NvimTreeOpen<CR>', desc = 'Nvimtree: Open Nvimtree' },
-    {'<leader>ct', '<cmd>NvimTreeClose<CR>', desc = 'Nvimtree: Close Nvimtree' }
+    {'<leader>et', '<cmd>NvimTreeOpen<CR>', desc = 'Nvimtree: Open Nvimtree' },
+    {'<leader>ec', '<cmd>NvimTreeClose<CR>', desc = 'Nvimtree: Close Nvimtree' }
   },
 }

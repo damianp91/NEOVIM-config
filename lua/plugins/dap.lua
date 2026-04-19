@@ -37,13 +37,5 @@ return {
     vim.keymap.set("n", "<leader>ds", dap.continue, { desc = "Debug: Start" })
     -- set a vim motion to close the debugging ui
     vim.keymap.set("n", "<leader>dc", dapui.close, {desc = "Debug: Close"})
-    -- keymaps jdtls
-    vim.keymap.set("n", "<leader>dm", function()
-      require('jdtls').test_nearest_method()
-    end, { desc = "Debug: Test Nearest Java Method" })
-
-    vim.keymap.set("n", "<leader>dM", function()
-      require('jdtls').test_class()
-    end, { desc = "Debug: Test Java Class" })
   end
 }
