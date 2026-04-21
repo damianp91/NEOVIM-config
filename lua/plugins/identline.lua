@@ -16,6 +16,7 @@ return {
         "dashboard",
         "lazy",
         "mason",
+        "markdown"
       },
     }
   },

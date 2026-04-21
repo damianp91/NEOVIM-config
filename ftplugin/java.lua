@@ -67,7 +67,7 @@ local function java_keymaps()
   -- Run JdtShell as a Vim command
   vim.cmd("command! -buffer JdtJshell lua require('jdtls').jshell()")
   -- Run code single
-  vim.keymap.set('n', '<leader>cr', function()
+  vim.keymap.set('n', '<leader>cM', function()
     local project_root = vim.fn.getcwd()
     local java_files = vim.fn.systemlist(
       string.format('find %s/src/main/java -name "*.java"', project_root)
@@ -96,18 +96,18 @@ local function java_keymaps()
       close_on_exit = false,
       hidden = true,
     }):toggle()
-  end, { desc = "Java: Compile and execute all project java" })
-  -- run prject JavaFX with Maven
-  vim.keymap.set("n", "<leader>fr", function()
+  end, { desc = "Code: Compile and execute all project java" })
+  -- run project JavaFX with Maven
+  vim.keymap.set("n", "<leader>cF", function()
     require("toggleterm.terminal").Terminal:new({
       cmd = "mvn clean javafx:run",
       direction = "float",
       close_on_exit = false,
       hidden = true,
     }):toggle()
-  end, { desc = "JavaFX: Run with Maven" })
+  end, { desc = "Code: Compile and run project JavaFx with Maven" })
 
-  vim.keymap.set('n', '<leader>sr', function()
+  vim.keymap.set('n', '<leader>cs', function()
     -- Try springboot-nvim plugin first
     local ok, springboot = pcall(require, "springboot-nvim")
     if ok then
@@ -135,7 +135,7 @@ local function java_keymaps()
       close_on_exit = false,
       hidden = true,
     }):toggle()
-  end, { desc = "Spring Boot: Run" })
+  end, { desc = "Code: Spring project Run" })
   -- set a vim motion to <Space> + <Shift>s + c to open the generate class ui
   -- to create a class
   vim.keymap.set('n', '<leader>sc', function()

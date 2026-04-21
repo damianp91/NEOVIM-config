@@ -77,7 +77,7 @@ return {
             { find = "%d+ lines yanked into register %w" },
           },
         },
-        opts = { silent = true }, -- Evita que se guarde en el historial de mensajes
+        opts = { silent = true }, -- unsave messages
         view = "notify",
       },
       {

@@ -111,6 +111,18 @@ function M.setup()
     function() require("snacks").picker.keymaps({ layout = "telescope" }) end,
     { desc = "Picker: Search keymaps" }
   )
+  vim.keymap.set('n', "<leader>pG", function ()
+    require("snacks").picker.git_branches() end,
+    { desc = "Picker: Git branches"}
+  )
+  vim.keymap.set('n', "<leader>pl", function ()
+    require("snacks").picker.git_log() end,
+    { desc = "Picker: Git log in repository"}
+  )
+  vim.keymap.set('n', "<leader>pd", function ()
+    require("snacks").picker.git_diff() end,
+    { desc = "Picker: Git diff in repository"}
+  )
 
   --NOTE: Notes (Obsidian)
   local function create_note(base_path, prompt_text)
@@ -180,7 +192,7 @@ function M.setup()
     require("todo-comments").jump_prev()
   end, { desc = "Notes: Jump prev todo" })
 
-  vim.keymap.set("n", "<leader>na", "<cmd>TodoTelescope<cr>",
+  vim.keymap.set("n", "<leader>nA", "<cmd>TodoTelescope<cr>",
     { desc = "Notes: All todos" }
   )
 end
