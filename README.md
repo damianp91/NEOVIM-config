@@ -19,7 +19,7 @@ A personal and optimized Neovim setup for a smooth and efficient development exp
   ![NEOVIM-config](photos/key-mapping.png).
 - **ToggleTerm** for an integrated terminal
   ![NEOVIM-config](photos/terminal.png)
-- OpneCode integrated
+- **OpenCode** integrated (you should download OpenCode in your computer)
   ![NEOVIM-config](photos/opencode.png)  
 
 ## 📥 Installation
@@ -60,6 +60,7 @@ Some useful shortcuts:
 - `<leader>r` → Reload curren buffer.
 - `<leader>tf, <leader>tv, <leader>th` → Open terminal
 - `<leader>uo` → Open panel OpenCode 
+
 The keymaps are grouped for better search and flow in which key.
 
 ## 📜 License
