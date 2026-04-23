@@ -4,7 +4,7 @@ function M.setup()
   --NOTE: General (Vim)
   vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Vim: Save file' })
   vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Vim: Close window' })
-  vim.keymap.set("n", "<leader>r", ":e!<CR>", { desc = "Vim: Reload current file" })
+  vim.keymap.set("n", "<leader>r", ":e!<CR>", { desc = "Vim: Reload current window" })
 
   --NOTE: Buffer Navigation
   vim.keymap.set("n", "<S-l>", ":bnext<CR>", {desc = "Buffer: Next buffer", silent = true})
@@ -253,10 +253,10 @@ function M.lsp_keymaps(_, bufnr)
   vim.keymap.set('n', '<leader>cnd', function() vim.diagnostic.goto(false) end,
     vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic next'})
   )
-  vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist,
+  vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist,
     vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic location list'})
   )
-  vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist,
+  vim.keymap.set('n', '<leader>cq', vim.diagnostic.setqflist,
     vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic quickfix list'})
   )
 end

@@ -27,11 +27,5 @@ return {
 
     -- DAP
     require("nvim-dap-virtual-text").setup({})
-
-    local dap = require("dap")
-    vim.keymap.set('n', '<Leader>dk', dap.toggle_breakpoint,
-      { desc = "DAP: Toggle Breakpoint" }
-    )
-    vim.keymap.set('n', '<Leader>dr', dap.repl.open, { desc = "DAP: Open REPL" })
   end
 }

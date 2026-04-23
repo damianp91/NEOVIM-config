@@ -13,11 +13,11 @@ return {
 
     vim.keymap.set("n", "<leader>en",
       "<cmd>lua require('harpoon.ui').nav_next()<cr>",
-      {desc = "Harpoon navegate next mark"}
+      { desc = "Harpoon: Navigate next mark" }
     )
     vim.keymap.set("n", "<leader>ep",
       "<cmd>lua require('harpoon.ui').nav_next()<cr>",
-      {desc = "Harpoon navegate previous mark"}
+      { desc = "Harpoon: Navigate previous mark" }
     )
     -- Set a vim motion to the tab key to open the harpoon menu to easily navigate
     -- frequented files

@@ -8,7 +8,7 @@ return {
   },
   opts = {
     ---@type false | "classic" | "modern" | "helix"
-    preset = "modern",
+    preset = "helix",
     -- Delay before showing the popup. Can be a number or a function that
     -- returns a number.
     ---@type number | fun(ctx: { keys: string, mode: string, plugin?: string }):number
@@ -136,19 +136,32 @@ return {
     },
     icons = {
       breadcrumb = "»",
-      -- symbol used in the command line area that shows your active key combo
-      separator = "➜", -- symbol used between a key and it's label
-      group = "+", -- symbol prepended to a group
+      separator = "➜",
+      group = "󰦅 ",
       ellipsis = "…",
-      -- set to false to disable all mapping icons,
-      -- both those explicitly added in a mapping
-      -- and those from rules
       mappings = true,
-      --- See `lua/which-key/icons.lua` for more details
-      --- Set to `false` to disable keymap icons from rules
-      rules = {},
-      -- use the highlights from mini.icons
-      -- When `false`, it will use `WhichKeyIcon` instead
+      rules = {
+        { pattern = "buffer", icon = " ", color = "cyan" },
+        { pattern = "file", icon = "󰈔 ", color = "cyan" },
+        { pattern = "terminal", icon = " ", color = "red" },
+        { pattern = "find", icon = "󰄉 ", color = "green" },
+        { pattern = "search", icon = "󰄉 ", color = "green" },
+        { pattern = "code", icon = " ", color = "orange" },
+        { pattern = "window", icon = " ", color = "green" },
+        { pattern = "diagnostic", icon = "󰒡 ", color = "green" },
+        { pattern = "format", icon = "󰴑 ", color = "cyan" },
+        { pattern = "debug", icon = "󰃤 ", color = "red" },
+        { pattern = "git", icon = "󰊢 ", color = "orange" },
+        { pattern = "notes", icon = "󰠮 ", color = "yellow" },
+        { pattern = "picker", icon = "󰩵 ", color = "purple" },
+        { pattern = "toggle", icon = " ", color = "yellow" },
+        { pattern = "session", icon = "󰰢 ", color = "azure" },
+        { pattern = "explorer", icon = " ", color = "cyan" },
+        { pattern = "opencode", icon = "󰅴 ", color = "green" },
+        { pattern = "database", icon = " ", color = "blue"},
+        { pattern = "trouble", icon = "󰒡 ", color = "red"},
+        { pattern = "keymaps", icon = " ", color = "purple"}
+      },
       colors = true,
       -- used by key format
       keys = {

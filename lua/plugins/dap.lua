@@ -37,5 +37,7 @@ return {
     vim.keymap.set("n", "<leader>ds", dap.continue, { desc = "Debug: Start" })
     -- set a vim motion to close the debugging ui
     vim.keymap.set("n", "<leader>dc", dapui.close, {desc = "Debug: Close"})
+
+    vim.keymap.set('n', '<Leader>dr', dap.repl.open, { desc = "Debug: Open REPL" })
   end
 }
