@@ -9,9 +9,9 @@ return {
         {
           "git_status",
           symbols = {
-            added    = "",
-            modified = "",
-            deleted  = "",
+            added    = " ",
+            modified = " ",
+            deleted  = " ",
           }
         },
       },

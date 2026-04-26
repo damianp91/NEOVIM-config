@@ -29,9 +29,9 @@ return {
       ---LHS of toggle mappings in NORMAL mode
       toggler = {
         ---Line-comment toggle keymap
-        line = 'gcc',
+        line = '<leader>Cl',
         ---Block-comment toggle keymap
-        block = 'gbc',
+        block = '<leader>Cb',
       },
       ---LHS of operator-pending mappings in NORMAL and VISUAL mode
       opleader = {
@@ -43,11 +43,11 @@ return {
       ---LHS of extra mappings
       extra = {
         ---Add comment on the line above
-        above = 'gcO',
+        above = '<leader>Ca',
         ---Add comment on the line below
-        below = 'gco',
+        below = '<leader>CB',
         ---Add comment at the end of line
-        eol = 'gcA',
+        eol = '<leader>Cf',
       },
       ---Enable keybindings
       ---NOTE: If given `false` then the plugin won't create any mappings
@@ -56,7 +56,7 @@ return {
         ---`gb[count]{motion}`
         basic = true,
         ---Extra mapping; `gco`, `gcO`, `gcA`
-        extra = false,
+        extra = true,
       },
       ---Function to call before (un)comment
       pre_hook = commentsg.create_pre_hook(),

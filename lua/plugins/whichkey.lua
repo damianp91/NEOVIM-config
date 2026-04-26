@@ -22,6 +22,7 @@ return {
     --- You can add any mappings here, or use `require('which-key').add()` later
     spec = {
       { "<leader>b", group = "Buffers" },
+      { "<leader>C", group = "Comment"},
       { "<leader>c", group = "Code" },
       { "<leader>e", group = "Explorer" },
       { "<leader>f", group = "Files" },
@@ -160,7 +161,8 @@ return {
         { pattern = "opencode", icon = "󰅴 ", color = "green" },
         { pattern = "database", icon = " ", color = "blue"},
         { pattern = "trouble", icon = "󰒡 ", color = "red"},
-        { pattern = "keymaps", icon = " ", color = "purple"}
+        { pattern = "keymaps", icon = " ", color = "purple"},
+        { pattern = "comment", icon = " ", color = "blue" }
       },
       colors = true,
       -- used by key format

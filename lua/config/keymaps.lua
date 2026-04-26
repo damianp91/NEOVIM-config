@@ -2,9 +2,9 @@ local M = {}
 
 function M.setup()
   --NOTE: General (Vim)
-  vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Vim: Save file' })
-  vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Vim: Close window' })
-  vim.keymap.set("n", "<leader>r", ":e!<CR>", { desc = "Vim: Reload current window" })
+  vim.keymap.set('n', '<S-w>', ':w<CR>', { desc = 'Vim: Save file' })
+  vim.keymap.set('n', '<S-q>', ':q<CR>', { desc = 'Vim: Close window' })
+  vim.keymap.set("n", "<S-r>", ":e!<CR>", { desc = "Vim: Reload current window" })
 
   --NOTE: Buffer Navigation
   vim.keymap.set("n", "<S-l>", ":bnext<CR>", {desc = "Buffer: Next buffer", silent = true})
@@ -135,27 +135,27 @@ function M.setup()
       end
     end
   end
-  vim.keymap.set("n", "<leader>nws", ":ObsidianWorkspace<CR>",
+  vim.keymap.set("n", "<leader>ns", ":ObsidianWorkspace<CR>",
     { desc = "Notes: Switch workspace" }
   )
-  vim.keymap.set("n", "<leader>nap", ":ObsidianOpen<CR>",
+  vim.keymap.set("n", "<leader>no", ":ObsidianOpen<CR>",
     { desc = "Notes: Open in Obsidian app" }
   )
   vim.keymap.set("n", "<leader>nn",
     create_note(vim.fn.expand("~/vaults/personal/notes/"), "Quick personal note: "),
     { desc = "Notes: New personal note" }
   )
-  vim.keymap.set("n", "<leader>nns",
+  vim.keymap.set("n", "<leader>nN",
     create_note(vim.fn.expand("~/vaults/personal/second-brain/"),
       "Brain (ej: languages/java): "
     ),
     { desc = "Notes: New note to second-brain" }
   )
-  vim.keymap.set("n", "<leader>nnw",
+  vim.keymap.set("n", "<leader>nw",
     create_note(vim.fn.expand("~/vaults/work/notes/"), "Work (ej: tasks/bug-123): "),
     { desc = "Notes: New work note" }
   )
-  vim.keymap.set("n", "<leader>ndp",
+  vim.keymap.set("n", "<leader>nd",
     function()
       vim.cmd("ObsidianWorkspace personal")
       vim.defer_fn(function()
@@ -163,7 +163,7 @@ function M.setup()
       end, 100)
     end, { desc = "Notes: Daily personal" }
   )
-  vim.keymap.set("n", "<leader>ndw",
+  vim.keymap.set("n", "<leader>nD",
     function()
       vim.cmd("ObsidianWorkspace work")
       vim.defer_fn(function()
@@ -171,10 +171,10 @@ function M.setup()
       end, 100)
     end, { desc = "Notes: Daily work" }
   )
-  vim.keymap.set("n", "<leader>nsn", ":ObsidianSearch<CR>",
+  vim.keymap.set("n", "<leader>nS", ":ObsidianSearch<CR>",
     { desc = "Notes: Search notes" }
   )
-  vim.keymap.set("n", "<leader>nsN", ":ObsidianQuickSwitch<CR>",
+  vim.keymap.set("n", "<leader>nW", ":ObsidianQuickSwitch<CR>",
     { desc = "Notes: Switch note" }
   )
 
@@ -216,7 +216,7 @@ function M.lsp_keymaps(_, bufnr)
   vim.keymap.set('n', '<leader>ci', vim.lsp.buf.implementation,
     vim.tbl_extend('force', opts, { desc = 'Code: LSP Go to Implementation'})
   )
-  vim.keymap.set('n', '<leader>cdf', vim.lsp.buf.type_definition,
+  vim.keymap.set('n', '<leader>ct', vim.lsp.buf.type_definition,
     vim.tbl_extend('force', opts, { desc = 'Code: LSP Go to Type Definition'})
   )
   vim.keymap.set("n", "<leader>cr", require("telescope.builtin").lsp_references,
@@ -227,13 +227,13 @@ function M.lsp_keymaps(_, bufnr)
   )
 
   -- Workspace
-  vim.keymap.set('n', '<leader>cwa', vim.lsp.buf.add_workspace_folder,
+  vim.keymap.set('n', '<leader>cw', vim.lsp.buf.add_workspace_folder,
     vim.tbl_extend('force', opts, { desc = 'Code: LSP Add Workspace Folder'})
   )
-  vim.keymap.set('n', '<leader>cwr', vim.lsp.buf.remove_workspace_folder,
+  vim.keymap.set('n', '<leader>cW', vim.lsp.buf.remove_workspace_folder,
     vim.tbl_extend('force', opts, { desc = 'Code: LSP Remove Workspace Folder'})
   )
-  vim.keymap.set('n', '<leader>cwl', function()
+  vim.keymap.set('n', '<leader>cl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, vim.tbl_extend('force', opts, { desc = 'Code: LSP List Workspace Folders'}))
 
@@ -244,16 +244,16 @@ function M.lsp_keymaps(_, bufnr)
   )
 
   --Diagnostics
-  vim.keymap.set('n', '<leader>cdh', vim.diagnostic.open_float,
+  vim.keymap.set('n', '<leader>ch', vim.diagnostic.open_float,
     vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic show hover'})
   )
-  vim.keymap.set('n', '<leader>cpd', function() vim.diagnostic.goto(true) end,
+  vim.keymap.set('n', '<leader>cp', function() vim.diagnostic.goto(true) end,
     vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic previous'})
   )
-  vim.keymap.set('n', '<leader>cnd', function() vim.diagnostic.goto(false) end,
+  vim.keymap.set('n', '<leader>cn', function() vim.diagnostic.goto(false) end,
     vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic next'})
   )
-  vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist,
+  vim.keymap.set('n', '<leader>cL', vim.diagnostic.setloclist,
     vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic location list'})
   )
   vim.keymap.set('n', '<leader>cq', vim.diagnostic.setqflist,

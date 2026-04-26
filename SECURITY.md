@@ -1,21 +1,23 @@
 # Security Policy
 
-## Supported Versions
+## Supported Neovim Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+This configuration supports the following Neovim stable releases:
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| Neovim Version | Supported          |
+|---------------|------------------|
+| 0.10.x        | :white_check_mark: |
+| 0.9.x         | :white_check_mark: |
+| 0.8.x         | :x:               |
+| < 0.8         | :x:               |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+This is a personal Neovim configuration. If you discover a security issue:
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+1. **Do not open a public GitHub issue** - security issues should be reported privately
+2. **Contact the owner directly** via email or private message
+3. **Expected response time**: within 7 days
+4. **Disclosure policy**: Coordinated disclosure with reasonable timeline
+
+For general issues or suggestions, feel free to open a discussion in the repository.

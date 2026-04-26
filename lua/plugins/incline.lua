@@ -63,7 +63,7 @@ return {
         return {
           { " ", icon, " ", guifg = icon_color },
           { filename, gui = modified and "italic" or "none" },
-          modified and { "  ", guifg = "#935202" } or "",
+          modified and { "  ", guifg = "#8a0000" } or "",
           " ",
         }
       end,
