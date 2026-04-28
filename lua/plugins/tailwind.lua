@@ -25,7 +25,7 @@ return {
           hex_color = true,
           tailwind = true,
           mode = "virtualtext",
-          virtualtext = "■ ",
+          virtualtext = " ",
         },
       })
       tailwindcolorizer.setup({

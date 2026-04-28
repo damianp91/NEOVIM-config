@@ -53,8 +53,8 @@ return {
       layout = {
         box = "horizontal",
         backdrop = false,
-        width = 0.7,
-        height = 0.8,
+        width = 0.8,
+        height = 0.6,
         border = "none",
         {
           box = "vertical",
