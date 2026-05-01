@@ -49,7 +49,7 @@ return {
   -- Diagnostics
   vim.diagnostic.config({
     virtual_text = {
-      prefix = "●",
+      prefix = " ",
       source = "if_many",
       spacing = 2,
     },
