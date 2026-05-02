@@ -4,7 +4,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     ---@diagnostic disable-next-line: different-requires
-    local lint = require("lint")
+    local lint = require("lua.core.lint")
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
     lint.linters.eslint_d.args = {

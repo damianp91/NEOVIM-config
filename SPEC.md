@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Personal Neovim configuration using **lazy.nvim** as the package manager. Targets Neovim 0.9+ stable releases.
+Personal Neovim configuration using **lazy.nvim** as the package manager. Targets Neovim 0.12+ stable releases.
 
 ## Directory Structure
 
@@ -11,41 +11,44 @@ nvim/
 ├── init.lua                      # Entry point
 ├── lazy-lock.json                # Locked versions
 ├── lua/
-│   ├── config/
+│   ├── core/
 │   │   ├── init.lua              # Main config loader
 │   │   ├── settings.lua          # General vim settings
 │   │   ├── lazy.lua              # lazy.nvim bootstrap
-│   │   ├── keymaps.lua           # Keybindings
+│   │   ├── keymaps.lua           # Keybindings (buffer → buf for 0.12)
 │   │   ├── lint.lua              # Linting config
 │   │   ├── lsp/
-│   │   │   ├── init.lua          # LSP setup
-│   │   │   ├── lua_ls.lua        # Lua language server
-│   │   │   ├── ts_ls.lua         # TypeScript/JavaScript
-│   │   │   ├── pyright.lua       # Python
-│   │   │   ├── html.lua          # HTML
-│   │   │   ├── cssls.lua         # CSS
-│   │   │   ├── marksman.lua      # Markdown
-│   │   │   └── angularls.lua     # Angular
+│   │   │   ├── init.lua          # LSP setup (new API: vim.lsp.config/enable)
+│   │   │   ├── servers.lua       # Server list
+│   │   │   └── configs/
+│   │   │       ├── lua_ls.lua    # Lua language server
+│   │   │       ├── ts_ls.lua     # TypeScript/JavaScript
+│   │   │       ├── pyright.lua   # Python
+│   │   │       ├── html.lua      # HTML
+│   │   │       ├── cssls.lua     # CSS
+│   │   │       ├── marksman.lua  # Markdown
+│   │   │       └── angularls.lua # Angular
 │   │   └── plugins/
 │   │       ├── cmp.lua           # Completion config
 │   │       └── luasnip.lua       # Snippets config
 │   └── plugins/                  # Plugin specs (40+ plugins)
 └── ftplugin/
-    ├── java.lua                  # Java filetype
-    └── lua.lua                   # Lua filetype
+    └── java.lua                  # Java filetype (codelens.enable instead of refresh)
 ```
 
 ## Language Servers (LSP)
 
-| Server    | File           | Language             |
-|-----------|----------------|---------------------|
-| lua_ls    | lua_ls.lua    | Lua                 |
-| ts_ls     | ts_ls.lua     | TypeScript/JavaScript|
-| pyright   | pyright.lua   | Python              |
-| html      | html.lua      | HTML                |
-| cssls     | cssls.lua     | CSS                 |
-| marksman  | marksman.lua | Markdown           |
-| angularls | angularls.lua| Angular            |
+Uses new Neovim 0.11+ API: `vim.lsp.config()` and `vim.lsp.enable()`.
+
+| Server    | File                | Language             |
+|-----------|---------------------|---------------------|
+| lua_ls    | configs/lua_ls.lua | Lua                 |
+| ts_ls     | configs/ts_ls.lua  | TypeScript/JavaScript|
+| pyright   | configs/pyright.lua| Python              |
+| html      | configs/html.lua   | HTML                |
+| cssls     | configs/cssls.lua  | CSS                 |
+| marksman  | configs/marksman.lua | Markdown         |
+| angularls | configs/angularls.lua | Angular          |
 
 ## Core Plugins
 
@@ -77,8 +80,7 @@ nvim/
 
 ### LSP & Diagnostics
 - **mason.nvim** - LSP installer UI
-- **lspconfig** - LSP client config
-- **null-ls** - Diagnostic tools
+- **lspconfig** - LSP client config (uses new `vim.lsp.config/enable` API)
 - **nvim-lint** - Inline linting
 - **trouble.nvim** - LSP diagnostics list
 
@@ -117,6 +119,8 @@ nvim/
 | `<leader>c` | Code                  | LSP code actions       |
 
 ### LSP Keymaps (Buffer-local)
+
+Note: Uses `buf` instead of deprecated `buffer` option (Neovim 0.12+).
 
 | Key          | Action                    |
 |--------------|---------------------------|
@@ -169,10 +173,18 @@ nvim/
 ## Dependencies
 
 ### System Requirements
-- Neovim 0.9+ (stable)
+- Neovim 0.12+ (stable)
 - Git (for lazy.nvim and plugin updates)
 - ripgrep (for grep functionality)
 - SQLite (for some plugins)
+
+### Neovim 0.12 Breaking Changes Addressed
+
+| Deprecated API | Replacement | File |
+|---------------|-------------|------|
+| `buffer` in keymap opts | `buf` | `lua/core/keymaps.lua`, `lua/plugins/obsidian.lua` |
+| `vim.lsp.codelens.refresh()` | `vim.lsp.codelens.enable(true)` | `ftplugin/java.lua` |
+| Old LSP setup (`lspconfig.setup()`) | `vim.lsp.config()` + `vim.lsp.enable()` | `lua/core/lsp/init.lua` |
 
 ## Automation
 

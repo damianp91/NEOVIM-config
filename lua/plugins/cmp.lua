@@ -15,6 +15,6 @@ return {
     "roobert/tailwindcss-colorizer-cmp.nvim",
   },
   config = function ()
-    require("config.plugins.cmp").setup()
+    require("core.plugins.cmp").setup()
   end,
 }

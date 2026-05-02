@@ -5,6 +5,6 @@ return {
   dependencies = { "rafamadriz/friendly-snippets" },
   version = "v2.*",
   config = function()
-    require("config.plugins.luasnip").setup()
+    require("core.plugins.luasnip").setup()
   end
 }

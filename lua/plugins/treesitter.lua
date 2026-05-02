@@ -4,7 +4,9 @@ return {
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
-  build = ":TSUpdate",
+  build = function()
+    require("nvim-treesitter.install").update({ with_sync = true })()
+  end,
   event = { "BufReadPost", "BufNewFile" },
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)

@@ -33,7 +33,7 @@ return {
         key = "n",
         desc = "New File",
         action = function()
-          require('config.project_types.project_type').election_type()
+          require('core.project_types.project_type').election_type()
         end
       },
       {

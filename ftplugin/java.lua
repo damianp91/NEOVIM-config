@@ -47,7 +47,7 @@ local function get_bundles()
 end
 
 -- To get capabilities
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = require("core.lsp.init").capabilities
 
 -- Function for all keymap of the jdtls
 local function java_keymaps()
@@ -325,14 +325,14 @@ local config = {
     extendedClientCapabilities = jdtls.extendedClientCapabilities,
   },
   on_attach = function(client, bufnr)
-    require("config.keymaps").lsp_keymaps(client, bufnr)
+    require("core.keymaps").lsp_keymaps(client, bufnr)
     -- Needed for debugging
     jdtls.setup_dap({
       hotcodereplace = "auto",
       config_overrides = {},
     })
-    require("jdtls.dap").setup_dap_main_class_configs()
-    vim.lsp.codelens.refresh()
+    -- require("jdtls.dap").setup_dap_main_class_configs()
+    vim.lsp.codelens.enable(true)
     java_keymaps()
   end,
 }

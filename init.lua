@@ -1,5 +1,5 @@
 
 -- Configuration Lazzy
-require('config')
+require('core')
 
 
