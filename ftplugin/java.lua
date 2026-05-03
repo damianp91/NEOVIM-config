@@ -331,8 +331,8 @@ local config = {
       hotcodereplace = "auto",
       config_overrides = {},
     })
-    -- require("jdtls.dap").setup_dap_main_class_configs()
-    vim.lsp.codelens.enable(true)
+    require("jdtls.dap").setup_dap_main_class_configs()
+    vim.lsp.codelens.refresh()
     java_keymaps()
   end,
 }

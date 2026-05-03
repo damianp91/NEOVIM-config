@@ -35,7 +35,7 @@ vim.opt.cursorline = true       -- Highlight actual line
 vim.opt.clipboard = "unnamedplus"
 vim.opt.scrolloff = 4           -- 4 lines for each scroll
 vim.opt.sidescrolloff = 8       -- 4 columns for lateral scroll
-vim.opt.updatetime = 300        -- Waiting for events 
+vim.opt.updatetime = 1000        -- Waiting for events 
 
 -- splits
 vim.opt.splitright = true
@@ -60,7 +60,8 @@ vim.opt.encoding = "utf-8"
 
 -- UI constant
 vim.opt.signcolumn = "yes"
-vim.opt.timeoutlen = 400
+vim.opt.timeout = true
+vim.opt.timeoutlen = 500
 
 -- ns
 vim.g.loaded_netrw = 1

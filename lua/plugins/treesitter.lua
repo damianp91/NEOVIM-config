@@ -1,7 +1,7 @@
 -- NOTE: TreeSitter Parser for each lenguage of the list ensure:installed
 return {
   "nvim-treesitter/nvim-treesitter",
-  version = "v0.9.2",
+  version = "v0.9.3",
   lazy = false,
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",

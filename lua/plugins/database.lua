@@ -33,7 +33,7 @@ return {
     vim.api.nvim_create_autocmd('FileType', {
       pattern = {'sql', 'mysql', 'plsql'},
       callback = function()
-        local cmp = require('lua.core.plugins.cmp')
+        local cmp = require('core.plugins.cmp')
         cmp.setup.buffer {
           sources = {
             {name = 'vim-dadbod-completion'},

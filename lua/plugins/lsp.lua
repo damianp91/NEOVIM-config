@@ -4,7 +4,14 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "williamboman/mason.nvim",
-    { "j-hui/fidget.nvim", opts = {} },
+    { "j-hui/fidget.nvim",
+      opts = {
+        notification = {
+          window = {
+            avoid = { "NvimTree" },
+          },
+        },
+      } },
     "folke/neodev.nvim",
   },
   config = function()

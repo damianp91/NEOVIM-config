@@ -15,10 +15,11 @@ return {
     delay = function(ctx)
       return ctx.plugin and 0 or 200
     end,
-    filter = function(mapping)
-      -- example to exclude mappings without a description
-      return mapping.desc and mapping.desc ~= ""
-    end,
+    proxy = { "auto" },
+    -- filter = function(mapping)
+    --   -- example to exclude mappings without a description
+    --   return mapping.desc and mapping.desc ~= ""
+    -- end,
     --- You can add any mappings here, or use `require('which-key').add()` later
     spec = {
       { "<leader>b", group = "Buffers" },
@@ -215,7 +216,7 @@ return {
     {
       "<leader>?",
       function()
-        require("which-key").show({ global = true })
+        require("which-key").show()
       end,
       desc = "Buffer Local Keymaps (which-key)",
     },

@@ -247,12 +247,6 @@ function M.lsp_keymaps(_, bufnr)
   vim.keymap.set('n', '<leader>ch', vim.diagnostic.open_float,
     vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic show hover'})
   )
-  vim.keymap.set('n', '<leader>cp', function() vim.diagnostic.goto(true) end,
-    vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic previous'})
-  )
-  vim.keymap.set('n', '<leader>cn', function() vim.diagnostic.goto(false) end,
-    vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic next'})
-  )
   vim.keymap.set('n', '<leader>cL', vim.diagnostic.setloclist,
     vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic location list'})
   )

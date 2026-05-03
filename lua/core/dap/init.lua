@@ -31,9 +31,6 @@ function M.setup()
     dapui.close()
   end
 
-  -- configs languages
-  require("core.dap.configs.java")
-
   local map = vim.keymap.set
 
   map("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
