@@ -38,7 +38,7 @@ nvim/
 
 ## Language Servers (LSP)
 
-Uses new Neovim 0.11+ API: `vim.lsp.config()` and `vim.lsp.enable()`.
+Uses new Neovim 0.12+ API: `vim.lsp.config()` and `vim.lsp.enable()`.
 
 | Server    | File                | Language             |
 |-----------|---------------------|---------------------|
@@ -56,7 +56,7 @@ Uses new Neovim 0.11+ API: `vim.lsp.config()` and `vim.lsp.enable()`.
 - **lazy.nvim** - Plugin manager (bootstrapped in `lazy.lua`)
 
 ### UI & Visuals
-- **snaks** - Dashboard, picker, lazygit integration
+- **snacks** - Dashboard, picker, lazygit integration
 - **noice.nvim** - UI for messages/cmdline
 - **which-key.nvim** - Keybinding hints
 - **incline.nvim** - Floating bufferline
@@ -106,17 +106,24 @@ Uses new Neovim 0.11+ API: `vim.lsp.config()` and `vim.lsp.enable()`.
 
 ### Leader: `<Space>`
 
-| Prefix   | Action                | Description              |
-|----------|----------------------|--------------------------|
-| `<leader>w` | Save/Close            | Vim operations           |
-| `<leader>b` | Buffers               | Buffer navigation       |
-| `<leader>u` | UI                    | UI toggles              |
-| `<leader>p` | Picker                | Telescope/Snacks picker |
-| `<leader>e` | Explorer              | File explorer (Oil)     |
-| `<leader>t` | Terminal              | Terminal toggles         |
-| `<leader>n` | Notes                 | Obsidian/Todo notes     |
-| `<leader>g` | Git                   | Git operations         |
-| `<leader>c` | Code                  | LSP code actions       |
+Keymaps are organized into groups managed by which-key.nvim. See `lua/plugins/whichkey.lua` for the full spec.
+
+| Prefix   | Group                |
+|----------|----------------------|
+| `<leader>b` | Buffers             |
+| `<leader>C` | Comment             |
+| `<leader>c` | Code                |
+| `<leader>e` | Explorer            |
+| `<leader>f` | Files               |
+| `<leader>g` | Git                 |
+| `<leader>n` | Notes               |
+| `<leader>p` | Pickers             |
+| `<leader>t` | Terminal            |
+| `<leader>u` | UI                  |
+| `<leader>w` | Windows             |
+| `<leader>d` | Debug               |
+| `<leader>D` | DataBase            |
+| `<leader>T` | Trouble             |
 
 ### LSP Keymaps (Buffer-local)
 
@@ -173,12 +180,15 @@ Note: Uses `buf` instead of deprecated `buffer` option (Neovim 0.12+).
 ## Dependencies
 
 ### System Requirements
-- Neovim 0.12+ (stable)
+- Neovim 0.11+ (stable)
 - Git (for lazy.nvim and plugin updates)
 - ripgrep (for grep functionality)
 - SQLite (for some plugins)
+- Node.js (for LSP functionality)
+- Python3 (for some plugins)
+- LazyGit (for Snacks lazygit integration)
 
-### Neovim 0.12 Breaking Changes Addressed
+### Neovim 0.12 Changes Addressed
 
 | Deprecated API | Replacement | File |
 |---------------|-------------|------|

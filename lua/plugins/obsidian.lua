@@ -115,7 +115,7 @@ return {
           action = function()
             return require("obsidian").util.smart_action()
           end,
-          opts = { buf = true, expr = true },
+          opts = { buffer = true, expr = true },
         },
       },
 

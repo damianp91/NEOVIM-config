@@ -7,7 +7,9 @@ function M.setup()
   vim.keymap.set("n", "<S-r>", ":e!<CR>", { desc = "Vim: Reload current window" })
 
   --NOTE: Buffer Navigation
-  vim.keymap.set("n", "<S-l>", ":bnext<CR>", {desc = "Buffer: Next buffer", silent = true})
+  vim.keymap.set("n", "<S-l>", ":bnext<CR>",
+    {desc = "Buffer: Next buffer", silent = true}
+  )
   vim.keymap.set("n", "<S-h>", ":bprev<CR>",
     { desc = "Buffer: Previous buffer", silent = true }
   )
@@ -197,6 +199,7 @@ function M.setup()
   )
 end
 
+-- NOTE: global keymaps
 function M.lsp_keymaps(_, bufnr)
   local opts = { buffer = bufnr, noremap = true, silent = true }
 

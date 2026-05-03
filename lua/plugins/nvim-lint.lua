@@ -4,6 +4,6 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function ()
     ---@diagnostic disable-next-line: different-requires
-    require("core.lint")
+    require("core.plugins.lint")
   end
 }
