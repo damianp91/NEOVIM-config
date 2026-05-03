@@ -14,7 +14,6 @@ return {
     "typescript",
     "html",
     "typescriptreact",
-    "typescript.tsx",
   },
   root_markers = {
     "angular.json",

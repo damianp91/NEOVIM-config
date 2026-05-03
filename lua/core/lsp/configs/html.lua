@@ -4,7 +4,7 @@ return {
     'package.json',
     '.git'
   },
-  filetypes = { 'html', 'templ' },
+  filetypes = { 'html' },
   init_options = {
     configurationSection = { 'html', 'css', 'javascript' },
     embeddedLanguages = {

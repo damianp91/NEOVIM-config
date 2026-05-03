@@ -198,7 +198,7 @@ function M.setup()
 end
 
 function M.lsp_keymaps(_, bufnr)
-  local opts = { buf = bufnr, noremap = true, silent = true }
+  local opts = { buffer = bufnr, noremap = true, silent = true }
 
   -- LSP
   vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action,

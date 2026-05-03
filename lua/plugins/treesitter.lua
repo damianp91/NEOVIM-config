@@ -1,13 +1,12 @@
 -- NOTE: TreeSitter Parser for each lenguage of the list ensure:installed
 return {
   "nvim-treesitter/nvim-treesitter",
+  version = "v0.9.2",
+  lazy = false,
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
-  build = function()
-    require("nvim-treesitter.install").update({ with_sync = true })()
-  end,
-  event = { "BufReadPost", "BufNewFile" },
+  build = ":TSUpdate",
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
   end,
