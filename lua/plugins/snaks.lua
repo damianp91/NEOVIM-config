@@ -2,7 +2,7 @@
 return {
   "folke/snacks.nvim",
   priority = 1000,
-  lazy = false,
+  LAzy = false,
   opts = {
     animate = {enabled = true},
     bigfile = require("core.config_snaks.conf_bigfile"),

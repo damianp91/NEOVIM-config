@@ -5,8 +5,6 @@ return {
 	opts = {
 		focus = true,
 	},
-	cmd = "Trouble",
-  event = { "BufReadPre", "BufNewFile" },
 	keys = {
 		{
 		  "<leader>Tw",

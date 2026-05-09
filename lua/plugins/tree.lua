@@ -2,7 +2,10 @@
 return {
   "nvim-tree/nvim-tree.lua",
   version = "*",
-  lazy = true,
+  keys = {
+    { '<leader>et', '<cmd>NvimTreeOpen<CR>',  desc = 'Nvimtree: Open Nvimtree' },
+    { '<leader>ec', '<cmd>NvimTreeClose<CR>', desc = 'Nvimtree: Close Nvimtree' }
+  },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
@@ -31,8 +34,4 @@ return {
       },
     })
   end,
-  keys = {
-    {'<leader>et', '<cmd>NvimTreeOpen<CR>', desc = 'Nvimtree: Open Nvimtree' },
-    {'<leader>ec', '<cmd>NvimTreeClose<CR>', desc = 'Nvimtree: Close Nvimtree' }
-  },
 }
