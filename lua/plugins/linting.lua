@@ -15,15 +15,12 @@ return {
       severity_sort = true,
       float = {
         border = "rounded",
-        source = "if_many",
-        header = "",
-        prefix = "",
+        source = "if_many"
       },
     })
   end,
   config = function()
-    ---@diagnostic disable-next-line: different-requires
-    local lint = require("lua.core.lint")
+    local lint = require("lint")
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
     lint.linters.eslint_d.args = {
@@ -50,8 +47,17 @@ return {
       lua = { "luacheck" },
     }
 
+    -- configuration to detect linting noise and neovim
+    lint.linters.luacheck.args = {
+      "--globals", "vim",
+      "--formatter", "plain",
+      "--codes",
+      "--ranges",
+      "-",
+    }
+
     local timer = nil
-    -- Autocommands
+    -- ptimized autocommand with debounce (avoids running the linter on every keystroke)
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = lint_augroup,
       callback = function()

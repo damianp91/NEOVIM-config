@@ -22,7 +22,7 @@ end
 -- Detect root_dir
 local root_dir = vim.fs.root(0, {
   ".git", "mvnw", "gradlew", "pom.xml", "settings.gradle", "build.xml",
-  ".project",".classpath", "nbproject"
+  ".project", ".classpath", "nbproject"
 })
 if not root_dir then
   vim.notify("Don't detected root_dir para jdtls", vim.log.levels.WARN)
@@ -156,7 +156,7 @@ local function java_keymaps()
   -- Set a Vim motion to <Space> + <Shift>J + o to organize imports in normal mode
   vim.keymap.set('n', '<leader>jo',
     "<Cmd> lua require('jdtls').organize_imports()<CR>",
-    { desc = "Java: Organize Imports"}
+    { desc = "Java: Organize Imports" }
   )
   -- Set a Vim motion to <Space> + <Shift>J + v to extract the code under the
   -- cursor to a variable
@@ -235,7 +235,7 @@ local config = {
         -- Use the Google Style guide for code formattingh
         settings = {
           url = vim.fn.stdpath("config") ..
-            "/lang_servers/intellij-java-google-style.xml"
+              "/lang_servers/intellij-java-google-style.xml"
           ,
           profile = "GoogleStyle"
         }
@@ -292,7 +292,7 @@ local config = {
       codeGeneration = {
         toString = {
           template =
-            "${object.className} [${member.name()}: ${member.value}, .. ${otherMembers}]"
+          "${object.className} [${member.name()}: ${member.value}, .. ${otherMembers}]"
         },
         hashCodeEquals = {
           useJava7Objects = true
