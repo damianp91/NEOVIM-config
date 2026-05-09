@@ -10,7 +10,6 @@ return {
   -- Quickly Jump through the todo tags
   "folke/todo-comments.nvim",
   event = {
-    "VimEnter",
     "BufReadPre",
     "BufNewFile",
   },

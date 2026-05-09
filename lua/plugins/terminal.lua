@@ -1,6 +1,8 @@
 -- NOTE: Terminal integrate on neovim
 return {
   "akinsho/toggleterm.nvim",
+  version = "*",
+  event = "VeryLazy",
   config = function()
     require('toggleterm').setup({
       -- Size horizontal mode (number of lines)

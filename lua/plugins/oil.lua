@@ -1,6 +1,7 @@
 -- NOTE: Oil Explorer file like buffers
 return {
   'stevearc/oil.nvim',
+  event = "VeryLazy";
   config = function()
     require("oil").setup({
       default_file_explorer = true,

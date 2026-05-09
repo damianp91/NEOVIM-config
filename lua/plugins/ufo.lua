@@ -6,6 +6,7 @@ return {
     dependencies = {
       "kevinhwang91/promise-async",
     },
+    event = "BufReadPost",
     config = function()
       require("ufo").setup({
         -- treesitter not required
