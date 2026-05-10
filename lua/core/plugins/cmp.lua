@@ -11,6 +11,7 @@ function M.setup()
     experimental = {
       ghost_text = false,
     },
+    preselect = cmp.PreselectMode.None,
     completion = {
       completeopt = "menu,menuone,noinsert,noselect",
     },
@@ -54,15 +55,13 @@ function M.setup()
       end, { "i", "s" }),
       ["<C-y>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
-        select = true,
+        select = false,
       }),
       ["<C-space>"] = cmp.mapping.complete(),
 
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expandable() then
-          luasnip.expand()
         elseif luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
         else

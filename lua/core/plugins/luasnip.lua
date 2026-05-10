@@ -8,7 +8,7 @@ function M.setup()
   ls.setup {
     history = true,
     updateevents = "TextChanged,TextChangedI",
-    enable_autosnippets = true,
+    enable_autosnippets = false,
   }
 
   -- Move in nodes
