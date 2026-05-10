@@ -1,4 +1,4 @@
--- NOTE: WhichKey Interactive map of keymaps 
+-- NOTE: WhichKey Interactive map of keymaps
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
@@ -23,7 +23,7 @@ return {
     --- You can add any mappings here, or use `require('which-key').add()` later
     spec = {
       { "<leader>b", group = "Buffers" },
-      { "<leader>C", group = "Comment"},
+      { "<leader>C", group = "Comment" },
       { "<leader>c", group = "Code" },
       { "<leader>e", group = "Explorer" },
       { "<leader>f", group = "Files" },
@@ -65,13 +65,13 @@ return {
       },
       presets = {
         operators = true, -- adds help for operators like d, y, ...
-        motions = true, -- adds help for motions
+        motions = true,   -- adds help for motions
         text_objects = true,
         -- help for text objects triggered after entering an operator
         windows = true, -- default bindings on <c-w>
-        nav = true, -- misc bindings to work with windows
-        z = true, -- bindings for folds, spelling and others prefixed with z
-        g = true, -- bindings for prefixed with g
+        nav = true,     -- misc bindings to work with windows
+        z = true,       -- bindings for folds, spelling and others prefixed with z
+        g = true,       -- bindings for prefixed with g
       },
     },
     ---@diagnostic disable: missing-fields
@@ -95,12 +95,12 @@ return {
       },
     },
     layout = {
-      width = {min = 20}, -- min and max width of the columns
-      spacing = 3, -- spacing between columns
+      width = { min = 20 }, -- min and max width of the columns
+      spacing = 3,        -- spacing between columns
     },
     keys = {
       scroll_down = "<C-d>", -- binding to scroll down inside the popup
-      scroll_up = "<C-u>", -- binding to scroll up inside the popup
+      scroll_up = "<C-u>",   -- binding to scroll up inside the popup
     },
     --- Mappings are sorted using configured sorters and natural sort of the keys
     --- Available sorters:
@@ -127,13 +127,13 @@ return {
       },
       desc = {
         { "<Plug>%(?(.*)%)?", "%1" },
-        { "^%+", "" },
-        { "<[cC]md>", "" },
-        { "<[cC][rR]>", "" },
-        { "<[sS]ilent>", "" },
-        { "^lua%s+", "" },
-        { "^call%s+", "" },
-        { "^:%s*", "" },
+        { "^%+",              "" },
+        { "<[cC]md>",         "" },
+        { "<[cC][rR]>",       "" },
+        { "<[sS]ilent>",      "" },
+        { "^lua%s+",          "" },
+        { "^call%s+",         "" },
+        { "^:%s*",            "" },
       },
     },
     icons = {
@@ -160,9 +160,9 @@ return {
         { pattern = "session", icon = "󰰢 ", color = "azure" },
         { pattern = "explorer", icon = " ", color = "cyan" },
         { pattern = "opencode", icon = "󰅴 ", color = "green" },
-        { pattern = "database", icon = " ", color = "blue"},
-        { pattern = "trouble", icon = "󰒡 ", color = "red"},
-        { pattern = "keymaps", icon = " ", color = "purple"},
+        { pattern = "database", icon = " ", color = "blue" },
+        { pattern = "trouble", icon = "󰒡 ", color = "red" },
+        { pattern = "keymaps", icon = " ", color = "purple" },
         { pattern = "comment", icon = " ", color = "blue" }
       },
       colors = true,

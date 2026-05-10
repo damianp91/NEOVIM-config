@@ -1,4 +1,4 @@
--- NOTE: ColorScheme setting view color 
+-- NOTE: ColorScheme setting view color
 return {
   "ellisonleao/gruvbox.nvim",
   lazy = false,
@@ -6,8 +6,8 @@ return {
   config = function()
     -- Default options:
     require("gruvbox").setup({
-      terminal_colors = true,               -- add neovim terminal colors
-      undercurl = true,                     -- type of view in letters
+      terminal_colors = true, -- add neovim terminal colors
+      undercurl = true,       -- type of view in letters
       underline = true,
       bold = true,
       italic = {
@@ -22,7 +22,7 @@ return {
       invert_signs = false,
       invert_tabline = false,
       invert_intend_guides = false,
-      inverse = true, -- invert background for search, diffs, statuslines and errors
+      inverse = true,    -- invert background for search, diffs, statuslines and errors
       contrast = "hard", -- can be "hard", "soft" or empty string
       palette_overrides = {
         bright_green = "#b8bb26",
@@ -31,10 +31,10 @@ return {
       },
       overrides = {
         Normal = { bg = "#161616" },
-        Pmenu = { bg = "#121618", fg = "#c2bdbb" },         -- Backgroud menu
-        PmenuSel = { bg = "#458588", fg = "#fbf1c7" },      -- Item select
-        PmenuSbar = { bg = "#282828" },                     -- Scroll bar
-        PmenuThumb = { bg = "#dcdcdc" },                    -- Thumb
+        Pmenu = { bg = "#121618", fg = "#c2bdbb" },    -- Backgroud menu
+        PmenuSel = { bg = "#458588", fg = "#fbf1c7" }, -- Item select
+        PmenuSbar = { bg = "#282828" },                -- Scroll bar
+        PmenuThumb = { bg = "#dcdcdc" },               -- Thumb
         NormalFloat = { bg = "none" },
         FloatBorder = { bg = "none" },
         TelescopeNormal = { bg = "#1c1c1c" },
@@ -47,7 +47,7 @@ return {
         TelescopePreviewBorder = { bg = "#1c1c1c" },
         LspFloatWinNormal = { bg = "#121618" },
         LspInfoBorder = { fg = "#c2bdbb", bg = "#121618" },
-        CursorLine = {bg = "#242424"},
+        CursorLine = { bg = "#242424" },
         DiagnosticError = { fg = "#ff3333" },
         DiagnosticWarn = { fg = "#fabd2f" },
         DiagnosticInfo = { fg = "#83a598" },
@@ -55,7 +55,7 @@ return {
         CmpPmenu = { bg = "#121618" },
         CmpPmenuBorder = { fg = "#3c3836", bg = "#121618" },
       },
-      dim_inactive = false,               -- Behaivor such panes or windows inactive
+      dim_inactive = false, -- Behaivor such panes or windows inactive
       transparent_mode = false,
     })
     vim.cmd("colorscheme gruvbox")

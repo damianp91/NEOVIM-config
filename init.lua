@@ -1,5 +1,2 @@
-
 -- Configuration Lazzy
 require('core')
-
-

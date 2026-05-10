@@ -132,7 +132,7 @@ return {
       -- completitions
       completion = {
         nvim_cmp = true,
-        min_chars = 2;
+        min_chars = 2,
       },
 
       -- picker
@@ -142,7 +142,7 @@ return {
 
       -- open app
       follow_url_func = function(url)
-        vim.fn.jobstart({"xdg-open", url})
+        vim.fn.jobstart({ "xdg-open", url })
       end,
     })
   end,

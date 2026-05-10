@@ -15,17 +15,17 @@ return {
 
       -- Settings for float terminal
       float_opts = {
-        border = 'curved',       -- or 'single', 'double', 'shadow', etc.
-        width = function() return math.floor(vim.o.columns * 0.6) end,-- 60% weight
-        height = function() return math.floor(vim.o.lines * 0.6) end, -- 60% height
-        winblend = 8,            -- Tranparency (0-100)
+        border = 'curved', -- or 'single', 'double', 'shadow', etc.
+        width = function() return math.floor(vim.o.columns * 0.6) end, -- 60% weight
+        height = function() return math.floor(vim.o.lines * 0.6) end,  -- 60% height
+        winblend = 8, -- Tranparency (0-100)
       },
 
       on_open = function(term)
         if term.direction == "horizontal" then
-          vim.cmd('resize 15')   -- Size horizontal
+          vim.cmd('resize 15')          -- Size horizontal
         elseif term.direction == "vertical" then
-          vim.cmd('vertical resize 80')  -- Weigth vertical
+          vim.cmd('vertical resize 80') -- Weigth vertical
         end
       end,
     })

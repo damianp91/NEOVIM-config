@@ -6,7 +6,7 @@ return {
     "rcarriga/nvim-notify",
   },
   event = "VeryLazy",
-  opts =  {
+  opts = {
     presets = {
       bottom_search = false,        -- use a classic bottom cmdline for search
       command_palette = true,       -- position the cmdline and popupmenu together
@@ -21,8 +21,10 @@ return {
         cmdline = { pattern = "^:", icon = " :", lang = "vim" },
         help = { pattern = "^:%s*he?l?p?%s+", icon = "󰮦 :" },
         search_down = {
-          kind = "search", pattern = "^/",
-          icon = " ", lang = "regex"
+          kind = "search",
+          pattern = "^/",
+          icon = " ",
+          lang = "regex"
         },
         search_up = {
           kind = "search",
@@ -33,16 +35,17 @@ return {
         filter = { pattern = "^:%s*!", icon = " :", lang = "bash" },
         lua = {
           pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },
-          icon = " :", lang = "lua"
+          icon = " :",
+          lang = "lua"
         },
         input = { icon = "󰥻 :" },
       },
     },
     messages = {
-        enabled = true,
-        view = "mini",
-        view_error = "notify",
-        view_warn = "notify",
+      enabled = true,
+      view = "mini",
+      view_error = "notify",
+      view_warn = "notify",
     },
     lsp = {
       progress = {
@@ -57,7 +60,7 @@ return {
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
-        ["cmp.entry.get_documentation"] = true,     -- requires hrsh7th/nvim-cmp
+        ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
       },
       hover = { enabled = true, silent = false },
     },
@@ -101,7 +104,7 @@ return {
           event = "msg_show",
           find = "%d+L, %d+B",
         },
-        opts = { skip = true},
+        opts = { skip = true },
       },
       {
         filter = {
@@ -114,14 +117,14 @@ return {
         filter = {
           event = "msg_show",
           any = {
-            { find = "%d+ fewer lines"},
-            { find = "%d+ more lines"},
+            { find = "%d+ fewer lines" },
+            { find = "%d+ more lines" },
           },
         },
         opts = { skip = true },
       },
     },
-    health = { checker = true },  -- Verifica salud del plugin
-    throttle = 50,                -- Reduce updates innecesarios
+    health = { checker = true }, -- Verifica salud del plugin
+    throttle = 50,               -- Reduce updates innecesarios
   },
 }

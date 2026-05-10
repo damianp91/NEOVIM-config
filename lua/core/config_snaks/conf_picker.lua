@@ -49,7 +49,7 @@ return {
       }
     },
     telescope = {
-      reverse = true, -- set to false for search bar to be on top 
+      reverse = true, -- set to false for search bar to be on top
       layout = {
         box = "horizontal",
         backdrop = false,
@@ -97,7 +97,7 @@ return {
         { win = "input", height = 1, border = "bottom" },
         {
           box = "horizontal",
-          { win = "list", border = "none" },
+          { win = "list",    border = "none" },
           { win = "preview", title = "{preview}", width = 0.5, border = "left" },
         },
       },

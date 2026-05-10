@@ -14,7 +14,7 @@ return {
     "onsails/lspkind.nvim",
     "roobert/tailwindcss-colorizer-cmp.nvim",
   },
-  config = function ()
+  config = function()
     require("core.plugins.cmp").setup()
   end,
 }

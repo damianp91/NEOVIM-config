@@ -1,5 +1,5 @@
 return {
-  cmd = {"marksman", "server"},
-  filetypes = {"markdown"},
+  cmd = { "marksman", "server" },
+  filetypes = { "markdown" },
   single_file_support = true,
 }

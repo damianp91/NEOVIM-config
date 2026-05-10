@@ -12,23 +12,23 @@ function M.setup()
   }
 
   -- Move in nodes
-  vim.keymap.set({"i", "s"}, "<C-l>", function ()
+  vim.keymap.set({ "i", "s" }, "<C-l>", function()
     if ls.choice_active() then
       ls.change_choice(1)
     end
-  end, {desc = "LuaSnip: Next node"})
+  end, { desc = "LuaSnip: Next node" })
 
-  vim.keymap.set({"i", "s"}, "<C-h>", function ()
+  vim.keymap.set({ "i", "s" }, "<C-h>", function()
     if ls.choice_active() then
       ls.change_choice(-1)
     end
-  end, {desc = "LuaSnip: Prev node"})
+  end, { desc = "LuaSnip: Prev node" })
 
   -- Load snippets from various sources
   require("luasnip.loaders.from_vscode").lazy_load()
 
   -- Autocmd to clean up broken fragment states
-  vim.api.nvim_create_autocmd({"ModeChanged"}, {
+  vim.api.nvim_create_autocmd({ "ModeChanged" }, {
     pattern = "*",
     callback = function()
       local event = vim.v.event
@@ -44,7 +44,7 @@ function M.setup()
   })
 
   -- Autocmd adicional para limpiar al salir de buffers
-  vim.api.nvim_create_autocmd({"BufDelete", "BufWipeout"}, {
+  vim.api.nvim_create_autocmd({ "BufDelete", "BufWipeout" }, {
     callback = function()
       pcall(ls.unlink_current)
     end,

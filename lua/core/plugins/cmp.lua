@@ -1,11 +1,11 @@
 ---@diagnostic disable: missing-fields, undefined-field
 local cmp = require('cmp')
-local cmp_autopairs = require ('nvim-autopairs.completion.cmp')
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local lspkind = require('lspkind')
 local M = {}
 local tailwind_formatter = require("tailwindcss-colorizer-cmp").formatter
 
-function  M.setup()
+function M.setup()
   local luasnip = require('luasnip')
   cmp.setup({
     experimental = {
@@ -16,12 +16,12 @@ function  M.setup()
     },
     window = {
       documentation = {
-        border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+        border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
       },
       completion = {
-        border = {'┌', '─', '┐', '│', '┘', '─', '└', '│'},
+        border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
         winhighlight =
-          "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None"
+        "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None"
         ,
       },
     },
@@ -42,7 +42,7 @@ function  M.setup()
         else
           fallback()
         end
-      end, {"i", "s"}),
+      end, { "i", "s" }),
       ["<C-p>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
@@ -51,13 +51,13 @@ function  M.setup()
         else
           fallback()
         end
-      end, {"i", "s"}),
+      end, { "i", "s" }),
       ["<C-y>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       }),
       ["<C-space>"] = cmp.mapping.complete(),
-      -- Mapeos adicionales útiles
+
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -68,7 +68,7 @@ function  M.setup()
         else
           fallback()
         end
-      end, {"i", "s"}),
+      end, { "i", "s" }),
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
@@ -77,7 +77,7 @@ function  M.setup()
         else
           fallback()
         end
-      end, {"i", "s"}),
+      end, { "i", "s" }),
     }),
     formatting = {
       format = function(entry, vim_item)
@@ -92,12 +92,12 @@ function  M.setup()
       end
     },
     sources = cmp.config.sources({
-      {name = "nvim_lsp", priority = 1000},
-      {name = "nvim_lsp_signature_help", priority = 900},
-      {name = "luasnip", priority = 750},
-      {name = "path", priority = 500},
+      { name = "nvim_lsp", priority = 1000 },
+      { name = "nvim_lsp_signature_help", priority = 900 },
+      { name = "luasnip", priority = 750 },
+      { name = "path", priority = 500 },
     }, {
-      {name = "buffer", priority = 250, keyword_length = 3, max_item_count = 3},
+      { name = "buffer", priority = 250, keyword_length = 3, max_item_count = 3 },
     }),
     sorting = {
       comparators = {
@@ -114,30 +114,30 @@ function  M.setup()
     },
   })
 
-  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done{map_char = {tex = ""}})
+  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
 
   -- Set configuration for specific filetype
   cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
-      {name = 'git'},
-    },{
-        {name = 'buffer'},
-      })
+      { name = 'git' },
+    }, {
+      { name = 'buffer' },
+    })
   })
 
-  cmp.setup.filetype({'sql', 'mysql', 'plsql'}, {
+  cmp.setup.filetype({ 'sql', 'mysql', 'plsql' }, {
     sources = cmp.config.sources({
-      {name = 'vim-dadbod-completition'},
-      {name = 'buffer'},
+      { name = 'vim-dadbod-completition' },
+      { name = 'buffer' },
     })
   })
 
   -- Use buffer source for '/' and '?' (if you enabled `native_menu`,
   -- this won't work anymore).
-  cmp.setup.cmdline({'/', '?'}, {
+  cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-      {name = 'buffer'}
+      { name = 'buffer' }
     }
   })
 
@@ -146,10 +146,11 @@ function  M.setup()
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      {name = 'path'}
+      { name = 'path' }
     }, {
-        {name = 'cmdline'}
-      })
+      { name = 'cmdline' }
+    })
   })
 end
+
 return M

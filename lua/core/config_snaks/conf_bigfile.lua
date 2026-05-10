@@ -1,8 +1,8 @@
 ---@class snacks.bigfile.Config
 return {
-  notify = true, -- show notification when big file detected
+  notify = true,            -- show notification when big file detected
   size = 1.5 * 1024 * 1024, -- 1.5MB
-  line_length = 1000, -- average line length (useful for minified files)
+  line_length = 1000,       -- average line length (useful for minified files)
   -- Enable or disable features when big file detected
   ---@param ctx {buf: number, ft:string}
   setup = function(ctx)

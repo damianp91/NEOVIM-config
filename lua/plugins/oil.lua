@@ -1,7 +1,7 @@
 -- NOTE: Oil Explorer file like buffers
 return {
   'stevearc/oil.nvim',
-  event = "VeryLazy";
+  event = "VeryLazy",
   config = function()
     require("oil").setup({
       default_file_explorer = true,
@@ -81,14 +81,14 @@ return {
         max_height = 0.6,
         border = "rounded",
         win_options = {
-          winblend = 8,   -- (0-100) where 100 is invisible
+          winblend = 8, -- (0-100) where 100 is invisible
         },
         preview_split = "auto",
       },
     })
   end,
   dependencies = {
-    {"echasnovski/mini.icons", opts = {}},
+    { "echasnovski/mini.icons", opts = {} },
     "nvim-tree/nvim-web-devicons",
     "nvim-lua/plenary.nvim",
   },

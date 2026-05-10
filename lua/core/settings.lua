@@ -3,13 +3,13 @@
 vim.g.mapleader = " "
 
 -- numeration
-vim.opt.number = true              -- Show number of every line command
-vim.opt.relativenumber = true      -- Show relative number of actual line
+vim.opt.number = true         -- Show number of every line command
+vim.opt.relativenumber = true -- Show relative number of actual line
 
 -- indent
-vim.opt.tabstop = 2                -- Set the number of spaces for each tabstop
+vim.opt.tabstop = 2    -- Set the number of spaces for each tabstop
 vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2             -- Set the number of spaces for each indent
+vim.opt.shiftwidth = 2 -- Set the number of spaces for each indent
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
@@ -27,15 +27,15 @@ vim.opt.smartcase = true
 
 -- colors
 vim.opt.background = "dark"
-vim.opt.termguicolors = true    -- Colors in terminal
+vim.opt.termguicolors = true -- Colors in terminal
 vim.opt.showmatch = true
-vim.opt.cursorline = true       -- Highlight actual line
+vim.opt.cursorline = true    -- Highlight actual line
 
 -- scroll
 vim.opt.clipboard = "unnamedplus"
-vim.opt.scrolloff = 4           -- 4 lines for each scroll
-vim.opt.sidescrolloff = 8       -- 4 columns for lateral scroll
-vim.opt.updatetime = 1000        -- Waiting for events 
+vim.opt.scrolloff = 4     -- 4 lines for each scroll
+vim.opt.sidescrolloff = 8 -- 4 columns for lateral scroll
+vim.opt.updatetime = 1000 -- Waiting for events
 
 -- splits
 vim.opt.splitright = true

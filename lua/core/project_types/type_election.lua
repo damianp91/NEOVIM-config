@@ -144,9 +144,9 @@ public class Main {
 
       -- Create pom.xml
       local pom_xml = [[
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>]] .. base_package .. [[</groupId>
@@ -284,7 +284,7 @@ public class Main {
 
   <target name="compile">
     <mkdir dir="${build}"/>
-    <javac srcdir="${src}" destdir="${build}" includeantruntime="false" 
+    <javac srcdir="${src}" destdir="${build}" includeantruntime="false"
            source="21" target="21" encoding="UTF-8">
       <classpath>
         <fileset dir="${lib}" includes="**/*.jar"/>
@@ -387,9 +387,9 @@ public class Main {
 
       -- Create pom.xml
       local pom_xml = [[
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>]] .. base_package .. [[</groupId>
@@ -529,7 +529,8 @@ public class Main extends Application {
 
       -- Execute npm init and install dependencies
       vim.notify("Installing dependencies...", vim.log.levels.INFO)
-      vim.fn.system("cd " .. vim.fn.fnameescape(project_path) .. " && npm init -y && npm install eslint eslint_d --save-dev")
+      vim.fn.system("cd " ..
+        vim.fn.fnameescape(project_path) .. " && npm init -y && npm install eslint eslint_d --save-dev")
 
       -- Create index.js
       local main_js_path = project_path .. "/src/index.js"

@@ -31,13 +31,13 @@ return {
 
     -- Settings cmp
     vim.api.nvim_create_autocmd('FileType', {
-      pattern = {'sql', 'mysql', 'plsql'},
+      pattern = { 'sql', 'mysql', 'plsql' },
       callback = function()
         local cmp = require('core.plugins.cmp')
         cmp.setup.buffer {
           sources = {
-            {name = 'vim-dadbod-completion'},
-            {name = 'buffer'},
+            { name = 'vim-dadbod-completion' },
+            { name = 'buffer' },
           }
         }
       end,

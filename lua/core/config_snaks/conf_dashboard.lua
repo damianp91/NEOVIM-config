@@ -1,10 +1,10 @@
-vim.api.nvim_set_hl(0, "mainColor", {fg = "#f6bf00", bold = true})
-vim.api.nvim_set_hl(0, "fileColor", {fg = "#676f55", bold = true})
-vim.api.nvim_set_hl(0, "wordColor", {fg = "#a8b2a1", bold = true})
-vim.api.nvim_set_hl(0, "heaterColor", {fg = "#f6bf00", bold = true})
-vim.api.nvim_set_hl(0, "shadowColor", {fg = "#39444b", bold = true})
-vim.api.nvim_set_hl(0, "redColor", {fg = "#8e100d", bold = true})
-vim.api.nvim_set_hl(0, "orageColor", {fg = "#ce6400", bold = true})
+vim.api.nvim_set_hl(0, "mainColor", { fg = "#f6bf00", bold = true })
+vim.api.nvim_set_hl(0, "fileColor", { fg = "#676f55", bold = true })
+vim.api.nvim_set_hl(0, "wordColor", { fg = "#a8b2a1", bold = true })
+vim.api.nvim_set_hl(0, "heaterColor", { fg = "#f6bf00", bold = true })
+vim.api.nvim_set_hl(0, "shadowColor", { fg = "#39444b", bold = true })
+vim.api.nvim_set_hl(0, "redColor", { fg = "#8e100d", bold = true })
+vim.api.nvim_set_hl(0, "orageColor", { fg = "#ce6400", bold = true })
 
 ---@class snacks.dashboard.Config
 return {
@@ -76,15 +76,15 @@ return {
     },
 
     header = [[
-                  ▄ ▄                     
-              ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄       
-              █ ▄ █▄█ ▄▄▄ █ █▄█ █ █       
-           ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █       
-         ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄    
-         █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄  
-       ▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █  
-       █▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █  
-           █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█     
+                  ▄ ▄
+              ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄
+              █ ▄ █▄█ ▄▄▄ █ █▄█ █ █
+           ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █
+         ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+         █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄
+       ▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █
+       █▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █
+           █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█
 
   Abeunt studia in mores. Ad sidera tollere vultus.
         ]]
@@ -94,18 +94,18 @@ return {
     icon = function(item)
       if item.file and (item.icon == "file" or item.icon == "directory") then
         local icon = vim.fn.fnamemodify(item.file, ":t"):match("^%.") and "" or ""
-        return {icon, width = 3, hl = "fileColor"}
+        return { icon, width = 3, hl = "fileColor" }
       end
-      return {item.icon, width = 3, hl = "fileColor"}
+      return { item.icon, width = 3, hl = "fileColor" }
     end,
     autokeys = function(item)
-      return {item.key, width = 3, hl = "redColor"}
+      return { item.key, width = 3, hl = "redColor" }
     end,
     desc = function(item)
-      return {item.desc, width = 3, hl = "wordColor"}
+      return { item.desc, width = 3, hl = "wordColor" }
     end,
-    footer = {"%s", align = "center", hl = "wordColor"},
-    header = {"%s", align = "center", hl = "mainColor"},
+    footer = { "%s", align = "center", hl = "wordColor" },
+    header = { "%s", align = "center", hl = "mainColor" },
     file = function(item, ctx)
       local fname = vim.fn.fnamemodify(item.file, ":~")
       fname = ctx.width and #fname > ctx.width and vim.fn.pathshorten(fname) or fname
@@ -118,16 +118,16 @@ return {
         end
       end
       local dir, file = fname:match("^(.*)/(.+)$")
-      return dir and {{dir .. "/", hl = "shadowColor"},
-        {file, hl = "wordColor"}} or {{fname, hl = "fileColor"}}
+      return dir and { { dir .. "/", hl = "shadowColor" },
+        { file,       hl = "wordColor" } } or { { fname, hl = "fileColor" } }
     end,
   },
   sections = {
     -- Pane 1
-    {section = nil, height = 4, padding = 1},
-    {section = "header", padding = 0.8},
-    {section = "keys", gap = 0.9, padding = 1},
-    {section = "startup", padding = 1},
+    { section = nil,       height = 4,   padding = 1 },
+    { section = "header",  padding = 0.8 },
+    { section = "keys",    gap = 0.9,    padding = 1 },
+    { section = "startup", padding = 1 },
 
     -- Pane 2
     {
@@ -138,10 +138,10 @@ return {
     },
     {
       pane = 2,
-      title ={
-        {"▀ █ █ ▀   ▀ █ █ ▀   ▀ █ █ ▀   ▀ █ █ ▀   ▀ █ █ ▀   ▀ █ █ ▀\n", hl = "mainColor"},
-        {"██   ██   ██   ██   ██   ██   ██   ██   ██   ██   ██   ██\n", hl = "mainColor"},
-        {"▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄\n", hl = "mainColor"},
+      title = {
+        { "▀ █ █ ▀   ▀ █ █ ▀   ▀ █ █ ▀   ▀ █ █ ▀   ▀ █ █ ▀   ▀ █ █ ▀\n", hl = "mainColor" },
+        { "██   ██   ██   ██   ██   ██   ██   ██   ██   ██   ██   ██\n", hl = "mainColor" },
+        { "▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄   ▄ █ █ ▄\n", hl = "mainColor" },
       },
       height = 8,
       padding = 1,
@@ -150,7 +150,7 @@ return {
       pane = 2,
       row = 1,
       icon = " ",
-      title = {"Recent Files", hl = "fileColor"},
+      title = { "Recent Files", hl = "fileColor" },
       section = "recent_files",
       indent = 2,
       padding = 1,
@@ -158,15 +158,15 @@ return {
     {
       pane = 2,
       icon = " ",
-      title = {"Projects", hl = "fileColor"},
+      title = { "Projects", hl = "fileColor" },
       section = "projects",
       indent = 2,
       padding = 1,
     },
     {
       pane = 2,
-      icon = {" ", hl = "orageColor"},
-      title = {"Git Status", hl = "orageColor"},
+      icon = { " ", hl = "orageColor" },
+      title = { "Git Status", hl = "orageColor" },
       section = "terminal",
       enabled = function()
         ---@diagnostic disable-next-line: undefined-global

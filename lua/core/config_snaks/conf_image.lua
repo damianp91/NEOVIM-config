@@ -1,7 +1,7 @@
 return {
   enabled = true,
   doc = {
-    float = true, -- show image on cursor hover
+    float = true,   -- show image on cursor hover
     inline = false, -- show image inline
     max_width = 50,
     max_height = 30,

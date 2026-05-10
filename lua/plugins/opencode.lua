@@ -10,7 +10,7 @@ return {
       optional = true,
       opts = {
         input = {}, -- Enhances `ask()`
-        picker = { -- Enhances `select()`
+        picker = {  -- Enhances `select()`
           actions = {
             opencode_send = function(...) return require("opencode").snacks_picker_send(...) end,
           },
@@ -33,8 +33,10 @@ return {
     -- Recommended/example keymaps
     vim.keymap.set(
       { "n", "x" },
-      "<C-o>", function() require("opencode").ask("@this: ",
-        { submit = true })
+      "<C-o>",
+      function()
+        require("opencode").ask("@this: ",
+          { submit = true })
       end,
       { desc = "OpenCode: Ask question…" }
     )

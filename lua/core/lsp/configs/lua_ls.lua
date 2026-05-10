@@ -17,7 +17,7 @@ return {
         version = 'LuaJIT',
       },
       diagnostics = {
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       telemetry = { enable = false },
       workspace = {

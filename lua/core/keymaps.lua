@@ -8,7 +8,7 @@ function M.setup()
 
   --NOTE: Buffer Navigation
   vim.keymap.set("n", "<S-l>", ":bnext<CR>",
-    {desc = "Buffer: Next buffer", silent = true}
+    { desc = "Buffer: Next buffer", silent = true }
   )
   vim.keymap.set("n", "<S-h>", ":bprev<CR>",
     { desc = "Buffer: Previous buffer", silent = true }
@@ -41,9 +41,9 @@ function M.setup()
   )
 
   --NOTE: Git
-  vim.keymap.set({'n', 'v'}, '<leader>gg',
+  vim.keymap.set({ 'n', 'v' }, '<leader>gg',
     function() require('snacks').lazygit.open() end,
-    { desc = "Git: LazyGit open"}
+    { desc = "Git: LazyGit open" }
   )
 
   --NOTE: UI
@@ -51,11 +51,11 @@ function M.setup()
     require("opencode").toggle()
   end, { desc = "UI: OpenCode toggle panel" })
 
-  vim.keymap.set({'n', 'x'}, '<leader>ua', function()
+  vim.keymap.set({ 'n', 'x' }, '<leader>ua', function()
     require("opencode").select()
   end, { desc = "UI: OpenCode select action" })
 
-  vim.keymap.set({'n', 'x'}, '<leader>ue', function()
+  vim.keymap.set({ 'n', 'x' }, '<leader>ue', function()
     require("opencode").prompt("explain")
   end, { desc = "UI: OpenCode explain code" })
 
@@ -105,7 +105,7 @@ function M.setup()
   vim.keymap.set('n', "<leader>pg", function() require("snacks").picker.grep() end,
     { desc = "Picker: Grep word" }
   )
-  vim.keymap.set({'n', 'x'}, "<leader>ps",
+  vim.keymap.set({ 'n', 'x' }, "<leader>ps",
     function() require("snacks").picker.grep_word() end,
     { desc = "Picker: Search visual selection" }
   )
@@ -113,17 +113,20 @@ function M.setup()
     function() require("snacks").picker.keymaps({ layout = "telescope" }) end,
     { desc = "Picker: Search keymaps" }
   )
-  vim.keymap.set('n', "<leader>pG", function ()
-    require("snacks").picker.git_branches() end,
-    { desc = "Picker: Git branches"}
+  vim.keymap.set('n', "<leader>pG", function()
+      require("snacks").picker.git_branches()
+    end,
+    { desc = "Picker: Git branches" }
   )
-  vim.keymap.set('n', "<leader>pl", function ()
-    require("snacks").picker.git_log() end,
-    { desc = "Picker: Git log in repository"}
+  vim.keymap.set('n', "<leader>pl", function()
+      require("snacks").picker.git_log()
+    end,
+    { desc = "Picker: Git log in repository" }
   )
-  vim.keymap.set('n', "<leader>pd", function ()
-    require("snacks").picker.git_diff() end,
-    { desc = "Picker: Git diff in repository"}
+  vim.keymap.set('n', "<leader>pd", function()
+      require("snacks").picker.git_diff()
+    end,
+    { desc = "Picker: Git diff in repository" }
   )
 
   --NOTE: Notes (Obsidian)
@@ -182,7 +185,7 @@ function M.setup()
 
   -- NOTE: ShowKeys
   vim.keymap.set("n", "<leader>uk", ":ShowkeysToggle<cr>",
-    { desc = "UI: Toggle showkeys"}
+    { desc = "UI: Toggle showkeys" }
   )
 
   --NOTE: Notes (Todo Comments)
@@ -208,53 +211,53 @@ function M.lsp_keymaps(_, bufnr)
     vim.tbl_extend('force', opts, { desc = 'Code: LSP Code Action' })
   )
   vim.keymap.set('n', 'K', vim.lsp.buf.hover,
-    vim.tbl_extend('force', opts, { desc = 'Code: LSP Hover Documentation'})
+    vim.tbl_extend('force', opts, { desc = 'Code: LSP Hover Documentation' })
   )
   vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition,
-    vim.tbl_extend('force', opts, { desc = 'Code: LSP Go to Definition'})
+    vim.tbl_extend('force', opts, { desc = 'Code: LSP Go to Definition' })
   )
   vim.keymap.set("n", "<leader>cD", vim.lsp.buf.declaration,
-    vim.tbl_extend('force', opts, { desc = 'Code: LSP Go to Declaration'})
+    vim.tbl_extend('force', opts, { desc = 'Code: LSP Go to Declaration' })
   )
   vim.keymap.set('n', '<leader>ci', vim.lsp.buf.implementation,
-    vim.tbl_extend('force', opts, { desc = 'Code: LSP Go to Implementation'})
+    vim.tbl_extend('force', opts, { desc = 'Code: LSP Go to Implementation' })
   )
   vim.keymap.set('n', '<leader>ct', vim.lsp.buf.type_definition,
-    vim.tbl_extend('force', opts, { desc = 'Code: LSP Go to Type Definition'})
+    vim.tbl_extend('force', opts, { desc = 'Code: LSP Go to Type Definition' })
   )
   vim.keymap.set("n", "<leader>cr", require("telescope.builtin").lsp_references,
-    vim.tbl_extend('force', opts, { desc = 'Code: LSP Find References'})
+    vim.tbl_extend('force', opts, { desc = 'Code: LSP Find References' })
   )
   vim.keymap.set("n", "<leader>cR", vim.lsp.buf.rename,
-    vim.tbl_extend('force', opts, { desc = 'Code: LSP Rename Symbol'})
+    vim.tbl_extend('force', opts, { desc = 'Code: LSP Rename Symbol' })
   )
 
   -- Workspace
   vim.keymap.set('n', '<leader>cw', vim.lsp.buf.add_workspace_folder,
-    vim.tbl_extend('force', opts, { desc = 'Code: LSP Add Workspace Folder'})
+    vim.tbl_extend('force', opts, { desc = 'Code: LSP Add Workspace Folder' })
   )
   vim.keymap.set('n', '<leader>cW', vim.lsp.buf.remove_workspace_folder,
-    vim.tbl_extend('force', opts, { desc = 'Code: LSP Remove Workspace Folder'})
+    vim.tbl_extend('force', opts, { desc = 'Code: LSP Remove Workspace Folder' })
   )
   vim.keymap.set('n', '<leader>cl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, vim.tbl_extend('force', opts, { desc = 'Code: LSP List Workspace Folders'}))
+  end, vim.tbl_extend('force', opts, { desc = 'Code: LSP List Workspace Folders' }))
 
   -- Code Actions
   vim.keymap.set('n', '<leader>cf',
     function() vim.lsp.buf.format { async = true } end,
-    vim.tbl_extend('force', opts, { desc = 'Code: Format Code'})
+    vim.tbl_extend('force', opts, { desc = 'Code: Format Code' })
   )
 
   --Diagnostics
   vim.keymap.set('n', '<leader>ch', vim.diagnostic.open_float,
-    vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic show hover'})
+    vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic show hover' })
   )
   vim.keymap.set('n', '<leader>cL', vim.diagnostic.setloclist,
-    vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic location list'})
+    vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic location list' })
   )
   vim.keymap.set('n', '<leader>cq', vim.diagnostic.setqflist,
-    vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic quickfix list'})
+    vim.tbl_extend('force', opts, { desc = 'Code: Diagnostic quickfix list' })
   )
 end
 

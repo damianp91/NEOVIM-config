@@ -13,11 +13,11 @@ M.election_type = function()
       name = " Java",
       key = "java",
       options = {
-        {label = "  Gradle", key = "gradle"},
-        {label = "  Maven", key = "maven" },
-        {label = "ﭰ  Ant", key = "ant"},
-        {label = "  JavaFx with Maven", key = "javafx"},
-        {label = "  Spring", key = "springBoot"},
+        { label = "  Gradle", key = "gradle" },
+        { label = "  Maven", key = "maven" },
+        { label = "ﭰ  Ant", key = "ant" },
+        { label = "  JavaFx with Maven", key = "javafx" },
+        { label = "  Spring", key = "springBoot" },
       }
     },
     {
@@ -52,16 +52,16 @@ M.election_type = function()
     selection_caret = " ",
     entry_prefix = "  ",
   }, {
-      prompt_title = "Select Lenguage",
-      finder = finders.new_table({
-        results = langs,
-        entry_maker = function(entry)
-          return {
-            value = entry,
-            display = entry.name,
-            ordinal = entry.name
-          }
-        end
+    prompt_title = "Select Lenguage",
+    finder = finders.new_table({
+      results = langs,
+      entry_maker = function(entry)
+        return {
+          value = entry,
+          display = entry.name,
+          ordinal = entry.name
+        }
+      end
     }),
     sorter = conf.generic_sorter({}),
     attach_mappings = function(prompt_bufnr)
@@ -119,9 +119,9 @@ M.election_type = function()
           }):find()
         else
           if file_type[lang_key] and file_type[lang_key].default then
-              file_type[lang_key].default()
+            file_type[lang_key].default()
           else
-              vim.notify("Don't find generator for " .. lang_key, vim.log.levels.ERROR)
+            vim.notify("Don't find generator for " .. lang_key, vim.log.levels.ERROR)
           end
         end
       end)
