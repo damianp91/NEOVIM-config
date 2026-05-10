@@ -7,6 +7,8 @@ vim.api.nvim_set_hl(0, "redColor", { fg = "#8e100d", bold = true })
 vim.api.nvim_set_hl(0, "orageColor", { fg = "#ce6400", bold = true })
 
 ---@class snacks.dashboard.Config
+---@diagnostic disable: undefined-global
+-- luacheck: globals Snacks
 return {
   width = math.min(60, vim.o.columns - 10),
   row = nil, -- dashboard position. nil for center

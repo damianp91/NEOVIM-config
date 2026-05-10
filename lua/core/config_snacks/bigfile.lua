@@ -1,4 +1,6 @@
 ---@class snacks.bigfile.Config
+---@diagnostic disable: undefined-global
+-- luacheck: globals Snacks
 return {
   notify = true,            -- show notification when big file detected
   size = 1.5 * 1024 * 1024, -- 1.5MB
@@ -9,9 +11,11 @@ return {
     if vim.fn.exists(":NoMatchParen") ~= 0 then
       vim.cmd([[NoMatchParen]])
     end
-    ---@diagnostic disable-next-line: undefined-global
+    ---@diagnostic disable-next-line: undefined-field
     Snacks.util.wo(0, { foldmethod = "manual", statuscolumn = "", conceallevel = 0 })
+    vim.b.completion = false
     vim.b.minianimate_disable = true
+    vim.b.minihipatterns_disable = true
     vim.schedule(function()
       if vim.api.nvim_buf_is_valid(ctx.buf) then
         vim.bo[ctx.buf].syntax = ctx.ft
