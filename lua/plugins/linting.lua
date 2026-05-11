@@ -7,9 +7,15 @@ return {
       virtual_text = {
         prefix = " ",
         source = "if_many",
-        spacing = 2,
+        spacing = 1,
       },
-      signs = true,
+      signs =  {
+        text = {
+          [vim.diagnostic.severity.ERROR] = ' ',
+          [vim.diagnostic.severity.WARN] = ' ',
+          [vim.diagnostic.severity.INFO] = '󰋼 '
+        }
+      },
       underline = true,
       update_in_insert = false,
       severity_sort = true,
