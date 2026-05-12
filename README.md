@@ -81,4 +81,6 @@ Some useful shortcuts:
 This configuration is open-source and available under the MIT License.
 ---
 
-
+> [!NOTE]
+> If you need more information about the specifications of this
+> configuration, you can see  [spec.md](/SPEC.md)
