@@ -6,7 +6,6 @@ local M = {}
 local tailwind_formatter = require("tailwindcss-colorizer-cmp").formatter
 
 function M.setup()
-  local luasnip = require('luasnip')
   cmp.setup({
     experimental = {
       ghost_text = false,
@@ -14,6 +13,7 @@ function M.setup()
     preselect = cmp.PreselectMode.None,
     completion = {
       completeopt = "menu,menuone,noinsert,noselect",
+      keyword_length = 2
     },
     window = {
       documentation = {
@@ -31,53 +31,36 @@ function M.setup()
         require('luasnip').lsp_expand(args.body)
       end,
     },
-    mapping = cmp.mapping.preset.insert({
+    mapping = {
       ["<C-d>"] = cmp.mapping.scroll_docs(-2),
       ["<C-f>"] = cmp.mapping.scroll_docs(2),
       ["<C-e>"] = cmp.mapping.abort(),
-      ["<C-n>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.choice_active() then
-          luasnip.change_choice(1)
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-      ["<C-p>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.choice_active() then
-          luasnip.change_choice(-1)
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-      ["<C-y>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Insert,
-        select = false,
-      }),
+      ["<CR>"] = cmp.mapping.confirm({ select = false }),
       ["<C-space>"] = cmp.mapping.complete(),
 
       ["<Tab>"] = cmp.mapping(function(fallback)
+        local ls = require("luasnip")
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
+        elseif ls.expand_or_locally_jumpable() then
+          ls.expand_or_jump()
         else
           fallback()
         end
       end, { "i", "s" }),
+
       ["<S-Tab>"] = cmp.mapping(function(fallback)
+        local ls = require("luasnip")
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
+        elseif ls.jumpable(-1) then
+          ls.jump(-1)
         else
           fallback()
         end
       end, { "i", "s" }),
-    }),
+
+    },
     formatting = {
       format = function(entry, vim_item)
         vim_item = lspkind.cmp_format({
@@ -91,10 +74,10 @@ function M.setup()
       end
     },
     sources = cmp.config.sources({
-      { name = "nvim_lsp", priority = 1000 },
+      { name = "nvim_lsp",                priority = 1000 },
       { name = "nvim_lsp_signature_help", priority = 900 },
-      { name = "luasnip", priority = 750 },
-      { name = "path", priority = 500 },
+      { name = "luasnip",                 priority = 750 },
+      { name = "path",                    priority = 500 },
     }, {
       { name = "buffer", priority = 250, keyword_length = 3, max_item_count = 3 },
     }),
@@ -113,7 +96,10 @@ function M.setup()
     },
   })
 
-  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
+  cmp.event:on(
+    "confirm_done",
+    cmp_autopairs.on_confirm_done { map_char = { tex = "" } }
+  )
 
   -- Set configuration for specific filetype
   cmp.setup.filetype('gitcommit', {
@@ -138,17 +124,6 @@ function M.setup()
     sources = {
       { name = 'buffer' }
     }
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`,
-  -- this won't work anymore).
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
   })
 end
 

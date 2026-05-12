@@ -60,9 +60,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     require("core.keymaps").lsp_keymaps(client, bufnr)
 
-    if client:supports_method('textDocument/completion') then
-      vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
-    end
   end,
 })
 
