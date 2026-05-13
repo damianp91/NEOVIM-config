@@ -27,6 +27,10 @@ M.election_type = function()
     {
       name = " TypeScript",
       key = "typescript",
+    },
+    {
+      name = "  Python",
+      key = "python",
     }
     -- Future languanges
   }

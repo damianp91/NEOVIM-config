@@ -791,7 +791,96 @@ dist/
   },
 
   -- INFO: Projects Python (placeholder para futuras implementaciones)
-  python = {},
+  python = {
+    default = function()
+      local project_name = vim.fn.input("Name of proyect (Python): ")
+
+      if project_name == "" then
+        vim.notify("Error: You must provide a name", vim.log.levels.ERROR)
+        return
+      end
+
+      local project_path = vim.fn.getcwd() .. "/" .. project_name
+
+      -- create folders
+      vim.fn.mkdir(project_path .. "/src", "p")
+      vim.fn.mkdir(project_path .. "/tests", "p")
+
+      -- create virtualenv
+      vim.notify("Creating virtual environment...", vim.log.levels.INFO)
+
+      vim.fn.system(
+        "cd" .. vim.fn.fnameescape(project_path) .. " && python -m venv .venv"
+      )
+
+      -- pyproyect.tom
+      local pyproject = [[
+[project]
+name = "]] .. project_name .. [["
+version = "0.1.0"
+description = ""
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.basedpyright]
+typeCheckingMode = "standard"
+]]
+      local pyproject_file = io.open(project_path .. "/pyproject.toml", "w")
+
+      if pyproject_file then
+        pyproject_file:write(pyproject)
+        pyproject_file:close()
+      end
+
+      -- main.py
+      local main_py = [[
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
+
+if __name__ == "__main__":
+    print(greet("World"))
+]]
+
+      local main_path = project_path .. "/src/main.py"
+
+      local main_file = io.open(main_path, "w")
+
+      if main_file then
+        main_file:write(main_py)
+        main_file:close()
+      end
+
+      -- gitignore
+      local gitignore = [[
+.venv/
+__pycache__/
+.pytest_cache/
+ruff_cache/
+*.pyc
+]]
+      local git_file = io.open(project_path .. "/.gitignore", "w")
+
+      if git_file then
+        git_file:write(gitignore)
+        git_file:close()
+      end
+
+      vim.cmd("cd " .. vim.fn.fnameescape(project_path))
+      vim.cmd("edit " .. vim.fn.fnameescape(main_path))
+
+      vim.notify("Created python project in: " .. project_path, vim.log.levels.INFO)
+    end,
+  },
 
   -- INFO: Projects C (placeholder para futuras implementaciones)
   c = {},

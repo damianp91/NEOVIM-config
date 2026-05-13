@@ -6,13 +6,14 @@ return {
     ensure_installed = {
       -- LSP servers
       "angular-language-server",
+      "basedpyright",
+      "ruff",
       "biome",
       "css-lsp",
       "html-lsp",
       "jdtls",
       "lua-language-server",
       "marksman",
-      "pyright",
       "slint-lsp",
       "typescript-language-server",
       -- tools

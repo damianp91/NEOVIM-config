@@ -4,6 +4,7 @@ return {
   cssls = require("core.lsp.configs.cssls"),
   html = require("core.lsp.configs.html"),
   marksman = require("core.lsp.configs.marksman"),
-  pyright = require("core.lsp.configs.pyright"),
+  basedpyright = require("core.lsp.configs.basedpyright"),
+  ruff = require("core.lsp.configs.ruff"),
   ts_ls = require("core.lsp.configs.ts_ls")
 }
