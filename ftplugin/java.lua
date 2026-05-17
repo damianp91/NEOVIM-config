@@ -208,7 +208,7 @@ end
 -- Configuration
 local config = {
   cmd = {
-    "java",
+    "java", -- this line for java 21
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -307,6 +307,10 @@ local config = {
             name = "JavaSE-21",
             path = "/usr/lib/jvm/java-21-openjdk-amd64",
           },
+          {
+            name = "JavaSE-25",
+            path = "/usr/lib/jvm/java-25-openjdk-amd64",
+          }
         }
       },
       -- enable code lens in the lsp
