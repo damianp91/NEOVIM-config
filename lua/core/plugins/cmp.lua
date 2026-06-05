@@ -17,13 +17,10 @@ function M.setup()
     },
     window = {
       documentation = {
-        border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+        border = "rounded",
       },
       completion = {
-        border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
-        winhighlight =
-        "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None"
-        ,
+        border = "rounded",
       },
     },
     snippet = {
