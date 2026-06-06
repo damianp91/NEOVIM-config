@@ -1,9 +1,9 @@
 --NOTE: ColorScheme setting view color
 
 return {
-  dir = "~/plugins-nvim/silicis.nvim",
-  name = "silicis.nvim",
-  -- "damianp91/silicis.nvim",
+  -- dir = "~/plugins-nvim/silicis.nvim",
+  -- name = "silicis.nvim",
+  "damianp91/silicis.nvim",
   priority = 1000,
   lazy = false,
 
@@ -16,7 +16,7 @@ return {
         neotree = false,
         bufferline = false,
       },
-      variant = "earth",
+      variant = "terra", -- "terra" | "cineris" | "pruna" | "algor"
     })
 
     vim.cmd.colorscheme("silicis")
