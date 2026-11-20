@@ -16,10 +16,12 @@ return {
       "marksman",
       "slint-lsp",
       "typescript-language-server",
+      "luacheck",
       -- tools
       "google-java-format",
       "java-debug-adapter",
-      "java-test"
+      "java-test",
+      "stylelint"
     },
   },
 }

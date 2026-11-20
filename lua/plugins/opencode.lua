@@ -1,6 +1,6 @@
 return {
   "nickjvandyke/opencode.nvim",
-  version = "*", -- Latest stable release
+  -- version = "*", -- Latest stable release
   event = "VeryLazy",
   dependencies = {
     {
@@ -46,12 +46,14 @@ return {
       function() require("opencode").select() end,
       { desc = "OpenCode: Execute action…" }
     )
-    vim.keymap.set(
-      { "n", "t" },
-      "<C-t>",
-      function() require("opencode").toggle() end,
-      { desc = "OpenCode: Toggle panel" }
-    )
+
+    -- vim.keymap.set(
+    --   { "n", "t" },
+    --   "<C-t>",
+    --   function() require("opencode").toggle() end,
+    --   { desc = "OpenCode: Toggle panel" }
+    -- )
+
     vim.keymap.set(
       { "n", "x" },
       "ga",
