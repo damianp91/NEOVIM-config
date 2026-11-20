@@ -1,5 +1,9 @@
 return {
-  cmd = { 'lua-language-server' },
+  -- cmd = { 'lua-language-server' },
+  cmd = {
+    'steam-run',
+    vim.fn.stdpath('data') .. '/mason/packages/lua-language-server/libexec/bin/lua-language-server',
+  },
   root_markers = {
     '.luarc.json',
     '.luarc.jsonc',

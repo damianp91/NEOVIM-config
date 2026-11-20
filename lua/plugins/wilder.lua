@@ -5,7 +5,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "romgrk/fzy-lua-native",
   },
-  event = "CmdlineEnter",
+  event = "VeryLazy",
   config = function()
     local wilder = require("wilder")
 
@@ -27,7 +27,6 @@ return {
         border = "rounded",
         left = {
           " ",
-          wilder.popupmenu_devicons(),
         },
 
         right = {

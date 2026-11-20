@@ -208,7 +208,7 @@ end
 -- Configuration
 local config = {
   cmd = {
-    "java", -- this line for java 21
+    vim.env.JAVA25_HOME .. "/bin/java", -- this line for java 21
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
