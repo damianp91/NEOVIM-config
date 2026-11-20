@@ -47,9 +47,9 @@ function M.setup()
   )
 
   --NOTE: UI
-  vim.keymap.set('n', '<leader>uo', function()
+  --[[ vim.keymap.set('n', '<leader>uo', function()
     require("opencode").toggle()
-  end, { desc = "UI: OpenCode toggle panel" })
+  end, { desc = "UI: OpenCode toggle panel" }) ]]
 
   vim.keymap.set({ 'n', 'x' }, '<leader>ua', function()
     require("opencode").select()
