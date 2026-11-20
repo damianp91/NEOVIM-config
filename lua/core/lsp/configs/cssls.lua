@@ -1,5 +1,9 @@
 return {
-  cmd = { 'vscode-css-language-server', '--stdio' },
+  cmd = {
+    "steam-run",
+    vim.fn.stdpath("data") .. "/mason/bin/vscode-css-language-server",
+    "--stdio",
+  },
   root_markers = {
     'package.json',
     '.git'
